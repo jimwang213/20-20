@@ -15,23 +15,24 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import { Link } from 'react-router';
-
 import Button from 'antd/es/button';
 import { Row, Col } from 'antd';
 import { Carousel } from 'antd';
 import { Typography as AntTypography, Divider } from 'antd';
+import { Cascader } from 'antd';
 import './App.css';
 
-const TitleColor = {
-
-  color: "#FFFFFF"
-
+const MastersInSearch = {
+  height: 50
 }
 
-const Banner = {
-  fontSize: 20
+const ProgramTitle = {
+  fontSize:16
 }
+
+const explore = {
+  color:"#808080"
+};
 
 const divStyle = {
   margin: 50
@@ -52,6 +53,31 @@ const searchBy = {
 const Program = {
   fontSize: 24,
   marginBottom: 0
+}
+
+const MissionStatementP = {
+  fontSize: 25
+}
+
+const LATypography = {
+  textAlign: "left"
+}
+
+const SearchTypography = {
+  textAlign: "center",
+  fontSize: 25
+}
+
+const { Title, Paragraph, Text } = AntTypography;
+
+const TitleColor = {
+
+  color: "#FFFFFF"
+
+}
+
+const Banner = {
+  fontSize: 20
 }
 
 const useStyles = makeStyles(theme => ({
@@ -116,23 +142,52 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const MissionStatementP = {
-  fontSize: 25
+const options = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+          {
+            value: 'xiasha',
+            label: 'Xia Sha',
+            disabled: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua men',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+function onChange(value, selectedOptions) {
+  console.log(value, selectedOptions);
 }
 
-const LATypography = {
-  textAlign: "left"
-}
-
-const SearchTypography = {
-  textAlign: "center",
-  fontSize: 25
-}
-
-const { Title, Paragraph, Text } = AntTypography;
-
-function onChange(a, b, c) {
-  console.log(a, b, c);
+function filter(inputValue, path) {
+  return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
 }
 
 export default function PrimarySearchAppBar() {
@@ -217,7 +272,8 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  return (
+
+    return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
@@ -289,71 +345,146 @@ export default function PrimarySearchAppBar() {
         </div>
       </Carousel>
     
-      <div className="gutter-example" style={divStyle}>
+    <div className="gutter-example" style={divStyle}>
 
-          <Row gutter={16}>
-              <Col>
-                <AntTypography style={SearchTypography} >
-                  <Paragraph>
-                    Find Your Next Institution
-                  </Paragraph>
-                </AntTypography>
-              </Col>
-
-            <Col className="gutter-row" span={24}>
-              <div className="gutter-example" style={divStyle}>
-                <Row />
-
-                <Row gutter={16}>
-                  <Col className="gutter-row" span={6} offset={4}>
-                    <div className="gutter-box">
-                      <Button type="primary" block={true} style={searchButtonStyle} onClick="localhost:3000/School">
-                        <div>
-                          <p style={searchBy}>Search by </p>
-                          <p style={Program}>School </p>
-                        </div>
-                      </Button>
-                    </div>
-                  </Col>
-                  <Col className="gutter-row" span={6} >
-                    <div className="gutter-box">
-                      <Button type="primary" block={true} style={searchButtonStyle} >
-                        <div>
-                          <p style={searchBy}>Search by </p>
-                          <p style={Program}>Program</p>
-                        </div>
-                      </Button>
-                    </div>
-                  </Col>
-                  <Col className="gutter-row" span={6} >
-                    <div className="gutter-box">
-                      <Button type="primary" block={true} style={searchButtonStyle}>
-                        <div>
-                          <p style={searchBy}>Search by </p>
-                          <p style={Program}>Popularity</p>
-                        </div>
-                      </Button>
-                    </div>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
-          </Row>
-
-         <Row>
-          <Typography style={LATypography} >
-           <Title>- Mission Statement -</Title>
-           <Paragraph style={MissionStatementP}>
-            "At GradSchooled our mission is to empower and encourage those seeking a graduate school
-            education by{' '}
-              <Text strong>
-                providing access to centralized information about universities and their programs.
+      <Row>
+        <Col offset={7} span={4}>
+          <Typography style={LATypography}>
+            <Title>Masters in </Title>
+          </Typography>
+        </Col>
+        <Col span={8} >
+          <Cascader 
+            options={options}
+            onChange={onChange}
+            placeholder="Busines,Computer Science..."
+            showSearch={{ filter }}
+            style={MastersInSearch}
+          />
+        </Col>
+      </Row>
+      
+      <Row gutter={8} type="flex" justify="space-around">
+        <Col span={7} offset={3}>
+          <div>
+            <Row>
+              <Text underline style={ProgramTitle}>
+                Most Popular Programs
               </Text>
-            {' '}Through our website, we look to ease and refine the graduate program search process."
-           </Paragraph>
-         </Typography>
-        </Row>
-      </div>
+            </Row>
+            <Row>
+              <Button type="link">
+                #1 MS. Business Analytics
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #2 MS. Education/Educational Counselling
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #3 MS. Business Administration
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #4 MS. Mechanical Engineering
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #5 MS. Computer Science
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link" style={explore}>
+                (Explore the complete top 30 list)
+              </Button>
+            </Row>
+          </div>
+        </Col>
+        <Col span={7} >
+          <div>
+            <Row>
+              <Text underline style={ProgramTitle}>
+                Highest Post-Completion Salary Programs
+              </Text>
+            </Row>
+            <Row>
+              <Button type="link">
+                #1 M.B.A.
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #2 MS. Computer Science
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #3 MS. Mechanical Engineering
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #4 MS. Finance and Economics
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #5 MS. Computer Science
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link" style={explore}>
+                (Explore the complete top 30 list)
+              </Button>
+            </Row>
+          </div>
+        </Col>
+        <Col span={7} >
+        <div>
+            <Row>
+              <Text underline style={ProgramTitle}>
+                1 Year Degrees
+              </Text>
+            </Row>
+            <Row>
+              <Button type="link">
+                #1 Ms. Accounting
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #2 MS. Education
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #3 MS. Biomedical Sciences
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #4 MS. Business Analytics
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link">
+                #5 MS. Marketing
+              </Button>
+            </Row>
+            <Row>
+              <Button type="link" style={explore}>
+                (Explore the complete top 30 list)
+              </Button>
+            </Row>
+          </div>
+        </Col>
+      </Row>
     </div>
-  );
-}
+  </div>
+    )
+  }
+

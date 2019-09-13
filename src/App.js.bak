@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import Button from 'antd/es/button';
+import { Row, Col } from 'antd';
+import { Carousel } from 'antd';
+import { Typography as AntTypography, Divider } from 'antd';
+import './App.css';
+
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,45 +22,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import { Link } from 'react-router';
-
-import Button from 'antd/es/button';
-import { Row, Col } from 'antd';
-import { Carousel } from 'antd';
-import { Typography as AntTypography, Divider } from 'antd';
-import './App.css';
-
-const TitleColor = {
-
-  color: "#FFFFFF"
-
-}
-
-const Banner = {
-  fontSize: 20
-}
-
-const divStyle = {
-  margin: 50
-};
-
-const searchButtonStyle = {
-  height: 100,
-  width: 200,
-  fontSize: 16,
-  position:"center"
-};
-
-const searchBy = {
-  fontSize: 16,
-  marginBottom: 0
-};
-
-const Program = {
-  fontSize: 24,
-  marginBottom: 0
-}
-
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
@@ -64,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block'
+      display: 'block',
     },
   },
   search: {
@@ -116,6 +84,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const { SubMenu } = Menu;
+
+const { Title, Paragraph, Text } = AntTypography;
+
+const divStyle = {
+  margin: 50
+};
+
+const searchButtonStyle = {
+  height: 100,
+  width: 200,
+  fontSize: 16
+};
+
+const searchBy = {
+  fontSize: 12,
+  marginBottom: 0
+};
+
+const Program = {
+  fontSize: 20
+}
+
 const MissionStatementP = {
   fontSize: 25
 }
@@ -129,38 +120,12 @@ const SearchTypography = {
   fontSize: 25
 }
 
-const { Title, Paragraph, Text } = AntTypography;
-
-function onChange(a, b, c) {
-  console.log(a, b, c);
+const Banner = {
+  fontSize: 20
 }
 
-export default function PrimarySearchAppBar() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+const menuId = 'primary-search-account-menu';
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorEl(null);
-  }
-
-  function handleMenuClose() {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  }
-
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
-
-  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -175,7 +140,6 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -217,20 +181,31 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  return (
-    <div className={classes.grow}>
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+
+<div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-
-          <Typography className={classes.title} variant="h6" noWrap style={TitleColor}>
-            GradSchooled
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Material-UI
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search for a School or Program.."
+              placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -276,38 +251,40 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+    </div>
 
-      <Carousel autoplay>
-        <div style={Banner}>
-          <h3>A Masters Degree is like A College Degree 10 Years Ago</h3>
-        </div>
-        <div>
-          <h3>Find the Best Investment In Your Future</h3>
-        </div>
-        <div>
-          <h3>Find the Best Investment In Your Future</h3>
-        </div>
-      </Carousel>
-    
-      <div className="gutter-example" style={divStyle}>
+        <div className="gutter-example" style={divStyle}>
+
+          <Row>
+            <Col className="gutter-row" span={24} style={Banner}>
+              <Carousel>
+                <div style={Banner}>
+                  A Masters Degree is like A College Degree 10 Years Ago
+                </div>
+              </Carousel>
+            </Col>
+          </Row>
+
+          <Row gutter={12}>
+            <Col>
+              <AntTypography style={SearchTypography} >
+                <Paragraph>
+                  Find Your Next Institution
+                </Paragraph>
+              </AntTypography>
+            </Col>
+          </Row>
+
 
           <Row gutter={16}>
-              <Col>
-                <AntTypography style={SearchTypography} >
-                  <Paragraph>
-                    Find Your Next Institution
-                  </Paragraph>
-                </AntTypography>
-              </Col>
-
             <Col className="gutter-row" span={24}>
               <div className="gutter-example" style={divStyle}>
                 <Row />
 
                 <Row gutter={16}>
-                  <Col className="gutter-row" span={6} offset={4}>
+                  <Col className="gutter-row" span={6} offset={3}>
                     <div className="gutter-box">
-                      <Button type="primary" block={true} style={searchButtonStyle} onClick="localhost:3000/School">
+                      <Button type="primary" block={true} style={searchButtonStyle}>
                         <div>
                           <p style={searchBy}>Search by </p>
                           <p style={Program}>School </p>
@@ -317,7 +294,7 @@ export default function PrimarySearchAppBar() {
                   </Col>
                   <Col className="gutter-row" span={6} >
                     <div className="gutter-box">
-                      <Button type="primary" block={true} style={searchButtonStyle} >
+                      <Button type="primary" block={true} style={searchButtonStyle}>
                         <div>
                           <p style={searchBy}>Search by </p>
                           <p style={Program}>Program</p>
@@ -340,20 +317,48 @@ export default function PrimarySearchAppBar() {
             </Col>
           </Row>
 
-         <Row>
-          <Typography style={LATypography} >
-           <Title>- Mission Statement -</Title>
-           <Paragraph style={MissionStatementP}>
-            "At GradSchooled our mission is to empower and encourage those seeking a graduate school
-            education by{' '}
-              <Text strong>
-                providing access to centralized information about universities and their programs.
-              </Text>
-            {' '}Through our website, we look to ease and refine the graduate program search process."
-           </Paragraph>
-         </Typography>
-        </Row>
+          <Row>
+            <Typography style={LATypography} >
+              <Title>- Mission Statement -</Title>
+              <Paragraph style={MissionStatementP}>
+                "At GradSchooled our mission is to empower and encourage those seeking a graduate school
+                education by{' '}
+                <Text strong>
+                  providing access to centralized information about universities and their programs.
+                  </Text>
+                {' '}Through our website, we look to ease and refine the graduate program search process."
+              </Paragraph>
+            </Typography>
+          </Row>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+};
+
+export function PrimarySearchAppBar() {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  function handleProfileMenuOpen(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleMobileMenuClose() {
+    setMobileMoreAnchorEl(null);
+  }
+
+  function handleMenuClose() {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  }
+
+  function handleMobileMenuOpen(event) {
+    setMobileMoreAnchorEl(event.currentTarget);
+  }
+
+  export default App;

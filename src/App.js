@@ -329,7 +329,7 @@ export default function PrimarySearchAppBar() {
                     <div className="gutter-box">
                       <Button type="primary" block={true} style={searchButtonStyle}>
                         <div>
-                          <p style={searchBy}>Search by </p>
+                          <p style={searchBy}>Search by D </p>
                           <p style={Program}>Popularity</p>
                         </div>
                       </Button>

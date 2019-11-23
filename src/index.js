@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import App from './App';
+import Home from './Home';
 import Program from './Program';
 import School from './School';
 import ProgramInfo from './ProgramInfo';
+import SchoolInfo from './SchoolInfo';
+import SchoolProgram from './SchoolProgram'
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
@@ -13,23 +15,13 @@ const routing = (
   <Router>
     <div>
     <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/program">Programs</Link>
-        </li>
-        <li>
-          <Link to="/School">School</Link>
-        </li>
-        <li>
-          <Link to="/ProgramInfo">ProgramInfo</Link>
-        </li>
     </ul>
-        <Route path="/ProgramInfo" component={ProgramInfo} />
-        <Route path="/Program" component={Program} />
-        <Route path="/School" component={School} />
-        <Route exact path="/" component={App} />
+        <Route path="/SchoolProgram/:schoolId/:programId" component={SchoolProgram} />
+        <Route path="/School/:schoolId" component={SchoolInfo} />
+        <Route path="/Program/:programId" component={ProgramInfo} />
+        <Route exact path="/Program" component={Program} />
+        <Route exact path="/School" component={School} />
+        <Route exact path="/" component={Home} />
     </div>
   </Router>
 )

@@ -24,7 +24,6 @@ import { Cascader } from 'antd';
 import './App.css';
 
 import Card from 'react-bootstrap/Card'
-import Accordion from 'react-bootstrap/Accordion'
 
 import TopMenu from './TopMenu';
 
@@ -33,8 +32,11 @@ const schools =
     'MIT': {
       title: "Massachusettes Institute of Technology",
       description: "Massachusetts Institute of Technology is a private research university in Cambridge, Massachusetts. The Institute is a land-grant, sea-grant, and space-grant university, with an urban campus that extends more than a mile alongside the Charles River.",
-      ranking: 'Rankings and Top Programs',
-      programranking: '#1 Computer Science', 
+      ranking: [ 
+          <li>#1 Computer Engineering, Aerospace Engineering, Chemical Engineering, Material Engineering, Mechanical Engineering</li>,
+          <li>#2 Nuclear Engineering, Biomedical Engineering</li>,
+          <li>#5 M.B.A.</li>
+      ],
       programs: [
         {
           name: 'Masters of Science in Business Analytics',
@@ -325,7 +327,11 @@ const Banner = {
               </Typography>        
           </Row>
 
-            <Table pagination={false} dataSource={schoolData.data} columns={schoolData.columns} />
+          <Row>
+            <Text>
+              {schoolData.ranking}
+            </Text>
+          </Row>
  
           <Row>
             <Typography>

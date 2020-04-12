@@ -68,10 +68,6 @@ height: 180,
 width: 300
 }
 
-const backgroundImage = {
-  backgroundImage: 'url(https://teachingcommons.stanford.edu/sites/teachingcommons/files/styles/ug-8-col-header/public/images/2015/08/cfr-p4-14_2.jpg?itok=3GTpg8xj)'
-}
-
 const searchButtonStyle = {
   height: 40,
   width: 300,
@@ -163,16 +159,13 @@ class Home extends React.Component {
       </Carousel>
     </div>
 
-    
-      <ColoredLineH color="blue" />
-
       <div style={divStyle}>
 
           <Row gutter={16}>
               <Col>
                 <AntTypography style={SearchTypography} >
-                  <Paragraph>
-                    Find Your Next Institution
+                  <Paragraph> 
+                    <Divider orientation="left">Find Your Next Institution</Divider>    
                   </Paragraph>
                 </AntTypography>
               </Col>

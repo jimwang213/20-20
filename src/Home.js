@@ -188,12 +188,6 @@ class Home extends React.Component {
         </div>
 
         <div>
-
-          <p>{this.state.windowWidth} x {this.state.windowHeight}</p>
-          <p>{widthratioupdate}</p>
-
-        </div>
-        <div>
           <Carousel>
             <Carousel.Item>
               <img

@@ -64,7 +64,7 @@ const programs =
         dataIndex: 'Program_Length',
       },
       {
-        title: 'Occupations_PostGrad',
+        title: 'Occupations PostGrad',
         dataIndex: 'Occupations_PostGrad',
       }
     ],
@@ -112,15 +112,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -169,15 +169,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -226,15 +226,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -283,15 +283,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -342,15 +342,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -398,15 +398,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -512,15 +512,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -569,15 +569,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -628,15 +628,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -685,15 +685,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -742,15 +742,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -799,15 +799,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -856,15 +856,15 @@ const programs =
     ],
     columns: [
       {
-        title: 'Medium_Salary',
+        title: 'Medium Salary',
         dataIndex: 'Medium_Salary',
       },
       {
-        title: 'Average_Tuition',
+        title: 'Average Tuition',
         dataIndex: 'Average_Tuition',
       },
       {
-        title: 'Program_Length',
+        title: 'Program Length',
         dataIndex: 'Program_Length',
       },
       {
@@ -972,6 +972,10 @@ class ProgramInfo extends React.Component {
             </Typography>
           </Row>
 
+          {/* Divider to separate the buttons and the mission statement */}
+          <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+          </Divider>
+
           <Row>
             <Typography>
               <Title style={ProgramInfoTitle}>Summary Data</Title>
@@ -979,6 +983,10 @@ class ProgramInfo extends React.Component {
           </Row>
 
           <Table pagination={false} dataSource={programData.data} columns={programData.columns} style={ProgramInfoCard} />
+
+          {/* Divider just for looks */}
+          <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+          </Divider>
 
           <Row>
             <Col span={18}>

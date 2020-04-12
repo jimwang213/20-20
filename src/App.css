@@ -41,3 +41,12 @@
   background: #364d79;
   overflow: hidden;
 }
+
+/* This is added to accout for the row margin during resizing in home page when going down to a smaller device. */
+@media (max-width: 1014px) {
+
+  [class*="col-"] {
+      margin-bottom: 15px;
+  }
+
+}

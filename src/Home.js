@@ -88,7 +88,7 @@ const backgroundImage = {
 }
 
 var searchBy = {
-  fontSize: 20,
+  fontSize: 18,
   marginBottom: 0,
   test: function () {
 
@@ -129,44 +129,58 @@ function getOnClickHrefHandler(addr) {
   }
 }
 
+const searchButtonPicture = {
+  height: 170,
+  width: 300,
+}
+
+const searchButtonStyle = {
+  height: 30,
+  width: 300,
+  fontSize: 16,
+  position: "center",
+}
+
 
 
 class Home extends React.Component {
 
+  // Obsolete resizing code. Kept for the sake of future reference.
+  /*
   state = {
     windowHeight: window.innerHeight,
     windowWidth: window.innerWidth,
-    
+
     searchButtonStyle: {
-      height: window.innerHeight/5.0,
-      width: window.innerWidth/6.3,
+      height: window.innerHeight / 5.0,
+      width: window.innerWidth / 6.3,
       fontSize: 16,
       position: "center",
     },
 
     searchButtonPicture: {
-      height: window.innerWidth/6.3*0.57,
-      width: window.innerWidth/6.3
+      height: window.innerWidth / 6.3 * 0.57,
+      width: window.innerWidth / 6.3
     }
   }
 
-
+  
   handleResize = () => {
     var ratio = ResizeUpdate(window.innerWidth, window.innerHeight);
     this.setState({
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth,
 
-      searchButtonStyle:{
+      searchButtonStyle: {
         //height: this.state.searchButtonStyle.height*ratio[1],
-        width: this.state.searchButtonStyle.width*ratio[0],
+        width: this.state.searchButtonStyle.width * ratio[0],
         fontSize: 16,
         position: "center",
       },
 
       searchButtonPicture: {
-        height: this.state.searchButtonPicture.height*ratio[0],
-        width: this.state.searchButtonPicture.width*ratio[0],
+        height: this.state.searchButtonPicture.height * ratio[0],
+        width: this.state.searchButtonPicture.width * ratio[0],
       }
     });
   }
@@ -178,6 +192,7 @@ class Home extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize)
   }
+  */
 
   render() {
     return (
@@ -232,7 +247,7 @@ class Home extends React.Component {
 
         <div style={divStyle}>
 
-          <Row gutter={16} justify="space-around" align="middle">
+          <Row gutter={16} justify="space-evenly" align="middle">
             <Col>
               <AntTypography style={SearchTypography} >
                 <Paragraph>
@@ -242,56 +257,49 @@ class Home extends React.Component {
             </Col>
           </Row>
 
-          <Row gutter={36} justify="space-around" align="middle">
-            <Col className="gutter-row" span={6} offset={4}>
-              <Row>
-                <img src="https://theshopsatyale.com/cms/wp-content/uploads/2017/07/coverb01_0-1.jpg" style={this.state.searchButtonPicture} />
-              </Row>
-              <Row>
-                <div className="gutter-box">
-                  <Button block={true} style={this.state.searchButtonStyle} onClick={getOnClickHrefHandler("/school")}>
+          <div class="container">
+            <div class="row justify-content-around">
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://i.pinimg.com/originals/e6/28/f0/e628f03e345087d1ebea46719c31db06.png" style={searchButtonPicture} />
+                </Row>
+                <Row>
+                  <Button block={true} style={searchButtonStyle} onClick={getOnClickHrefHandler("/school")}>
                     <div>
                       <p style={searchBy}>Search by School</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
-
-            <Col className="gutter-row" span={6} >
-              <Row>
-                <img src="https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2018/05/how-business-analytics-can-help-your-business.jpg?w=715&h=375&crop=1" style={this.state.searchButtonPicture} />
-              </Row>
-              <Row>
-                <div className="gutter-box">
-                  <Button block={true} style={this.state.searchButtonStyle} onClick={getOnClickHrefHandler("/program")}>
+                </Row>
+              </div>
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://i.ibb.co/s1C54Bb/grad.png" style={searchButtonPicture} />
+                </Row>
+                <Row>
+                  <Button block={true} style={searchButtonStyle} onClick={getOnClickHrefHandler("/program")}>
                     <div>
                       <p style={searchBy}>Search by Program</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
-
-            <Col className="gutter-row" span={6} >
-              <Row>
-                <img src="https://media.istockphoto.com/photos/in-the-classroom-multi-ethnic-students-listening-to-a-lecturer-and-picture-id962475722?k=6&m=962475722&s=612x612&w=0&h=Q2P383wBZjKAAz7vzEoBgdo1fJycf3eFWqlfEBeX8gs=" style={this.state.searchButtonPicture} />
-              </Row>
-              <Row>
-                <div className="gutter-box">
-                  <Button block={true} style={this.state.searchButtonStyle}>
+                </Row>
+              </div>
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwvFcF-QQjaCKgB1LVVEJBFylFgq8ZpJNzD0kYbNlEi8AKj2Sl&usqp=CAU" style={searchButtonPicture} />
+                </Row>
+                <Row>
+                  <Button block={true} style={searchButtonStyle}>
                     <div>
                       <p style={searchBy}>Search by Popularity</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
-
-          </Row>
+                </Row>
+              </div>
+            </div>
+          </div>
 
           {/* Divider to separate the buttons and the mission statement */}
           <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -300,17 +308,17 @@ class Home extends React.Component {
           <div>
             <Row justify="space-around" align="middle">
               <Col span={12} offset={6}>
-              <Typography style={LATypographyC} >
-                <Title>- Mission Statement -</Title>
-                <Paragraph style={MissionStatementP}>
-                  "At GradSchooled our mission is to empower and encourage those seeking a graduate school
+                <Typography style={LATypographyC} >
+                  <Title>- Mission Statement -</Title>
+                  <Paragraph style={MissionStatementP}>
+                    "At GradSchooled our mission is to empower and encourage those seeking a graduate school
               education by{' '}
-                  <Text strong>
-                    providing access to centralized information about universities and their programs.
+                    <Text strong>
+                      providing access to centralized information about universities and their programs.
                 </Text>
-                  {' '}Through our website, we look to ease and refine the graduate program search process."
+                    {' '}Through our website, we look to ease and refine the graduate program search process."
             </Paragraph>
-              </Typography>
+                </Typography>
               </Col>
             </Row>
           </div>

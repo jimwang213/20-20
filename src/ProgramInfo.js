@@ -30,8 +30,8 @@ const rankingdata = [
 ];
 
 const colorpal = [
-    'danger', 'warning', 'success', 'info','primary','secondary','secondary','secondary','secondary','secondary','secondary',
-    'secondary','secondary','secondary','secondary','secondary','secondary','secondary','secondary','secondary',
+  'danger', 'warning', 'success', 'info', 'primary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
+  'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
 ];
 
 const programs =
@@ -1008,7 +1008,7 @@ class ProgramInfo extends React.Component {
                 <Card.Body>
                   <Card.Title>{school.title}</Card.Title>
                   <Card.Text>
-                  Average GRE Score: {school.gre} <br />
+                    Average GRE Score: {school.gre} <br />
                   Average Unweighted GPA: {school.gpa} <br />
                   Acceptance Rate: {school.arate}
                   </Card.Text>
@@ -1018,10 +1018,11 @@ class ProgramInfo extends React.Component {
             )}
           </Col>
 
+          {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
           <Col span={4} offset={2}>
-          <Typography>
-                <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
-              </Typography>
+            <Typography>
+              <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
+            </Typography>
             {programData.schools.map((school, idx) =>
               <List
                 size="large"
@@ -1030,9 +1031,9 @@ class ProgramInfo extends React.Component {
                 renderItem={item => (
                   <List.Item>
                     <List.Item.Meta
+                      //For testing purposes I just I one imported image to hold the space.
                       avatar={<Avatar shape="square" size={64} src={tif} />}
                       title={<Link to={"/school/" + school.link}> {school.header}</Link>}
-                    //description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                     />
                   </List.Item>
                 )}

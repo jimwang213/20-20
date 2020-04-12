@@ -31,14 +31,14 @@ import './App.css';
 
 import TopMenu from './TopMenu';
 
+// Resize webpage based on viewport size. This function is obsolete as of commit "5a4bc9e"
+/*
 var viewportWidth = window.innerWidth;
 var viewportHeight = window.innerHeight;
 var refviewportWidth = window.innerWidth;
 var refviewportHeight = window.innerHeight;
 var widthratioupdate = 1;
 var heightratioupdate = 1;
-
-// Resize webpage based on viewport size
 function ResizeUpdate(widthupdate, heightupdate) {
   refviewportWidth = viewportWidth;
   refviewportHeight = viewportHeight;
@@ -50,6 +50,7 @@ function ResizeUpdate(widthupdate, heightupdate) {
   console.log('ratio (width, height): ', widthratioupdate, 'x', heightratioupdate)
   return [widthratioupdate, heightratioupdate];
 }
+*/
 
 const ColoredLineH = ({ color }) => (
   <hr
@@ -145,7 +146,7 @@ const searchButtonStyle = {
 
 class Home extends React.Component {
 
-  // Obsolete resizing code. Kept for the sake of future reference.
+  // Obsolete resizing code as of "5a4bc9e". Kept for the sake of future reference.
   /*
   state = {
     windowHeight: window.innerHeight,
@@ -257,8 +258,11 @@ class Home extends React.Component {
             </Col>
           </Row>
 
+          {/* This section creates a container with resize capability. Currently setting a break point at 1014 px arbitrarily/ */}
           <div class="container">
+            {/* Use justify content around to automatically separate each column and centered on the page */}
             <div class="row justify-content-around">
+              {/* For some reasons there is a one column offset when just centering; possibily due to negative margin. Currently dealt with by manual 1 column offset. */}
               <div class="col-xs-6 col-md-4-offset-md-1">
                 <Row>
                   <img src="https://i.pinimg.com/originals/e6/28/f0/e628f03e345087d1ebea46719c31db06.png" style={searchButtonPicture} />
@@ -301,11 +305,12 @@ class Home extends React.Component {
             </div>
           </div>
 
-          {/* Divider to separate the buttons and the mission statement */}
+          {/* Divider to separate the buttons and the mission statement. Just for looks. */}
           <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
           </Divider>
 
           <div>
+            {/* Using the space around and aligh to allow centering the texts. */}
             <Row justify="space-around" align="middle">
               <Col span={12} offset={6}>
                 <Typography style={LATypographyC} >

@@ -42,7 +42,7 @@
   overflow: hidden;
 }
 
-/* This is added to accout for the row margin during resizing in home page when going down to a smaller device. */
+/* This is added to accout for the row margin during resizing of home page when sizing down to a smaller device/viewport. */
 @media (max-width: 1014px) {
 
   [class*="col-"] {

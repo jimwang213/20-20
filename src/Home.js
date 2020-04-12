@@ -31,26 +31,47 @@ import './App.css';
 
 import TopMenu from './TopMenu';
 
+// Resize webpage based on viewport size. This function is obsolete as of commit "5a4bc9e"
+/*
+var viewportWidth = window.innerWidth;
+var viewportHeight = window.innerHeight;
+var refviewportWidth = window.innerWidth;
+var refviewportHeight = window.innerHeight;
+var widthratioupdate = 1;
+var heightratioupdate = 1;
+function ResizeUpdate(widthupdate, heightupdate) {
+  refviewportWidth = viewportWidth;
+  refviewportHeight = viewportHeight;
+  console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+  viewportWidth = widthupdate;
+  viewportHeight = heightupdate;
+  widthratioupdate = viewportWidth / refviewportWidth;
+  heightratioupdate = viewportHeight / refviewportHeight;
+  console.log('ratio (width, height): ', widthratioupdate, 'x', heightratioupdate)
+  return [widthratioupdate, heightratioupdate];
+}
+*/
+
 const ColoredLineH = ({ color }) => (
   <hr
-        style={{
-            color: color,
-            backgroundColor: color,
-            height: 1
-        }}
-    />
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 1
+    }}
+  />
 )
 
 const ColoredLineV = ({ color }) => (
   <vl
-        style={{
-          color:color,
-          height:500,
-          left: 50,
-          marginleft: 3,
-          top: 0
-        }}
-    />
+    style={{
+      color: color,
+      height: 500,
+      left: 50,
+      marginleft: 3,
+      top: 0
+    }}
+  />
 )
 
 const BannerText = {
@@ -63,25 +84,16 @@ const divStyle = {
   margin: 50
 };
 
-const searchButtonPicture = {
-height: 180,
-width: 300
-}
-
 const backgroundImage = {
   backgroundImage: 'url(https://teachingcommons.stanford.edu/sites/teachingcommons/files/styles/ug-8-col-header/public/images/2015/08/cfr-p4-14_2.jpg?itok=3GTpg8xj)'
 }
 
-const searchButtonStyle = {
-  height: 40,
-  width: 300,
-  fontSize: 16,
-  position:"center"
-};
+var searchBy = {
+  fontSize: 18,
+  marginBottom: 0,
+  test: function () {
 
-const searchBy = {
-  fontSize: 16,
-  marginBottom: 0
+  }
 };
 
 const Program = {
@@ -97,9 +109,13 @@ const LATypography = {
   textAlign: "left"
 }
 
+const LATypographyC = {
+  textAlign: "center"
+}
+
 const SearchTypography = {
   textAlign: "center",
-  fontSize: 25
+  fontSize: 36
 }
 
 const { Title, Paragraph, Text } = AntTypography;
@@ -109,145 +125,212 @@ function onChange(a, b, c) {
 }
 
 function getOnClickHrefHandler(addr) {
-  return function() {
+  return function () {
     window.location.href = addr
+  }
+}
+
+const searchButtonPicture = {
+  height: 170,
+  width: 300,
+}
+
+const searchButtonStyle = {
+  height: 30,
+  width: 300,
+  fontSize: 16,
+  position: "center",
+}
+
+
+
+class Home extends React.Component {
+
+  // Obsolete resizing code as of "5a4bc9e". Kept for the sake of future reference.
+  /*
+  state = {
+    windowHeight: window.innerHeight,
+    windowWidth: window.innerWidth,
+
+    searchButtonStyle: {
+      height: window.innerHeight / 5.0,
+      width: window.innerWidth / 6.3,
+      fontSize: 16,
+      position: "center",
+    },
+
+    searchButtonPicture: {
+      height: window.innerWidth / 6.3 * 0.57,
+      width: window.innerWidth / 6.3
     }
   }
 
-class Home extends React.Component {
-  render(){ 
-    return(
-    <div>
+  
+  handleResize = () => {
+    var ratio = ResizeUpdate(window.innerWidth, window.innerHeight);
+    this.setState({
+      windowHeight: window.innerHeight,
+      windowWidth: window.innerWidth,
 
-    <div>
-      <TopMenu />
-    </div>
+      searchButtonStyle: {
+        //height: this.state.searchButtonStyle.height*ratio[1],
+        width: this.state.searchButtonStyle.width * ratio[0],
+        fontSize: 16,
+        position: "center",
+      },
 
-    <div>
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={stanford}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={mit}
-            alt="Second slide"
-          />
+      searchButtonPicture: {
+        height: this.state.searchButtonPicture.height * ratio[0],
+        width: this.state.searchButtonPicture.width * ratio[0],
+      }
+    });
+  }
+  componentDidMount() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize)
+  }
 
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={harvard}
-            alt="Third slide"
-          />
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+  */
 
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    </div>
+  render() {
+    return (
+      <div>
 
-    
-      <ColoredLineH color="blue" />
+        <div>
+          <TopMenu />
+        </div>
 
-      <div style={divStyle}>
+        <div>
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={stanford}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={mit}
+                alt="Second slide"
+              />
 
-          <Row gutter={16}>
-              <Col>
-                <AntTypography style={SearchTypography} >
-                  <Paragraph>
-                    Find Your Next Institution
+              <Carousel.Caption>
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={harvard}
+                alt="Third slide"
+              />
+
+              <Carousel.Caption>
+                <h3>Third slide label</h3>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </div>
+
+
+        <ColoredLineH color="blue" />
+
+        <div style={divStyle}>
+
+          <Row gutter={16} justify="space-evenly" align="middle">
+            <Col>
+              <AntTypography style={SearchTypography} >
+                <Paragraph>
+                  Find Your Next Institution
                   </Paragraph>
-                </AntTypography>
-              </Col>
+              </AntTypography>
+            </Col>
           </Row>
 
-          <Row gutter={36}>
-            <Col className="gutter-row" span={6} offset={3}>
-              <Row>
-                <img src="https://theshopsatyale.com/cms/wp-content/uploads/2017/07/coverb01_0-1.jpg" style={searchButtonPicture}/>                 
-              </Row>
-              <Row>
-                <div className="gutter-box">
+          {/* This section creates a container with resize capability. Currently setting a break point at 1014 px arbitrarily/ */}
+          <div class="container">
+            {/* Use justify content around to automatically separate each column and centered on the page */}
+            <div class="row justify-content-around">
+              {/* For some reasons there is a one column offset when just centering; possibily due to negative margin. Currently dealt with by manual 1 column offset. */}
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://i.pinimg.com/originals/e6/28/f0/e628f03e345087d1ebea46719c31db06.png" style={searchButtonPicture} />
+                </Row>
+                <Row>
                   <Button block={true} style={searchButtonStyle} onClick={getOnClickHrefHandler("/school")}>
                     <div>
                       <p style={searchBy}>Search by School</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
-
-            <Col className="gutter-row" span={6} >
-              <Row>
-                <img src="https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2018/05/how-business-analytics-can-help-your-business.jpg?w=715&h=375&crop=1" style={searchButtonPicture}/>      
-              </Row>
-              <Row>
-                <div className="gutter-box">
+                </Row>
+              </div>
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://i.ibb.co/s1C54Bb/grad.png" style={searchButtonPicture} />
+                </Row>
+                <Row>
                   <Button block={true} style={searchButtonStyle} onClick={getOnClickHrefHandler("/program")}>
                     <div>
                       <p style={searchBy}>Search by Program</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
-
-            <Col className="gutter-row" span={6} >
-              <Row>
-                <img src="https://media.istockphoto.com/photos/in-the-classroom-multi-ethnic-students-listening-to-a-lecturer-and-picture-id962475722?k=6&m=962475722&s=612x612&w=0&h=Q2P383wBZjKAAz7vzEoBgdo1fJycf3eFWqlfEBeX8gs=" style={searchButtonPicture}/>      
-              </Row>
-              <Row>
-                <div className="gutter-box">
+                </Row>
+              </div>
+              <div class="col-xs-6 col-md-4-offset-md-1">
+                <Row>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSwvFcF-QQjaCKgB1LVVEJBFylFgq8ZpJNzD0kYbNlEi8AKj2Sl&usqp=CAU" style={searchButtonPicture} />
+                </Row>
+                <Row>
                   <Button block={true} style={searchButtonStyle}>
                     <div>
                       <p style={searchBy}>Search by Popularity</p>
                       <p style={Program}></p>
                     </div>
                   </Button>
-                </div>
-              </Row>
-            </Col>
+                </Row>
+              </div>
+            </div>
+          </div>
 
-          </Row>
+          {/* Divider to separate the buttons and the mission statement. Just for looks. */}
+          <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+          </Divider>
 
-        <div>    
-          <Row>
-            <Typography style={LATypography} >
-            <Title>- Mission Statement -</Title>
-            <Paragraph style={MissionStatementP}>
-              "At GradSchooled our mission is to empower and encourage those seeking a graduate school
+          <div>
+            {/* Using the space around and aligh to allow centering the texts. */}
+            <Row justify="space-around" align="middle">
+              <Col span={12} offset={6}>
+                <Typography style={LATypographyC} >
+                  <Title>- Mission Statement -</Title>
+                  <Paragraph style={MissionStatementP}>
+                    "At GradSchooled our mission is to empower and encourage those seeking a graduate school
               education by{' '}
-                <Text strong>
-                  providing access to centralized information about universities and their programs.
+                    <Text strong>
+                      providing access to centralized information about universities and their programs.
                 </Text>
-              {' '}Through our website, we look to ease and refine the graduate program search process."
+                    {' '}Through our website, we look to ease and refine the graduate program search process."
             </Paragraph>
-          </Typography>
-          </Row>
-        </div>
+                </Typography>
+              </Col>
+            </Row>
+          </div>
 
+        </div>
       </div>
-    </div>
-  );
+    );
   }
 }
 

@@ -84,9 +84,6 @@ const languages = [
   }
 ];
 
-/*
- huehueheuheu
-*/
 const MastersInSearch = {
     height: 50,
     width: 400

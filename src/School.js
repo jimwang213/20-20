@@ -88,73 +88,73 @@ const languages = [
  huehueheuheu
 */
 const MastersInSearch = {
-    height: 50,
-    width: 400
-  }
-  
-  const ProgramTitle = {
-    fontSize:16
-  }
-  
-  const explore = {
-    color:"#808080"
-  };
-  
-  const divStyle = {
-    margin: 50
-  };
-  
-  const searchButtonStyle = {
-    height: 100,
-    width: 200,
-    fontSize: 16,
-    position:"center"
-  };
-  
-  const searchBy = {
-    fontSize: 16,
-    marginBottom: 0
-  };
-  
-  const Program = {
-    fontSize: 24,
-    marginBottom: 0
-  }
-  
-  const MissionStatementP = {
-    fontSize: 25
-  }
-  
-  const LATypography = {
-    textAlign: "left"
-  }
-  
-  const SearchTypography = {
-    textAlign: "center",
-    fontSize: 25
-  }
-  
-  const { Title, Paragraph, Text } = AntTypography;
-  
-  const TitleColor = {
-  
-    color: "#FFFFFF"
-  
-  }
-  
- 
+  height: 50,
+  width: 400
+}
+
+const ProgramTitle = {
+  fontSize: 16
+}
+
+const explore = {
+  color: "#808080"
+};
+
+const divStyle = {
+  margin: 50
+};
+
+const searchButtonStyle = {
+  height: 100,
+  width: 200,
+  fontSize: 16,
+  position: "center"
+};
+
+const searchBy = {
+  fontSize: 16,
+  marginBottom: 0
+};
+
+const Program = {
+  fontSize: 24,
+  marginBottom: 0
+}
+
+const MissionStatementP = {
+  fontSize: 25
+}
+
+const LATypography = {
+  textAlign: "center"
+}
+
+const SearchTypography = {
+  textAlign: "center",
+  fontSize: 25
+}
+
+const { Title, Paragraph, Text } = AntTypography;
+
+const TitleColor = {
+
+  color: "#FFFFFF"
+
+}
+
+
 const BannerText = {
   fontSize: 20,
   color: "#FFFFFF",
   fontWeight: 300
 }
-  
-  class School extends React.Component {
-    render(){ 
-      return(
-        <div>
+
+class School extends React.Component {
+  render() {
+    return (
+      <div>
         <TopMenu />
-      
+
         <Carousel autoplay>
           <div>
             <h3 style={BannerText}>An insitution establishes your prestige, credibilitiy, and professional brand</h3>
@@ -166,145 +166,145 @@ const BannerText = {
             <h3 style={BannerText}>Comprehensive information on Ivy Leagues, top engineering schools, and state universities</h3>
           </div>
         </Carousel>
-      
-      <div className="gutter-example" style={divStyle}>
-  
-        <Row>
-          <Col offset={7} span={4}>
-            <Typography style={LATypography}>
-              <Title>Masters at </Title>
-            </Typography>
-          </Col>
-          <Col span={8} >
-            <SearchBar placeholder="Harvard, Stanford...etc" suggestions={languages}>
 
-            </SearchBar>
-          </Col>
-        </Row>
-        
-        <Row gutter={8} type="flex" justify="space-around">
-          <Col span={7} offset={3}>
-            <div>
-              <Row>
-                <Text underline style={ProgramTitle}>
-                  Best Graduate Schools
+        <div className="gutter-example" style={divStyle}>
+
+          {/* Create resize parameters. */}
+          <Row type="flex" justify="center" align="top" gutter={8}>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Typography style={LATypography}>
+                <Title>Master's at </Title>
+              </Typography>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12} >
+                  <SearchBar placeholder="Harvard, Stanford...etc" suggestions={languages}>
+                  containerStyle = {{ alignItems:'center', justifyContent:'center' }}
+                  </SearchBar>
+            </Col>
+          </Row>
+
+          <Row gutter={8} type="flex" justify="space-around">
+            <Col span={7} offset={3}>
+              <div>
+                <Row>
+                  <Text underline style={ProgramTitle}>
+                    Best Graduate Schools
                 </Text>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #1 Harvard University
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #1 Harvard University
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #2 Stanford University
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #2 Stanford University
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #3 University of Pennslyvania
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #3 University of Pennslyvania
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #4 University of Chicago
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #4 University of Chicago
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #5 Massachusettes Institute of Technology
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #5 Massachusettes Institute of Technology
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link" style={explore}>
-                  (Explore the complete top 30 list)
+                </Row>
+                <Row>
+                  <Button type="link" style={explore}>
+                    (Explore the complete top 30 list)
                 </Button>
-              </Row>
-            </div>
-          </Col>
-          <Col span={7} >
-            <div>
-              <Row>
-                <Text underline style={ProgramTitle}>
-                  Best Value Schools
+                </Row>
+              </div>
+            </Col>
+            <Col span={7} >
+              <div>
+                <Row>
+                  <Text underline style={ProgramTitle}>
+                    Best Value Schools
                 </Text>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #1 University of California, Berkeley
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #1 University of California, Berkeley
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #2 University of California, Los Angeles
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #2 University of California, Los Angeles
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #3 University of Texas-Austin
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #3 University of Texas-Austin
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #4 Pennslyvania State University
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #4 Pennslyvania State University
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #5 University of Washington
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #5 University of Washington
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link" style={explore}>
-                  (Explore the complete top 30 list)
+                </Row>
+                <Row>
+                  <Button type="link" style={explore}>
+                    (Explore the complete top 30 list)
                 </Button>
-              </Row>
-            </div>
-          </Col>
-          <Col span={7} >
-          <div>
-              <Row>
-                <Text underline style={ProgramTitle}>
-                  Best Scholarship Package Schools
+                </Row>
+              </div>
+            </Col>
+            <Col span={7} >
+              <div>
+                <Row>
+                  <Text underline style={ProgramTitle}>
+                    Best Scholarship Package Schools
                 </Text>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #1 Brown University
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #1 Brown University
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #2 Cooper Union
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #2 Cooper Union
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #3 Cornell University
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #3 Cornell University
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #4 Curtis Institute of Music
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #4 Curtis Institute of Music
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link">
-                  #5 Deep Springs College
+                </Row>
+                <Row>
+                  <Button type="link">
+                    #5 Deep Springs College
                 </Button>
-              </Row>
-              <Row>
-                <Button type="link" style={explore}>
-                  (Explore the complete top 30 list)
+                </Row>
+                <Row>
+                  <Button type="link" style={explore}>
+                    (Explore the complete top 30 list)
                 </Button>
-              </Row>
-            </div>
-          </Col>
-        </Row>
+                </Row>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
-    </div>
-      );
-    }
+    );
   }
-  export default School;
-  
+}
+export default School;

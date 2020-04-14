@@ -21,7 +21,10 @@ import Card from 'react-bootstrap/Card'
 import TopMenu from './TopMenu';
 
 //Importing avatars for 20/20 rankings
-import tif from './RankingIcon/tif.png';
+import t1 from './RankingIcon/1.png';
+import t2 from './RankingIcon/2.png';
+import t3 from './RankingIcon/3.png';
+const tierpic = [t1,t2,t3];
 
 // Empty set just to initialize the list. Actual data comes from elsewhere.
 const rankingdata = [
@@ -96,6 +99,11 @@ const programs =
         gpa: "3.7",
         arate: "unknown"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -153,6 +161,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -210,6 +223,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -267,6 +285,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -324,6 +347,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -383,6 +411,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
   'mechanical-engineering': {
@@ -439,6 +472,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -450,7 +488,7 @@ const programs =
         Medium_Salary: '$116,679',
         Average_Tuition: '$47,324 (year)',
         Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
+        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist',
       }
     ],
     columns: [
@@ -478,7 +516,7 @@ const programs =
         title: "Masters in Computer Engineering",
         gre: "169",
         gpa: "3.8",
-        arate: "4% (800 applicants)"
+        arate: "4% (800 applicants)",
       },
       {
         header: "California Institute of Technology",
@@ -486,7 +524,7 @@ const programs =
         title: "Masters in Computer Science",
         gre: "170",
         gpa: "3.8",
-        arate: "5% (800 applicants)"
+        arate: "5% (800 applicants)",
       },
       {
         header: "Carnegie Mellon University",
@@ -494,8 +532,13 @@ const programs =
         title: "Master of Science in Computer Science",
         gre: "169",
         gpa: "3.7",
-        arate: "6% (800 applicants)"
+        arate: "6% (800 applicants)",
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -553,6 +596,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -610,6 +658,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -669,6 +722,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -726,6 +784,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -783,6 +846,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -840,6 +908,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -897,6 +970,11 @@ const programs =
         gpa: "3.7",
         arate: "6% (800 applicants)"
       }
+    ],
+    tiers: [
+      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
+      {tierlist: "Carnegie Mellon University"},
+      {tierlist: "Pepe University"}
     ]
   },
 
@@ -918,8 +996,8 @@ const ProgramInfoP = {
 
 const ProgramInfoStyle = {
   marginTop: 50,
-  marginLeft: 250,
-  marginRight: 250
+  //marginLeft: 250,
+  //marginRight: 250
 };
 
 const { Title, Paragraph, Text } = AntTypography;
@@ -962,14 +1040,17 @@ class ProgramInfo extends React.Component {
         </Carousel>
 
         <div className="gutter-example" style={ProgramInfoStyle}>
-
           <Row>
-            <Typography>
-              <Title style={ProgramInfoTitle}>{programData.title}</Title>
-              <Paragraph style={ProgramInfoP}>
-                {programData.description}
-              </Paragraph>
-            </Typography>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
+            <Col xs={22} sm={22} md={20} lg={18} xl={18}>
+              <Typography>
+                <Title style={ProgramInfoTitle}>{programData.title}</Title>
+                <Paragraph style={ProgramInfoP}>
+                  {programData.description}
+                </Paragraph>
+              </Typography>
+            </Col>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
           </Row>
 
           {/* Divider to separate the buttons and the mission statement */}
@@ -977,27 +1058,35 @@ class ProgramInfo extends React.Component {
           </Divider>
 
           <Row>
-            <Typography>
-              <Title style={ProgramInfoTitle}>Summary Data</Title>
-            </Typography>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
+            <Col xs={22} sm={22} md={20} lg={18} xl={18}>
+              <Typography>
+                <Title style={ProgramInfoTitle}>Summary Data</Title>
+              </Typography>
+              <Table pagination={false} dataSource={programData.data} columns={programData.columns} style={ProgramInfoCard} />
+            </Col>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
+
           </Row>
 
-          <Table pagination={false} dataSource={programData.data} columns={programData.columns} style={ProgramInfoCard} />
+
 
           {/* Divider just for looks */}
           <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
           </Divider>
 
           <Row>
-            <Col span={18}>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
+            <Col xs={22} sm={22} md={20} lg={18} xl={18}>
               <Typography>
                 <Title style={ProgramInfoTitle}>Schools</Title>
               </Typography>
             </Col>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
           </Row>
 
-          <Col span={18}>
-
+          <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/*Spacer */}</Col>
+          <Col xs={18} sm={18} md={17} lg={16} xl={16}>
             {programData.schools.map((school, idx) =>
 
               <Card
@@ -1008,7 +1097,7 @@ class ProgramInfo extends React.Component {
                 <Card.Body>
                   <Card.Title>{school.title}</Card.Title>
                   <Card.Text>
-                    Average GRE Score: {school.gre} <br />
+                  Average GRE Score: {school.gre} <br />
                   Average Unweighted GPA: {school.gpa} <br />
                   Acceptance Rate: {school.arate}
                   </Card.Text>
@@ -1019,11 +1108,11 @@ class ProgramInfo extends React.Component {
           </Col>
 
           {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
-          <Col span={4} offset={2}>
+          <Col xs={4} sm={4} md={4} lg={4} xl={4} offset={1}>
             <Typography>
               <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
             </Typography>
-            {programData.schools.map((school, idx) =>
+            {programData.tiers.map((tier,idx) =>
               <List
                 size="large"
                 itemLayout="horizontal"
@@ -1031,9 +1120,9 @@ class ProgramInfo extends React.Component {
                 renderItem={item => (
                   <List.Item>
                     <List.Item.Meta
-                      //For testing purposes I just I one imported image to hold the space.
-                      avatar={<Avatar shape="square" size={64} src={tif} />}
-                      title={<Link to={"/school/" + school.link}> {school.header}</Link>}
+                      //For testing purposes I just imported a random image to hold the space.
+                      avatar={<Avatar shape="square" size={64} src={tierpic[idx]} />}
+                title={tier.tierlist}
                     />
                   </List.Item>
                 )}

@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master, actions ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: remote deploy
+      uses: appleboy/ssh-action@v0.0.2
+      env:
+        REMOTE_PID_FILE: "/tmp/2020-pid"
+        REMOTE_REPO_DIR: "~"
+        REPO_NAME: "20-20"
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          whoami
+          test -f $REMOTE_PID_FILE && kill $(cat $REMOTE_PID_FILE) 
+          rm -f $REMOTE_PID_FILE
+          rm -rf $REMOTE_REPO_DIR/$REPO_NAME
+          pushd $REMOTE_REPO_DIR
+          git clone git@github.com:jimwang213/20-20.git
+          npm install
+          npm start &
+          echo $! > $REMOTE_PID_FILE
+          popd

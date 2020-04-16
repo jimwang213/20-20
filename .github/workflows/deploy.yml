@@ -34,6 +34,7 @@ jobs:
           rm -rf $REMOTE_REPO_DIR/$REPO_NAME
           pushd $REMOTE_REPO_DIR
           git clone $REPO_URL
+          cd $REPO_NAME
           npm install
           npm start &
           echo $! > $REMOTE_PID_FILE

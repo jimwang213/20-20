@@ -27,6 +27,16 @@ jobs:
         host: "104.40.27.221"
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        port: "22"
+        port: ${{ secrets.PORT }}
         script: |
           whoami
+          test -f $REMOTE_PID_FILE && kill $(cat $REMOTE_PID_FILE) 
+          rm -f $REMOTE_PID_FILE
+          rm -rf $REMOTE_REPO_DIR/$REPO_NAME
+          pushd $REMOTE_REPO_DIR
+          git clone git@github.com:jimwang213/20-20.git
+          npm install
+          npm start &
+          echo $! > $REMOTE_PID_FILE
+          popd
+          echo "SUCCESS"

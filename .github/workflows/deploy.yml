@@ -39,3 +39,4 @@ jobs:
           npm start &
           echo $! > $REMOTE_PID_FILE
           popd
+          echo "SUCCESS"

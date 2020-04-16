@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Deploy
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -31,6 +31,7 @@ jobs:
           export REPO_NAME="20-20"
           export REPO_URL="git@github.com:jimwang213/20-20.git"
           test -f $REMOTE_PID_FILE && kill -15 $(cat $REMOTE_PID_FILE); rm -f $REMOTE_PID_FILE && echo "Killed old process"
+          pkill -9 -f $REPO_NAME
           rm -rf $REMOTE_REPO_DIR/$REPO_NAME
           pushd $REMOTE_REPO_DIR
           git clone $REPO_URL

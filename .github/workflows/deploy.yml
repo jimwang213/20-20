@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: remote deploy
-      uses: appleboy/ssh-action@v0.0.2
+      uses: appleboy/ssh-action@v0.0.7
       env:
         REMOTE_PID_FILE: "/tmp/2020-pid"
         REMOTE_REPO_DIR: "~"

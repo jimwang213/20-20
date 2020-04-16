@@ -40,3 +40,4 @@ jobs:
           echo $! > $REMOTE_PID_FILE
           popd
           echo "DEPLOY SUCCESSFUL"
+          exit 0

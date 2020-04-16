@@ -19,7 +19,7 @@ jobs:
     steps:
     - name: remote app deploy
       uses: appleboy/ssh-action@master
-      env:
+      with:
         REMOTE_PID_FILE: "/tmp/2020-pid"
         REMOTE_REPO_DIR: "~"
         REPO_NAME: "20-20"

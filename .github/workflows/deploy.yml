@@ -31,8 +31,7 @@ jobs:
         script_stop: true
         script: |
           whoami
-          test -f $REMOTE_PID_FILE && kill $(cat $REMOTE_PID_FILE) 
-          rm -f $REMOTE_PID_FILE
+          test -f $REMOTE_PID_FILE && kill -15 $(cat $REMOTE_PID_FILE); rm -f $REMOTE_PID_FILE
           rm -rf $REMOTE_REPO_DIR/$REPO_NAME
           pushd $REMOTE_REPO_DIR
           git clone git@github.com:jimwang213/20-20.git

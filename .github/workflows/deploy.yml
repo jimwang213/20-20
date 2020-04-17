@@ -30,7 +30,7 @@ jobs:
           export REMOTE_REPO_DIR="$HOME"
           export REPO_NAME="20-20"
           export REPO_URL="git@github.com:jimwang213/20-20.git"
-          if [[ test -f $REMOTE_PID_FILE ]]
+          if test -f $REMOTE_PID_FILE
           then
                 kill -15 $(cat $REMOTE_PID_FILE) || echo "Process already dead"
                 rm -f $REMOTE_PID_FILE

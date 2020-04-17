@@ -48,6 +48,6 @@ jobs:
           echo "Starting"
           npm start &
           echo $! > $REMOTE_PID_FILE
-          disown
           popd
           echo "DEPLOY SUCCESSFUL"
+          return 0

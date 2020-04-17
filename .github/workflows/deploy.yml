@@ -31,7 +31,7 @@ jobs:
           export REPO_NAME="20-20"
           export REPO_URL="git@github.com:jimwang213/20-20.git"
           echo "Cleaning up previous sessions"
-          if test -f $REMOTE_PID_FILE
+          if [[ -f $REMOTE_PID_FILE ]]
           then
                 echo "Killing stuff"
                 kill -15 $(cat $REMOTE_PID_FILE) || true

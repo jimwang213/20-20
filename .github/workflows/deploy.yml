@@ -24,7 +24,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script_stop: true
         script: |
           export REMOTE_PID_FILE="/tmp/2020-pid"
           export REMOTE_REPO_DIR="$HOME"
@@ -33,9 +32,9 @@ jobs:
           echo "Cleaning up previous sessions"
           test -f $REMOTE_PID_FILE && {
                 echo "Killing stuff"
-                kill -15 $(cat $REMOTE_PID_FILE) || true
+                kill -15 $(cat $REMOTE_PID_FILE)
                 rm -f $REMOTE_PID_FILE
-                pkill -9 -f $REPO_NAME || true
+                pkill -9 -f $REPO_NAME
                 echo "Killed old process"
           } || echo "Nothing to do"
           echo "Removing old repositories"
@@ -50,4 +49,3 @@ jobs:
           echo $! > $REMOTE_PID_FILE
           popd
           echo "DEPLOY SUCCESSFUL"
-          exit 0

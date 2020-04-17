@@ -31,16 +31,13 @@ jobs:
           export REPO_NAME="20-20"
           export REPO_URL="git@github.com:jimwang213/20-20.git"
           echo "Cleaning up previous sessions"
-          if [[ -f $REMOTE_PID_FILE ]]
-          then
+          test -f $REMOTE_PID_FILE && {
                 echo "Killing stuff"
                 kill -15 $(cat $REMOTE_PID_FILE) || true
                 rm -f $REMOTE_PID_FILE
                 pkill -9 -f $REPO_NAME || true
                 echo "Killed old process"
-          else
-                echo "Nothing to do"
-          fi
+          } || echo "Nothing to do"
           echo "Removing old repositories"
           rm -rf $REMOTE_REPO_DIR/$REPO_NAME
           pushd $REMOTE_REPO_DIR

@@ -24,6 +24,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
+        script_stop: false
         script: |
           export REMOTE_PID_FILE="/tmp/2020-pid"
           export REMOTE_REPO_DIR="$HOME"

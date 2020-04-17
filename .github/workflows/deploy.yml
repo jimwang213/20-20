@@ -38,6 +38,8 @@ jobs:
                 rm -f $REMOTE_PID_FILE
                 pkill -9 -f $REPO_NAME || true
                 echo "Killed old process"
+          else
+                echo "Nothing to do"
           fi
           echo "Removing old repositories"
           rm -rf $REMOTE_REPO_DIR/$REPO_NAME

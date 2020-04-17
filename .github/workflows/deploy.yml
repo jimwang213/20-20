@@ -33,7 +33,8 @@ jobs:
           echo "Cleaning up previous sessions"
           if test -f $REMOTE_PID_FILE
           then
-                kill -15 $(cat $REMOTE_PID_FILE) || echo "Process already dead"
+                echo "Killing stuff"
+                kill -15 $(cat $REMOTE_PID_FILE) || true
                 rm -f $REMOTE_PID_FILE
                 pkill -9 -f $REPO_NAME || true
                 echo "Killed old process"

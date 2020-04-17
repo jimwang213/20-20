@@ -45,7 +45,8 @@ jobs:
           cd $REPO_NAME
           npm install
           echo "Starting"
-          npm start 2>&1 > /dev/null &
+          npm start &
           echo $! > $REMOTE_PID_FILE
+          disown
           popd
           echo "DEPLOY SUCCESSFUL"

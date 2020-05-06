@@ -50,3 +50,22 @@
   }
 
 }
+
+.circletxt {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #000;
+  line-height: 150px;
+  text-align: center;
+  background: #65B1E8;
+  display: block;
+}
+
+.circlelab {
+  font-size: 24px;
+  color: #000;
+  line-height: 150px;
+  text-align: center;
+}

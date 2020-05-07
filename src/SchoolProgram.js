@@ -4,13 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-
+import { Timeline } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
 import Button from 'antd/es/button';
 import { Table } from 'antd';
 import { Row, Col } from 'antd';
 import { Carousel } from 'antd';
 import { Typography as AntTypography, Divider } from 'antd';
 import './App.css';
+import { useState } from 'react';
 
 import { Link } from 'react-router-dom'
 
@@ -51,6 +53,15 @@ const schoolPrograms =
           Maximum_Salary: '$160,000'
         }
       ],
+      careerOutcome: [
+        {
+          Placement: '100%',
+          Maximum_Salary: '$160,000',
+          Medium_Salary: '$110,000',
+          List_of_Emplyers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
+          Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
+        }
+      ],
       columns: [
         {
           title: 'Medium Salary',
@@ -89,9 +100,9 @@ const schoolPrograms =
       //Application/Timeline
 
       timeline: [
-        <li>Applications due: Wednesday, January 8, 2020, 3:00 p.m. EST</li>,
-        <li>Admission decision notified: Thursday, March 5, 2020</li>,
-        <li>Admitted applicants must reply: Wednesday, April 15, 2020</li>
+        "Applications due: Wednesday, January 8, 2020, 3:00 p.m. EST",
+        "Admission decision notified: Thursday, March 5, 2020",
+        "Admitted applicants must reply: Wednesday, April 15, 2020"
       ],
 
       resume: [
@@ -210,6 +221,11 @@ const ProgramInfoP = {
   fontSize: 20
 }
 
+const ProgramOutComeTitle = {
+  fontSize: 20,
+  color: 'black'
+}
+
 const ProgramInfoStyle = {
   marginTop: 50,
   marginLeft: 250,
@@ -285,7 +301,7 @@ class SchoolProgram extends React.Component {
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
               </Divider>
 
-              <Row style={{ marginTop: 32 }}>
+              <Row style={{ marginTop: 32 }, { marginBottom: 20 }}>
                 <Typography>
                   <Title style={ClassProfile}>Career Outcome</Title>
                 </Typography>
@@ -293,28 +309,39 @@ class SchoolProgram extends React.Component {
 
               <div class="container">
                 <div class="row justify-content-around align-items-end">
-                    <div class="col-4" align="center"> 
-                      <div class="circletxt">{programData.data[0].Placement}</div>
-                    </div>
-                    <div class="col-4" align="center">
-                      <div class="circletxt">{programData.data[0].Medium_Salary}</div>
-                    </div>
-                    <div class="col-4" align="center">
-                      <div class="circletxt">{programData.data[0].Maximum_Salary}</div>
-                    </div>
+                  <div class="col-4" align="center">
+                    <div class="circletxt">{programData.careerOutcome[0].Placement}</div>
+                  </div>
+                  <div class="col-4" align="center">
+                    <div class="circletxt">{programData.careerOutcome[0].Medium_Salary}</div>
+                  </div>
+                  <div class="col-4" align="center">
+                    <div class="circletxt">{programData.careerOutcome[0].Maximum_Salary}</div>
+                  </div>
                 </div>
-                <div class="row justify-content-around align-items-start">
+                <div class="row justify-content-around align-items-center">
                   <div class="col-4">
-                  <div class="circlelab">Placement Rate</div>
+                    <div class="circlelab">Placement Rate</div>
                   </div>
                   <div class="col-4">
-                  <div class="circlelab">Medium Salary</div>
+                    <div class="circlelab">Medium Salary</div>
                   </div>
                   <div class="col-4">
-                  <div class="circlelab">Maximum Salary</div>
+                    <div class="circlelab">Maximum Salary</div>
                   </div>
                 </div>
               </div>
+
+              <Row style={{ marginBottom: 32 }}>
+                <div style={ProgramOutComeTitle}>List of Employers</div>
+                <div>{programData.careerOutcome[0].List_of_Emplyers}</div>
+              </Row>
+
+              <Row>
+                <div style={ProgramOutComeTitle}>Full-Time Role</div>
+                <div>{programData.careerOutcome[0].Full_Time_Roles}</div>
+              </Row>
+
 
               <Row>
                 <Typography>
@@ -451,7 +478,13 @@ class SchoolProgram extends React.Component {
                     Timeline
             </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{programData.timeline}</Card.Body>
+                    <Card.Body>
+                      <Timeline mode="left">
+                        <Timeline.Item label="2015-09-01">{programData.timeline[0]}</Timeline.Item>
+                        <Timeline.Item>{programData.timeline[1]}</Timeline.Item>
+                        <Timeline.Item>{programData.timeline[2]}</Timeline.Item>
+                      </Timeline>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 

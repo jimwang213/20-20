@@ -136,7 +136,7 @@ const searchButtonPicture = {
 }
 
 const searchButtonStyle = {
-  height: 30,
+  height: 40,
   width: 300,
   fontSize: 16,
   position: "center",
@@ -312,7 +312,7 @@ class Home extends React.Component {
           <div>
             {/* Using the space around and aligh to allow centering the texts. */}
             <Row justify="space-around" align="middle">
-              <Col span={12} offset={6}>
+              <Col span={12}>
                 <Typography style={LATypographyC} >
                   <Title>- Mission Statement -</Title>
                   <Paragraph style={MissionStatementP}>

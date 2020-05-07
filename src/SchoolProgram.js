@@ -100,9 +100,11 @@ const schoolPrograms =
       //Application/Timeline
 
       timeline: [
-        "Applications due: Wednesday, January 8, 2020, 3:00 p.m. EST",
-        "Admission decision notified: Thursday, March 5, 2020",
-        "Admitted applicants must reply: Wednesday, April 15, 2020"
+        {
+        AppDue: 'Wednesday, January 8, 2020, 3:00 p.m. EST',
+        Dec_Notif: 'Thursday, March 5, 2020',
+        Offer_Reply: 'Wednesday, April 15, 2020'
+        }
       ],
 
       resume: [
@@ -284,8 +286,7 @@ class SchoolProgram extends React.Component {
           </div>
         </Carousel>
 
-        <Row style={{ marginTop: 32 }}>
-          <div class="row justify-content-around">
+        <Row justify="center" style={{ marginTop: 32 }}>
             <Col xs={20} sm={20} md={20} lg={14} xl={14}>
               <Row>
                 <Typography>
@@ -480,9 +481,9 @@ class SchoolProgram extends React.Component {
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
                       <Timeline mode="left">
-                        <Timeline.Item label="2015-09-01">{programData.timeline[0]}</Timeline.Item>
-                        <Timeline.Item>{programData.timeline[1]}</Timeline.Item>
-                        <Timeline.Item>{programData.timeline[2]}</Timeline.Item>
+                        <Timeline.Item label={programData.timeline[0].AppDue}>Application due date and time.</Timeline.Item>
+                        <Timeline.Item label={programData.timeline[0].Dec_Notif}>Aniticipated decision notification.</Timeline.Item>
+                        <Timeline.Item label={programData.timeline[0].Offer_Reply}>Last day to reply to offer.</Timeline.Item>
                       </Timeline>
                     </Card.Body>
                   </Accordion.Collapse>
@@ -568,7 +569,6 @@ class SchoolProgram extends React.Component {
                 </Typography>
               </Row>
             </Col>
-          </div>
         </Row>
       </div>
     )

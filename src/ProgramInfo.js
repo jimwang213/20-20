@@ -24,7 +24,7 @@ import TopMenu from './TopMenu';
 import t1 from './RankingIcon/1.png';
 import t2 from './RankingIcon/2.png';
 import t3 from './RankingIcon/3.png';
-const tierpic = [t1,t2,t3];
+const tierpic = [t1, t2, t3];
 
 // Empty set just to initialize the list. Actual data comes from elsewhere.
 const rankingdata = [
@@ -101,9 +101,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -163,9 +163,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -225,9 +225,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -287,9 +287,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -349,9 +349,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -413,9 +413,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
   'mechanical-engineering': {
@@ -474,9 +474,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -536,9 +536,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -598,9 +598,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -660,9 +660,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -724,9 +724,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -786,9 +786,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -848,9 +848,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -910,9 +910,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -972,9 +972,9 @@ const programs =
       }
     ],
     tiers: [
-      {tierlist: "Massachusettes Institute of Technology, California Institute of Technology"},
-      {tierlist: "Carnegie Mellon University"},
-      {tierlist: "Pepe University"}
+      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
+      { tierlist: "Carnegie Mellon University" },
+      { tierlist: "Pepe University" }
     ]
   },
 
@@ -1075,7 +1075,7 @@ class ProgramInfo extends React.Component {
           <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
           </Divider>
 
-          <Row>
+          <Row justify="space-around">
             <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
             <Col xs={22} sm={22} md={20} lg={18} xl={18}>
               <Typography>
@@ -1084,51 +1084,50 @@ class ProgramInfo extends React.Component {
             </Col>
             <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/* Spacer */}</Col>
           </Row>
-
-          <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/*Spacer */}</Col>
-          <Col xs={18} sm={18} md={17} lg={16} xl={16}>
-            {programData.schools.map((school, idx) =>
-
-              <Card
-                border={colorpal[idx]}
-                style={ProgramInfoCard}
-              >
-                <Card.Header> <Link to={"/school/" + school.link}> {"#" + (idx + 1) + " " + school.header}</Link> </Card.Header>
-                <Card.Body>
-                  <Card.Title>{school.title}</Card.Title>
-                  <Card.Text>
-                  Average GRE Score: {school.gre} <br />
+          <Row>
+            <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/*Spacer */}</Col>
+            <Col xs={18} sm={18} md={17} lg={16} xl={16}>
+              {programData.schools.map((school, idx) =>
+                <Card
+                  border={colorpal[idx]}
+                  style={ProgramInfoCard}
+                >
+                  <Card.Header> <Link to={"/school/" + school.link}> {"#" + (idx + 1) + " " + school.header}</Link> </Card.Header>
+                  <Card.Body>
+                    <Card.Title>{school.title}</Card.Title>
+                    <Card.Text>
+                      Average GRE Score: {school.gre} <br />
                   Average Unweighted GPA: {school.gpa} <br />
                   Acceptance Rate: {school.arate}
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            )}
-          </Col>
-
-          {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
-          <Col xs={4} sm={4} md={4} lg={4} xl={4} offset={1}>
-            <Typography>
-              <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
-            </Typography>
-            {programData.tiers.map((tier,idx) =>
-              <List
-                size="large"
-                itemLayout="horizontal"
-                dataSource={rankingdata}
-                renderItem={item => (
-                  <List.Item>
-                    <List.Item.Meta
-                      //For testing purposes I just imported a random image to hold the space.
-                      avatar={<Avatar shape="square" size={64} src={tierpic[idx]} />}
-                title={tier.tierlist}
-                    />
-                  </List.Item>
-                )}
-              />
-            )}
-          </Col>
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                  </Card.Body>
+                </Card>
+              )}
+            </Col>
+            {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
+            <Col xs={4} sm={4} md={4} lg={4} xl={4} offset={1}>
+              <Typography>
+                <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
+              </Typography>
+              {programData.tiers.map((tier, idx) =>
+                <List
+                  size="large"
+                  itemLayout="horizontal"
+                  dataSource={rankingdata}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        //For testing purposes I just imported a random image to hold the space.
+                        avatar={<Avatar shape="square" size={64} src={tierpic[idx]} />}
+                        title={tier.tierlist}
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
+            </Col>
+          </Row>
         </div>
       </div>
     )

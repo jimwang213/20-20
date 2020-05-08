@@ -33,7 +33,7 @@ const rankingdata = [
 ];
 
 const colorpal = [
-  'danger', 'warning', 'success', 'info', 'primary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
+  '#F63E02', '#FF6201', '#E57C04', '#FAA300', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
   'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
 ];
 
@@ -1086,13 +1086,14 @@ class ProgramInfo extends React.Component {
           </Row>
           <Row>
             <Col xs={1} sm={1} md={2} lg={3} xl={3}>{/*Spacer */}</Col>
-            <Col xs={18} sm={18} md={17} lg={16} xl={16}>
+            <Col xs={17} sm={17} md={16} lg={15} xl={15}>
               {programData.schools.map((school, idx) =>
                 <Card
-                  border={colorpal[idx]}
-                  style={ProgramInfoCard}
+                  //border = {'#E72F08'}
+                  //border={colorpal[idx]}
+                  style={{marginBottom: 25 , borderColor: colorpal[idx]}}
                 >
-                  <Card.Header> <Link to={"/school/" + school.link}> {"#" + (idx + 1) + " " + school.header}</Link> </Card.Header>
+                  <Card.Header style={{backgroundColor: colorpal[idx]}}> <Link to={"/school/" + school.link}> {"#" + (idx + 1) + " " + school.header}</Link> </Card.Header>
                   <Card.Body>
                     <Card.Title>{school.title}</Card.Title>
                     <Card.Text>

@@ -70,3 +70,31 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+a:link {
+  color:#ffff;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #ffff;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #ffff;
+  background-color: transparent;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a:active {
+  color: #0000;
+  background-color: transparent;
+  text-decoration: underline;
+  font-weight: bold;
+}

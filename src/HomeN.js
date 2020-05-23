@@ -48,13 +48,10 @@ class HomeN extends React.Component {
 
     render() {
         return (
-            <div>
-                
+            <div>                
                 <Row>
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
-                    
-                    </Col>
+                    <Col xs={3} sm={3} md={3} lg={5} xl={5}></Col>
 
                     <Col xs={18} sm={18} md={18} lg={14} xl={14}>  
 
@@ -73,15 +70,18 @@ class HomeN extends React.Component {
                                 
                         </Row>
 
+                        <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}></Divider>
+
                         <Row>
                             <div class="card mb-3">
                             <div class="row no-gutters" >
                                 <div class="col-md-2" style={{backgroundColor: colorpal[0], height:160, minWidth:150, borderColor:"C94A4A"}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Business </p>
                                 </div>
+
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">M.B.A.</p>
                                     <p class="card-text">Masters in Business Analytics</p>
@@ -94,7 +94,7 @@ class HomeN extends React.Component {
                                     <p class="card-text">Masters in Financial Engineering</p> 
                                     <p class="card-text">Masters in Economics</p>  
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ class HomeN extends React.Component {
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Masters in Computer Science</p>
                                     <p class="card-text">Masters in Information Systems</p>
@@ -123,7 +123,7 @@ class HomeN extends React.Component {
                                     <p class="card-text">Masters in Civil Engineering</p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ class HomeN extends React.Component {
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Medical Doctor</p>
                                     <p class="card-text">Masters in Nursing</p>
@@ -152,7 +152,7 @@ class HomeN extends React.Component {
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@ class HomeN extends React.Component {
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Masters in Statistics</p>
                                     <p class="card-text">Masters in Mathematics</p>
@@ -181,7 +181,7 @@ class HomeN extends React.Component {
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -192,18 +192,10 @@ class HomeN extends React.Component {
                      
 
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
-                    
-                    </Col>
+                    <Col xs={3} sm={3} md={3} lg={5} xl={5}></Col>
 
                 </Row>
-
-   
-    
-
             </div>
-
-
         )
     }
 }

@@ -1098,8 +1098,8 @@ class ProgramInfo extends React.Component {
                     <Card.Title>{school.title}</Card.Title>
                     <Card.Text>
                       Average GRE Score: {school.gre} <br />
-                  Average Unweighted GPA: {school.gpa} <br />
-                  Acceptance Rate: {school.arate}
+                      Average Unweighted GPA: {school.gpa} <br />
+                      Acceptance Rate: {school.arate}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>

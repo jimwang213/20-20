@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Home from './Home';
+import HomeN from './HomeN';
 import Program from './Program';
 import School from './School';
 import ProgramInfo from './ProgramInfo';
@@ -21,10 +22,12 @@ const routing = (
         <Route path="/Program/:programId" component={ProgramInfo} />
         <Route exact path="/Program" component={Program} />
         <Route exact path="/School" component={School} />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomeN} />
     </div>
   </Router>
 )
+
+
 ReactDOM.render(routing, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change

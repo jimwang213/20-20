@@ -202,6 +202,8 @@ class Home extends React.Component {
         <div>
           <TopMenu />
         </div>
+    
+
 
         <div>
           <Carousel>
@@ -243,8 +245,9 @@ class Home extends React.Component {
           </Carousel>
         </div>
 
-
         <ColoredLineH color="blue" />
+
+
 
         <div style={divStyle}>
 
@@ -257,12 +260,16 @@ class Home extends React.Component {
               </AntTypography>
             </Col>
           </Row>
+      
+
 
           {/* This section creates a container with resize capability. Currently setting a break point at 1014 px arbitrarily/ */}
           <div class="container">
             {/* Use justify content around to automatically separate each column and centered on the page */}
             <div class="row justify-content-around">
               {/* For some reasons there is a one column offset when just centering; possibily due to negative margin. Currently dealt with by manual 1 column offset. */}
+              
+            
               <div class="col-xs-6 col-md-4-offset-md-1">
                 <Row>
                   <img src="https://i.pinimg.com/originals/e6/28/f0/e628f03e345087d1ebea46719c31db06.png" style={searchButtonPicture} />
@@ -302,8 +309,11 @@ class Home extends React.Component {
                   </Button>
                 </Row>
               </div>
+
+
             </div>
           </div>
+        
 
           {/* Divider to separate the buttons and the mission statement. Just for looks. */}
           <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -329,7 +339,7 @@ class Home extends React.Component {
           </div>
 
         </div>
-      </div>
+     </div>
     );
   }
 }

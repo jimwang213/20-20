@@ -73,8 +73,8 @@ class HomeN extends React.Component {
                         <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}></Divider>
 
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[0]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[0], height:160, minWidth:150, borderColor:"C94A4A"}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Business </p>
                                 </div>
@@ -102,7 +102,7 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
+                            <div class="card mb-3" style ={{borderColor: colorpal[1]}}>
                             <div class="row no-gutters" >
                                 <div class="col-md-2" style={{backgroundColor: colorpal[1], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Engineering </p>
@@ -131,8 +131,8 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[2]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[2], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Healthcare </p>
                                 </div>
@@ -160,8 +160,8 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[3]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[3], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Science </p>
                                 </div>

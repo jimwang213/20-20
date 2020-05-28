@@ -55,17 +55,22 @@ class HomeN extends React.Component {
                     <Col xs={3} sm={3} md={3} lg={5} xl={5}></Col>
 
                     <Col xs={18} sm={18} md={18} lg={14} xl={14}>  
+                        <div class="row align-items-center">
+                            <div class="col-md-2-left">
+                            <span class="float-left">
+                                <img src= {logo} class="rounded float" style={{width:120, height:100}}/>
+                            </span>
+                            <span class="float-right">
+                                <div class = "verticalrule"></div> 
+                                </span>
+                            </div>
+                            
 
-                        <Row justify="left" align="middle" style={{marginBottom:20}}> 
-                            <Col>
-                            <img src= {logo} class="rounded float" style={{width:120, height:100}}/>
-                            </Col>
-                            <div class = "verticalrule"></div> 
-                            <Col xs={20} sm={20} md={20} lg={18} xl={18}>
-                            <h6>20/20 is a new way to search for graduate programs.</h6>
-                            <p>This centralized website that provides the top 20 graduate programs in the U.S. and each program’s corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school education. We look to ease and refine the graduate program search process.</p>
-                            </Col>
-                        </Row>
+                            <div class="col-sm-8 text-center">
+                                <span class="float-md-left"><h6>20/20 is a new way to search for graduate programs.</h6></span>
+                                <span class="float-md-left">This centralized website that provides the top 20 graduate programs in the U.S. and each program’s corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school education. We look to ease and refine the graduate program search process.</span>
+                            </div>
+                        </div>
 
                         <Row justify="left" style={{fontSize: 36}}>
                             Year: 2020’s Top 20 Programs

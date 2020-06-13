@@ -101,3 +101,9 @@ a:active {
   font-weight: bold;
 }
 
+.verticalrule { 
+  border-left: 1px solid #F0F0F0; 
+  height: 120px;
+  margin-left: 20px;
+  margin-right: 20px;
+} 

@@ -33,6 +33,7 @@ import './App.css';
 
 import TopMenu from './TopMenu';
 
+import logo from './2020.png';
 
 
 const colorpal = [
@@ -48,15 +49,28 @@ class HomeN extends React.Component {
 
     render() {
         return (
-            <div>
-                
+            <div>                
                 <Row>
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
-                    
-                    </Col>
+                    <Col xs={3} sm={3} md={3} lg={5} xl={5}></Col>
 
                     <Col xs={18} sm={18} md={18} lg={14} xl={14}>  
+                        <div class="row align-items-center">
+                            <div class="col-md-2-left">
+                            <span class="float-left">
+                                <img src= {logo} class="rounded float" style={{width:120, height:100}}/>
+                            </span>
+                            <span class="float-right">
+                                <div class = "verticalrule"></div> 
+                                </span>
+                            </div>
+                            
+
+                            <div class="col-sm-8 text-center">
+                                <span class="float-md-left"><h6>20/20 is a new way to search for graduate programs.</h6></span>
+                                <span class="float-md-left">This centralized website that provides the top 20 graduate programs in the U.S. and each program’s corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school education. We look to ease and refine the graduate program search process.</span>
+                            </div>
+                        </div>
 
                         <Row justify="left" style={{fontSize: 36}}>
                             Year: 2020’s Top 20 Programs
@@ -73,15 +87,18 @@ class HomeN extends React.Component {
                                 
                         </Row>
 
+                        <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}></Divider>
+
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[0]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[0], height:160, minWidth:150, borderColor:"C94A4A"}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Business </p>
                                 </div>
+
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">M.B.A.</p>
                                     <p class="card-text">Masters in Business Analytics</p>
@@ -94,7 +111,7 @@ class HomeN extends React.Component {
                                     <p class="card-text">Masters in Financial Engineering</p> 
                                     <p class="card-text">Masters in Economics</p>  
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -102,14 +119,14 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
+                            <div class="card mb-3" style ={{borderColor: colorpal[1]}}>
                             <div class="row no-gutters" >
                                 <div class="col-md-2" style={{backgroundColor: colorpal[1], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Engineering </p>
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Masters in Computer Science</p>
                                     <p class="card-text">Masters in Information Systems</p>
@@ -123,7 +140,7 @@ class HomeN extends React.Component {
                                     <p class="card-text">Masters in Civil Engineering</p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -131,14 +148,14 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[2]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[2], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Healthcare </p>
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Medical Doctor</p>
                                     <p class="card-text">Masters in Nursing</p>
@@ -152,7 +169,7 @@ class HomeN extends React.Component {
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -160,14 +177,14 @@ class HomeN extends React.Component {
                         </Row>
 
                         <Row>
-                            <div class="card mb-3">
-                            <div class="row no-gutters" >
+                            <div class="card mb-3" style ={{borderColor: colorpal[3]}}>
+                            <div class="row no-gutters">
                                 <div class="col-md-2" style={{backgroundColor: colorpal[3], height:160, minWidth:150}}>
                                     <p style = {{fontSize:18, color:"#FFFFFF", textIndent: "10px", marginTop:10}}> Science </p>
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
+                                <div class="row justify-content-start">
                                     <div class="col-sm-2">
                                     <p class="card-text">Masters in Statistics</p>
                                     <p class="card-text">Masters in Mathematics</p>
@@ -181,7 +198,7 @@ class HomeN extends React.Component {
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     </div>                         
-                                    
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -192,18 +209,10 @@ class HomeN extends React.Component {
                      
 
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
-                    
-                    </Col>
+                    <Col xs={3} sm={3} md={3} lg={5} xl={5}></Col>
 
                 </Row>
-
-   
-    
-
             </div>
-
-
         )
     }
 }

@@ -2,13 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Home from './Home';
 import HomeN from './HomeN';
 import Program from './Program';
-import School from './School';
-import ProgramInfo from './ProgramInfo';
-import SchoolInfo from './SchoolInfo';
-import SchoolProgram from './SchoolProgram'
+import ProgramSchool from './ProgramSchool'
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
@@ -17,11 +13,8 @@ const routing = (
     <div>
     <ul>
     </ul>
-        <Route path="/SchoolProgram/:schoolId/:programId" component={SchoolProgram} />
-        <Route path="/School/:schoolId" component={SchoolInfo} />
-        <Route path="/Program/:programId" component={ProgramInfo} />
-        <Route exact path="/Program" component={Program} />
-        <Route exact path="/School" component={School} />
+        <Route exact path="/Program/:programId/:schoolId" component={ProgramSchool} />
+        <Route exact path="/Program/:programId" component={Program} />
         <Route exact path="/" component={HomeN} />
     </div>
   </Router>

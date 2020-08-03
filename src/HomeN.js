@@ -18,6 +18,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { borders } from '@material-ui/system';
 
 import { Link } from 'react-router';
 
@@ -31,7 +32,7 @@ import { Row, Col } from 'antd';
 import { Typography as AntTypography, Divider } from 'antd';
 import './App.css';
 
-import TopMenu from './TopMenu';
+import Logo from './Logo.png';
 
 
 
@@ -45,18 +46,36 @@ const ProgramTitle = {
 
 class HomeN extends React.Component {
 
-
     render() {
         return (
             <div>
-                
+            
                 <Row>
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
+                    <Col xs={2} sm={2} md={2} lg={4} xl={4}>
                     
                     </Col>
 
-                    <Col xs={18} sm={18} md={18} lg={14} xl={14}>  
+                    <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
+
+                        <Row style={{marginBottom:20}}> 
+                            {/*top logo portion*/}
+                            <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
+                                <img src={Logo} height={100} width ={100} alt="logo"/>                              
+                            </Col>
+
+                            <Col xs={20} sm={20} md={20} lg={18} xl={18} style={{marginLeft:20}}>
+                                <Row justify="left" style={{fontSize:18}}>
+                                    Quick, Simple, Information - A new way to search for graduate programs. 
+                                </Row>
+
+                                <Row justify="left" style={{ marginTop:8, fontSize:12}}>
+                                    This centralized website that provides the top 20 graduate programs in the U.S. and each program’s 
+                                    corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school 
+                                    education. We look to ease and refine the graduate program search process. 
+                                </Row>
+                            </Col>
+                        </Row>
 
                         <Row justify="left" style={{fontSize: 36}}>
                             Year: 2020’s Top 20 Programs
@@ -70,7 +89,6 @@ class HomeN extends React.Component {
                                 multiple factors. The ranking this year took a lesser emphasis on job placement based on the current 
                                 economy that is yet to recover from COVID-19. Please select your programs of interest based on the 
                                 categories below. Happy Searching!
-                                
                         </Row>
 
                         <Row>
@@ -81,18 +99,18 @@ class HomeN extends React.Component {
                                 </div>
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
-                                    
-                                    <div class="col-sm-2">
-                                    <p class="card-text">M.B.A.</p>
-                                    <p class="card-text">Masters in Business Analytics</p>
-                                    <p class="card-text">Masters in Finance</p>
-                                    <p class="card-text">Masters in Marketing</p>    
+                
+                                    <div class="col-sm-3">
+                                    <a href="/Program/mba" class="card-link" style={{color:colorpal[0]}}>M.B.A</a><p/>
+                                    <a href="/Program/business-analytics" class="card-link" style={{color:colorpal[0]}}>Masters in Business Analytics</a><p/>
+                                    <a href="/Program/finance" class="card-link" style={{color:colorpal[0]}}>Masters in Finance</a><p/>
+                                    <a href="/Program/marketing" class="card-link" style={{color:colorpal[0]}}>Masters in Marketing</a>
                                     </div>
 
-                                    <div class="col-sm-2">
-                                    <p class="card-text">Masters in Accounting</p>
-                                    <p class="card-text">Masters in Financial Engineering</p> 
-                                    <p class="card-text">Masters in Economics</p>  
+                                    <div class="col-sm-3">
+                                    <a href="/Program/accounting" class="card-link" style={{color:colorpal[0]}}>Masters in Accounting</a><p/>
+                                    <a href="/Program/financial-engineering" class="card-link" style={{color:colorpal[0]}}>Masters in Financial Engineering</a><p/>
+                                    <a href="/Program/economics" class="card-link" style={{color:colorpal[0]}}>Masters in Economics</a><p/>
                                     </div>                         
                                     
                                 </div>
@@ -110,18 +128,17 @@ class HomeN extends React.Component {
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
                                     
-                                    <div class="col-sm-2">
-                                    <p class="card-text">Masters in Computer Science</p>
-                                    <p class="card-text">Masters in Information Systems</p>
-                                    <p class="card-text">Masters in Electrical Engineering</p>
-                                    <p class="card-text">Masters in Data Science</p>    
+                                    <div class="col-sm-3">
+                                    <a href="/Program/computer-science" class="card-link" style={{color:colorpal[1]}}>Masters in Computer Science</a><p/>
+                                    <a href="/Program/information-systems" class="card-link" style={{color:colorpal[1]}}>Masters in Information Systems</a><p/>
+                                    <a href="/Program/electrical-engineering" class="card-link" style={{color:colorpal[1]}}>Masters in Electrical Engineering</a><p/>
+                                    <a href="/Program/data-science" class="card-link" style={{color:colorpal[1]}}>Masters in Data Science</a>   
                                     </div>
 
-                                    <div class="col-sm-2">
-                                    <p class="card-text">Masters in Industrial Engineering</p>
-                                    <p class="card-text">Masters in Mechanical Engineering</p>
-                                    <p class="card-text">Masters in Civil Engineering</p>
-                                    <p class="card-text"></p>
+                                    <div class="col-sm-3">
+                                    <a href="/Program/industrial-engineering" class="card-link" style={{color:colorpal[1]}}>Masters in Industrial Engineering</a><p/>
+                                    <a href="/Program/mechanical-engineering" class="card-link" style={{color:colorpal[1]}}>Masters in Mechanical Engineering</a><p/>
+                                    <a href="/Program/civil-engineering" class="card-link" style={{color:colorpal[1]}}>Masters in Civil Engineering</a><p/>
                                     </div>                         
                                     
                                 </div>
@@ -139,14 +156,14 @@ class HomeN extends React.Component {
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
                                     
-                                    <div class="col-sm-2">
-                                    <p class="card-text">Medical Doctor</p>
-                                    <p class="card-text">Masters in Nursing</p>
-                                    <p class="card-text">Masters in Physician Assistant</p>
+                                    <div class="col-sm-3">
+                                    <a href="/Program/md" class="card-link" style={{color:colorpal[2]}}>Medical Doctor</a><p/>
+                                    <a href="/Program/nursing" class="card-link" style={{color:colorpal[2]}}>Masters in Nursing</a><p/>
+                                    <a href="/Program/physician-assistant" class="card-link" style={{color:colorpal[2]}}>Masters in Physician Assistant</a><p/>
                                     <p class="card-text"></p>    
                                     </div>
 
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
@@ -168,14 +185,14 @@ class HomeN extends React.Component {
                                 <div class="col-md-9"> 
                                 <div class="card-body" style = {{height:160, minWidth:1500}}>
                                     
-                                    <div class="col-sm-2">
-                                    <p class="card-text">Masters in Statistics</p>
-                                    <p class="card-text">Masters in Mathematics</p>
+                                    <div class="col-sm-3">
+                                    <a href="/Program/statistics" class="card-link" style={{color:colorpal[3]}}>Masters in Statistics</a><p/>
+                                    <a href="/Program/mathematics" class="card-link" style={{color:colorpal[3]}}>Masters in Mathematics</a><p/>
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>    
                                     </div>
 
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
                                     <p class="card-text"></p>
@@ -190,20 +207,13 @@ class HomeN extends React.Component {
 
                     </Col>
                      
-
                     {/* Column here is for blank space on the sides*/}
-                    <Col xs={3} sm={3} md={3} lg={5} xl={5}>
+                    <Col xs={2} sm={2} md={2} lg={4} xl={4}>
                     
                     </Col>
 
                 </Row>
-
-   
-    
-
             </div>
-
-
         )
     }
 }

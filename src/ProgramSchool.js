@@ -15,6 +15,14 @@ import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 
 import Logo from './Logo.png';
+import { light } from '@material-ui/core/styles/createPalette';
+
+let arrow = "->";
+
+const colorpal = [
+  '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
+  'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
+];
 
 const programsSchools =
 {
@@ -25,8 +33,10 @@ const programsSchools =
     'mit': {
       //Title
       title: "Massachusettes Institute of Technology",
+      tier:1,
+      ptitle: "Business Analytics",
       pname: "Masters in Business Analytics (Sloan)",
-      description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
+      description: '"The best program in business analytics. Established in conjuction with the Operations Research Center, the MIT MSBA is a 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems. The program is tailored for students with engineering backgrounds." -2020',
 
       //Class Profile
       gpa: '3.9',
@@ -53,7 +63,7 @@ const programsSchools =
           Placement: '100%',
           Maximum_Salary: '$160,000',
           Medium_Salary: '$110,000',
-          List_of_Emplyers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
+          List_of_Employers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
           Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
         }
       ],
@@ -185,6 +195,7 @@ const programsSchools =
     'usc': {
       //Title
       title: "University of Southern California",
+      ptitle: "Business Analytics",
       pname: "Masters in Business Analytics (Marshall)",
       description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
 
@@ -343,6 +354,7 @@ const programsSchools =
     'ucla': {
       //Title
       title: "University of California - Los Angeles",
+      ptitle: "Business Analytics",
       pname: "Masters in Business Analytics (Anderson)",
       description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
 
@@ -501,6 +513,7 @@ const programsSchools =
     'utaustin': {
       //Title
       title: "University of Texas - Austin",
+      ptitle: "Business Analytics",
       pname: "Masters in Business Analytics (McCombs)",
       description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
 
@@ -665,18 +678,50 @@ const ProgramInfoProgramName = {
   fontSize: 20,
   color: 'grey',
   fontStyle: 'italic',
-  marginTop: 0
+  marginTop: 10
 }
 
 const ProgramInfoTitle = {
   fontSize: 28,
-  marginBottom: 0
+  marginBottom: 0,
+  textAlign:"center",
+
+}
+
+const ProgramInfoDescription = {
+  color:"#505050", 
+  fontWeight:"normal",
+  fontSize:20, 
+  textAlign:"center", 
+  marginLeft:50, 
+  marginRight:50, 
+  marginTop:30, 
+  marginBottom:50,
+}
+
+const CareerText = {
+  textAlign:"center",
+  fontSize:20
+}
+
+const CareerTextVar = {
+  textAlign:"center",
+  fontSize:28,
+  fontWeight:"bold",
+  marginTop:20
 }
 
 const ClassProfile = {
   fontSize: 28,
   marginTop: 20
 }
+
+const CareerOutcome= {
+  fontSize: 28,
+  marginTop:20,
+  marginBottom:40, 
+}
+
 
 const ProgramInfoP = {
   fontSize: 20
@@ -739,7 +784,7 @@ class ProgramSchool extends React.Component {
 
           <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
 
-            <Row style={{marginBottom:40}}> 
+            <Row> 
               {/*top logo portion*/}
               <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
                   <img src={Logo} height={100} width ={100} alt="logo"/>                              
@@ -756,8 +801,13 @@ class ProgramSchool extends React.Component {
                       corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school 
                       education. We look to ease and refine the graduate program search process. 
                   </Row>
-
               </Col>
+            </Row>
+
+            <Row style={{marginTop:20}}>
+              <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
+              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + actualProgramId}>{programData.ptitle}</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
+              <Link style={{color:"#808080", marginLeft:10}} >{programData.title}</Link>
             </Row>
 
             </Col>
@@ -776,12 +826,15 @@ class ProgramSchool extends React.Component {
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>
 
               <Row>
-                <Typography>
-                  <Title style={ProgramInfoTitle}>{programData.title}</Title>
-                  <Title style={ProgramInfoProgramName}>{programData.pname} </Title>
-                  <Paragraph style={ProgramInfoP}>
-                    {programData.description}
-                  </Paragraph>
+                <Typography class="schoolheader">
+                    <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{programData.title} </span></p>
+
+                    <Title class="programnameheader" style={ProgramInfoProgramName}><span> {programData.pname} </span></Title>
+
+                    <p style={ProgramInfoDescription}>
+                      {programData.description} 
+                    </p>
+           
                 </Typography>
               </Row>
 
@@ -791,10 +844,11 @@ class ProgramSchool extends React.Component {
 
               <Row style={{ marginTop: 32 }, { marginBottom: 20 }}>
                 <Typography>
-                  <Title style={ClassProfile}>Career Outcome</Title>
+                  <Title style={CareerOutcome}>Career Outcome</Title>
                 </Typography>
               </Row>
 
+              {/*}
               <Row>
                 <div class="container">
                   <div class="row justify-content-around align-items-end">
@@ -821,16 +875,39 @@ class ProgramSchool extends React.Component {
                   </div>
                 </div>
               </Row>
+              */}
+
+              <Row>
+                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
+                  <p class="careerborder">{programData.careerOutcome[0].Placement}</p>
+                  <p style={CareerText}> Job Placement</p>
+                </Col>
+
+                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
+                  <p class="careerborder2">{programData.careerOutcome[0].Medium_Salary}</p>
+                  <p style={CareerText}> Average Salary</p>
+                </Col>
+
+                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
+                  <p class="careerborder3">{programData.careerOutcome[0].Maximum_Salary}</p>
+                  <p style={CareerText}> Maximum Salary</p>
+                </Col>
+
+              </Row>
 
               <Row style={{ marginBottom: 32 }}>
                 <div style={ProgramOutComeTitle}>List of Employers</div>
-                <div>{programData.careerOutcome[0].List_of_Emplyers}</div>
+                <div>{programData.careerOutcome[0].List_of_Employers}</div>
               </Row>
 
               <Row>
                 <div style={ProgramOutComeTitle}>Full-Time Role</div>
                 <div>{programData.careerOutcome[0].Full_Time_Roles}</div>
               </Row>
+
+              {/* Divider just for looks */}
+              <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+              </Divider>
 
               <Row>
                 <Typography>

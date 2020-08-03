@@ -1,56 +1,276 @@
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import './App.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import { borders } from '@material-ui/system';
-
 import { Link } from 'react-router';
 
 import Carousel from 'react-bootstrap/Carousel';
-import harvard from './harvard.png';
-import mit from './mit.png';
-import stanford from './stanford.png';
 
 import Button from 'antd/es/button';
 import { Row, Col } from 'antd';
 import { Typography as AntTypography, Divider } from 'antd';
 import './App.css';
+import SearchBar from './SearchBar';
 
 import Logo from './Logo.png';
-
 
 
 const colorpal = [
     '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary'
 ];
 
-const ProgramTitle = {
-    fontSize: 36
+const languages = [
+    {
+      name: 'Harvard University',
+  
+    },
+    {
+      name: 'Stanford University',
+  
+    },
+    {
+      name: 'Princeton University',
+  
+    }
+]
+
+const HeroTitle = {
+    fontSize: 52,
+    color:"#000000",
+    marginBottom:40,
+    marginTop:30,
 };
+
+const HeroText = {
+    fontSize: 14,
+    color:"#000000",
+    textAlign: 'left',
+    marginBottom: 70,
+
+};
+
+const CategoryTitle = {
+    fontSize:20,
+    
+}
+
+const CategoryProgram = {
+    fontSize:13,
+    padding:16,
+    borderTop: "1px solid #D3D3D3",
+    margin:0,
+}
+
+const CategoryProgramR = {
+    color:colorpal[0],
+    fontSize:16,
+    padding:12,
+    borderTop: "1px solid #D3D3D3",
+    margin:0,
+}
+
+const CategoryProgramO = {
+    color:colorpal[1],
+    fontSize:16,
+    padding:12,
+    borderTop: "1px solid #D3D3D3",
+    margin:0,
+}
+
+const CategoryProgramB = {
+    color:colorpal[2],
+    fontSize:16,
+    padding:12,
+    borderTop: "1px solid #D3D3D3",
+    margin:0,
+}
+
+const CategoryProgramG = {
+    color:colorpal[3],
+    fontSize:16,
+    padding:12,
+    borderTop: "1px solid #D3D3D3",
+    margin:0,
+}
+
 
 class HomeN extends React.Component {
 
     render() {
         return (
             <div>
-            
+
                 <Row>
+                    {/* Column here is for blank space on the sides*/}
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}>
+                    
+                    </Col>
+
+                    <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
+
+                        <Row style={{marginBottom:20}}> 
+                            {/*top logo portion*/}
+                            <Col xs={3} sm={3} md={3} lg={3} xl={3} style={{borderRight:"1px solid #D3D3D3"}}>
+                                <img src={Logo} height={100} width ={100} alt="logo"/>                              
+                            </Col>
+
+                            <Col xs={20} sm={20} md={20} lg={18} xl={18} style={{marginLeft:30}}>
+                                <Row justify="left" style={{fontSize:18}}>
+                                    Quick, Simple, Information - A new way to search for graduate programs. 
+                                </Row>
+
+                                <Row style={{marginTop:25}}>
+                                    <SearchBar style={{height:600}} placeholder="Harvard, Stanford...etc" suggestions={languages}>
+                                        containerStyle = {{alignItems:'center', justifyContent:'center' }}
+                                    </SearchBar>
+                                </Row>
+                            </Col>
+                        </Row>
+
+                    </Col>
+
+                    <Col xs={1} sm={1} md={1} lg={1} xl={2}>
+                        <p style={{fontSize:18}}>About Us</p>                   
+                    </Col>
+
+                    <Col xs={1} sm={1} md={1} lg={1} xl={2}>
+                        <p style={{fontSize:18}}>Methodology</p>                   
+                    </Col>
+
+                    <Col xs={1} sm={1} md={1} lg={1} xl={2}>
+                        <p style={{fontSize:18}}>Sign-up</p>                   
+                    </Col>
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}>
+                    
+                    </Col>
+
+                </Row>
+
+                <Row style={{marginTop:20, borderTop: "1px solid #D3D3D3"}}> </Row>
+                    
+               
+                <Row justify="center">
+                    <p style={HeroTitle}>20 TOP PROGRAMS - 20 TOP SCHOOLS</p>
+                </Row>
+
+                <Row>
+                    {/* Column here is for blank space on the sides*/}
+                    <Col xs={4} sm={4} md={4} lg={6} xl={6}>
+
+                    </Col>
+
+                    <Col xs={16} sm={16} md={16} lg={12} xl={12}>
+                    <p style={HeroText}>Congratulations on your first step to invest in yourself! Below are Year 2020’s top Master programs, 
+                        selected based on our methodology - popularity, job prospects, graduate salary, 
+                        tuition, growth, and other factors. The ranking this year took a lesser emphasis on job placement based on the current 
+                        economy that is yet to recover from COVID-19. Please select your programs of interest based on the 
+                        categories below. Happy Searching!</p>
+                    </Col>
+
+                    {/* Column here is for blank space on the sides*/}
+                    <Col xs={4} sm={4} md={4} lg={6} xl={6}>
+
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col>
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramR}>Business</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}> M.B.A.</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Business Analytics</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Finance</p> </Col>  
+                    
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Marketing</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Economics</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}>Accounting</p> </Col>   
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+                </Row>
+
+                <Row>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col>
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramO}>Engineering</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Computer Science</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Information Systems</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Electrical Engineering</p> </Col>  
+                    
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Mechanical Engineering</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Industrial Engineering</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}>Data Science</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+                </Row>
+
+                <Row>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col>
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramG}>Healthcare</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Medical Doctor</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Nursing</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Physician Assistant</p> </Col>  
+                    
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}></p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}></p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}></p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+
+                </Row>
+
+                <Row>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col>
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramB}>Arts + Science</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Statistics</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Mathematics</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Public Policy</p> </Col>  
+                    
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Political Science</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Education</p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}></p> </Col>  
+
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+
+                </Row>
+
+                <Row>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+                    <Col xs={20} sm={20} md={20} lg={20} xl={20} style={{borderTop: "1px solid #D3D3D3"}}> </Col>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
+                </Row>
+
+                <Row style={{marginTop:50, borderTop: "1px solid #D3D3D3"}}> </Row>
+
+
+
+                <Row style={{marginTop:300}}>
                     {/* Column here is for blank space on the sides*/}
                     <Col xs={2} sm={2} md={2} lg={4} xl={4}>
                     
@@ -77,13 +297,13 @@ class HomeN extends React.Component {
                             </Col>
                         </Row>
 
-                        <Row justify="left" style={{fontSize: 36}}>
+                        <Row justify="center" style={{border:"3px solid #D3D3D3", fontSize: 36}}>
                             Year: 2020’s Top 20 Programs
-                            <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
-                            </Divider>
                         </Row>
 
-                        <Row justify="left" style={{ marginTop: 8, fontSize:18, marginBottom:30 }}>
+                        <Row justify="left" style={{fontSize:18, marginBottom:30 }}>
+                            <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+                            </Divider>
                                 Congratulations on your first step to invest in yourself! Below are Year 2020’s top Master programs, 
                                 selected based on their popularity, job prospects, graduate salary, tuition, field growth, and 
                                 multiple factors. The ranking this year took a lesser emphasis on job placement based on the current 

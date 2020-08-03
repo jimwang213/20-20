@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
-
 import { Table } from 'antd';
 import { Row, Col } from 'antd';
 import { Carousel } from 'antd';
@@ -32,6 +31,8 @@ const rankingdata = [
   {
   }
 ];
+
+let arrow = "->";
 
 const colorpal = [
   '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
@@ -1193,11 +1194,7 @@ const ProgramInfoP = {
   fontSize: 20
 }
 
-const ProgramInfoStyle = {
-  marginTop: 50,
-  //marginLeft: 250,
-  //marginRight: 250
-};
+
 
 const { Title, Paragraph, Text } = AntTypography;
 
@@ -1234,7 +1231,7 @@ class Program extends React.Component {
 
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
 
-              <Row style={{marginBottom:40}}> 
+              <Row style={{marginBottom:0}}> 
                 {/*top logo portion*/}
                 <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
                     <img src={Logo} height={100} width ={100} alt="logo"/>                              
@@ -1255,6 +1252,11 @@ class Program extends React.Component {
                 </Col>
               </Row>
 
+              <Row style={{marginTop:20}}>
+                <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
+                <Link style={{color:"#808080", marginLeft:10}} >{programData.title}</Link>
+              </Row>
+
               </Col>
                 {/* Column here is for blank space on the sides*/}
               <Col xs={2} sm={2} md={2} lg={4} xl={4}>
@@ -1265,15 +1267,18 @@ class Program extends React.Component {
           <Row>
 
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
+
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>
               <Typography>
-                <Title style={ProgramInfoTitle}>{programData.title}</Title>
+                <Title class="programheader"><span>{programData.title}</span> </Title>
                 <Paragraph style={ProgramInfoP}>
                   {programData.description}
                 </Paragraph>
               </Typography>
             </Col>
+
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
+
           </Row>
 
           {/* Divider to separate the buttons and the mission statement */}
@@ -1284,7 +1289,7 @@ class Program extends React.Component {
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>
               <Typography>
-                <Title style={ProgramInfoTitle}>Summary Data</Title>
+                <Title style={{fontSize:28}}>Summary Data</Title>
               </Typography>
               <Table pagination={false} dataSource={programData.data} columns={programData.columns} style={ProgramInfoCard} />
             </Col>
@@ -1437,17 +1442,6 @@ class Program extends React.Component {
                 }
                 }
               )}
-
-            
-              {/*
-              {programData.schools.map((school, idx) =>
-                <Typography style={{marginBottom:10}}> 
-                  <Text style={{fontSize:14, color:colorpal[school.tier-1]}}>#{idx+1}. </Text> 
-                  <Text style={{fontSize:14}} >{school.header}</Text>
-                  <p></p>
-                </Typography>
-              )}
-              */}
 
             </Col>
 

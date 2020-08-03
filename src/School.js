@@ -174,8 +174,8 @@ class School extends React.Component {
               </Typography>
             </Col>
             <Col xs={24} sm={24} md={24} lg={12} xl={12} >
-                  <SearchBar placeholder="Harvard, Stanford...etc" suggestions={languages}>
-                  containerStyle = {{ alignItems:'center', justifyContent:'center' }}
+                  <SearchBar style={{}} placeholder="Harvard, Stanford...etc" suggestions={languages}>
+                    containerStyle = {{ alignItems:'center', justifyContent:'center' }}
                   </SearchBar>
             </Col>
           </Row>

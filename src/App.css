@@ -101,3 +101,156 @@ a:active {
   font-weight: bold;
 }
 
+.programheader {
+  font: 32px sans-serif;
+  color:#C94A4A;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.programheader:before {
+  border-top: 5px solid #C94A4A;
+  content:"";
+  margin: 0 auto; /* this centers the line to the full width specified */
+  position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 17px; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.programheader span { 
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+  background: #fff; 
+  padding: 0 15px; 
+}
+
+.schoolheader {
+  font: 32px sans-serif;
+  color:#C94A4A;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.schoolheader:before {
+  border-top: 5px solid #C94A4A;
+  border-left: 5px solid #C94A4A;
+  border-right: 5px solid #C94A4A;
+  border-bottom: 5px solid #C94A4A;
+  content:"";
+  margin: 0 auto; /* this centers the line to the full width specified */
+  position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 17px; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.schoolheader span { 
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+  background: #fff; 
+  padding: 0 15px; 
+}
+
+.programnameheader {
+  font: 32px sans-serif;
+  color:#C94A4A;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.programnameheader:before {
+  border-top: 1px solid #D8D8D8;
+  content:"";
+  margin: 0 auto; /* this centers the line to the full width specified */
+  position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 10px; left: 0; right: 0; bottom: 0;
+  width: 90%;
+  z-index: -1;
+}
+
+.programnameheader span { 
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+  background: #fff; 
+  padding: 0 15px; 
+}
+
+
+.careerborder {
+  font: 32px sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.careerborder:before{
+  border-top: 2px solid #E89637;
+  content:"";
+  margin: 0 auto;
+  position: absolute;
+  top: -20px; left: 0; right: 0; bottom: 0;
+  width: 90%;
+  z-index: -1;
+}
+
+.careerborder2 {
+  font: 32px sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.careerborder2:before{
+  border-top: 2px solid #5799D6;
+  content:"";
+  margin: 0 auto;
+  position: absolute;
+  top: -20px; left: 0; right: 0; bottom: 0;
+  width: 90%;
+  z-index: -1;
+}
+
+.careerborder3 {
+  font: 32px sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.careerborder3:before{
+  border-top: 2px solid #78D657;
+  content:"";
+  margin: 0 auto;
+  position: absolute;
+  top: -20px; left: 0; right: 0; bottom: 0;
+  width: 90%;
+  z-index: -1;
+}
+
+.homeheader {  
+  font: 32px sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-align: left;
+  z-index: 1;
+}
+
+.homeheader:before {
+  border-top: 5px solid #78D657;
+  content:"";
+  margin: 0 auto; /* this centers the line to the full width specified */
+  position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 17px; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.homeheader span { 
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+  background: #fff; 
+  padding: 0 15px; 
+}

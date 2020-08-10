@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -58,11 +58,19 @@ const CategoryTitle = {
     
 }
 
-const CategoryProgram = {
-    fontSize:13,
+const CategoryProgramBorder = {
     padding:16,
     borderTop: "1px solid #D3D3D3",
     margin:0,
+    textIndent:0
+}
+
+
+const CategoryProgramText = {
+    fontSize:12,
+    color:"#000000",
+    padding:0,
+    textIndent:0,
 }
 
 const CategoryProgramR = {
@@ -183,17 +191,17 @@ class HomeN extends React.Component {
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramR}>Business</p> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}> M.B.A.</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link class="indent" to="/Program/mba" style={CategoryProgramText}>M.B.A</Link> </Col>   
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Business Analytics</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/business-analytics" style={CategoryProgramText}>Business Analytics</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Finance</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/finance" style={CategoryProgramText}>Finance</Link> </Col>  
                     
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Marketing</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/marketing" style={CategoryProgramText}>Marketing</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Economics</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/economics" style={CategoryProgramText}>Economics</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}>Accounting</p> </Col>   
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2} style={CategoryProgramBorder}> <Link to="/Program/accounting" style={CategoryProgramText}>Accounting</Link> </Col>   
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
                 </Row>
@@ -203,17 +211,17 @@ class HomeN extends React.Component {
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramO}>Engineering</p> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Computer Science</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/computer-science" style={CategoryProgramText}>Computer Science</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Information Systems</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/information-systems" style={CategoryProgramText}>Information Systems</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Electrical Engineering</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/electrical-engineering" style={CategoryProgramText}>Electrical Engineering</Link> </Col>  
                     
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Mechanical Engineering</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/mechanical-engineering" style={CategoryProgramText}>Mechanical Engineering</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Industrial Engineering</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/industrial-engineering" style={CategoryProgramText}>Industrial Engineering</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}>Data Science</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2} style={CategoryProgramBorder}> <Link to="/Program/data-science" style={CategoryProgramText}>Data Science</Link> </Col>  
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
                 </Row>
@@ -223,17 +231,17 @@ class HomeN extends React.Component {
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramG}>Healthcare</p> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Medical Doctor</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Medical Doctor</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Nursing</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Nursing</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Physician Assistant</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Physician Assistant</Link> </Col>  
                     
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}></p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}></Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}></p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}></Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}></p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2} style={CategoryProgramBorder}> <Link style={CategoryProgramText}></Link> </Col>  
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
 
@@ -244,17 +252,17 @@ class HomeN extends React.Component {
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style ={CategoryProgramB}>Arts + Science</p> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Statistics</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Statistics</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Mathematics</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Mathematics</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Public Policy</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Public Policy</Link> </Col>  
                     
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Political Science</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Political Science</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3}> <p style={CategoryProgram}>Education</p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link style={CategoryProgramText}>Education</Link> </Col>  
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={2}> <p style={CategoryProgram}></p> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={2} style={CategoryProgramBorder}> <Link style={CategoryProgramText}></Link> </Col>  
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}> </Col> 
 
@@ -269,9 +277,9 @@ class HomeN extends React.Component {
                 <Row style={{marginTop:50, borderTop: "1px solid #D3D3D3"}}> </Row>
 
 
-
-                <Row style={{marginTop:300}}>
-                    {/* Column here is for blank space on the sides*/}
+                
+                {/* <Row style={{marginTop:300}}>
+         
                     <Col xs={2} sm={2} md={2} lg={4} xl={4}>
                     
                     </Col>
@@ -279,7 +287,7 @@ class HomeN extends React.Component {
                     <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
 
                         <Row style={{marginBottom:20}}> 
-                            {/*top logo portion*/}
+                
                             <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
                                 <img src={Logo} height={100} width ={100} alt="logo"/>                              
                             </Col>
@@ -427,12 +435,11 @@ class HomeN extends React.Component {
 
                     </Col>
                      
-                    {/* Column here is for blank space on the sides*/}
                     <Col xs={2} sm={2} md={2} lg={4} xl={4}>
                     
                     </Col>
 
-                </Row>
+                </Row> */}
             </div>
         )
     }

@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import HomeN from './HomeN';
 import Program from './Program';
 import ProgramSchool from './ProgramSchool'
+import ScrollToTop from './ScrollToTop'
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
@@ -17,6 +18,7 @@ const routing = (
         <Route exact path="/Program/:programId" component={Program} />
         <Route exact path="/" component={HomeN} />
     </div>
+    <ScrollToTop/>
   </Router>
 )
 

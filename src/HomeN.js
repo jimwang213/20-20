@@ -193,7 +193,7 @@ class HomeN extends React.Component {
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link class="indent" to="/Program/mba" style={CategoryProgramText}>M.B.A</Link> </Col>   
 
-                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/business-analytics" style={CategoryProgramText}>Business Analytics</Link> </Col>  
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/Business+Analytics" style={CategoryProgramText}>Business Analytics</Link> </Col>  
 
                     <Col xs={2} sm={2} md={2} lg={2} xl={3} style={CategoryProgramBorder}> <Link to="/Program/finance" style={CategoryProgramText}>Finance</Link> </Col>  
                     

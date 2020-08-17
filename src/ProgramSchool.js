@@ -750,30 +750,95 @@ const ProgramInfoCard = {
 
 
 class ProgramSchool extends React.Component {
-  render() {
-    const { programId, schoolId } = this.props.match.params;
-    var programData;
-    var schoolProgramsBySchool;
-    var actualProgramId = programId.toLowerCase();
-    var actualSchoolId = schoolId.toLowerCase();
-    console.log(programId)
-    console.log(programsSchools)
-    if (!programsSchools.hasOwnProperty(actualProgramId)) {
-      // program doesn't exist
-      window.location.href = "/";
-    } else {
-      schoolProgramsBySchool = programsSchools[actualProgramId]
-      console.log(schoolProgramsBySchool)
-      if (!schoolProgramsBySchool.hasOwnProperty(actualSchoolId)) {
-        // program doesn't exist 
-        window.location.href = "/";
-      }
-      else {
-        programData = schoolProgramsBySchool[actualSchoolId];
-        console.log(programData)
-      }
-    }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {},
+    };
+  }
+
+  componentDidMount() {
+    const { programId, schoolId } = this.props.match.params;
+    fetch(process.env.REACT_APP_API_URL + "/programs?program_name=" + programId + "&school_name=" + schoolId)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ 
+          data: responseJson,
+        });
+        console.log(this.state.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        //window.location.href = "/";
+      });
+  }
+
+  formatMoneyString(money) {
+    if (!money) return money;
+    return "$" + money.toLocaleString();
+  }
+
+  render() {
+    let placement = this.state.data.job_placement_rate;
+    if (placement) {
+      placement = Math.round(placement * 100) + "%";
+    }
+    let employers = this.state.data.employers;
+    if (employers) {
+      employers = employers.join(", ");
+    }
+    let full_time_roles = this.state.data.roles;
+    if (full_time_roles) {
+      full_time_roles = full_time_roles.join(", ");
+    }
+    const careerData = {
+      placement: placement,
+      maximum_salary: this.formatMoneyString(this.state.data.maximum_salary),
+      average_salary: this.formatMoneyString(this.state.data.average_salary),
+      employers_list: employers,
+      full_time_roles: full_time_roles,
+    };
+    let program_length = this.state.data.program_length_low + " months";
+    if (this.state.data.program_length_low != this.state.data.program_length_high) {
+      program_length = this.state.data.program_length_low + "-" + this.state.data.program_length_high + " months";
+    }
+    const summaryData = [{
+      average_salary: this.formatMoneyString(this.state.data.average_salary),
+      tuition: this.formatMoneyString(this.state.data.tuition),
+      program_length: program_length,
+      post_grad_occupations: full_time_roles,
+      placement: this.state.data.job_placement_rate,
+      maximum_salary: this.formatMoneyString(this.state.data.maximum_salary),
+    }];
+    const timelineData = {}
+    const summaryDataCols = [
+      {
+        title: "Average Salary",
+        dataIndex: "average_salary",
+      },
+      {
+        title: "Tuition",
+        dataIndex: "tuition",
+      },
+      {
+        title: "Program Length",
+        dataIndex: "program_length",
+      },
+      {
+        title: "Post-grad Occupations",
+        dataIndex: "post_grad_occupations",
+      },
+      {
+        title: "Placement",
+        dataIndex: "placement",
+      },
+      {
+        title: "Maximum Salary",
+        dataIndex: "maximum_salary",
+      },
+    ];
     return (
       <div>
         <Row>
@@ -806,8 +871,8 @@ class ProgramSchool extends React.Component {
 
             <Row style={{marginTop:20}}>
               <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + actualProgramId}>{programData.ptitle}</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} >{programData.title}</Link>
+              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + this.state.data.program_name}>{this.state.data.program_name}</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
+              <Link style={{color:"#808080", marginLeft:10}} >{this.state.data.school_name}</Link>
             </Row>
 
             </Col>
@@ -827,12 +892,12 @@ class ProgramSchool extends React.Component {
 
               <Row>
                 <Typography class="schoolheader">
-                    <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{programData.title} </span></p>
+                    <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{this.state.data.school_name} </span></p>
 
-                    <Title class="programnameheader" style={ProgramInfoProgramName}><span> {programData.pname} </span></Title>
+                    <Title class="programnameheader" style={ProgramInfoProgramName}><span> {this.state.data.program_local_name} </span></Title>
 
                     <p style={ProgramInfoDescription}>
-                      {programData.description} 
+                      {this.state.data.program_description} 
                     </p>
            
                 </Typography>
@@ -879,17 +944,17 @@ class ProgramSchool extends React.Component {
 
               <Row>
                 <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder">{programData.careerOutcome[0].Placement}</p>
+                  <p class="careerborder">{careerData.placement}</p>
                   <p style={CareerText}> Job Placement</p>
                 </Col>
 
                 <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder2">{programData.careerOutcome[0].Medium_Salary}</p>
+                  <p class="careerborder2">{careerData.average_salary}</p>
                   <p style={CareerText}> Average Salary</p>
                 </Col>
 
                 <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder3">{programData.careerOutcome[0].Maximum_Salary}</p>
+                  <p class="careerborder3">{careerData.maximum_salary}</p>
                   <p style={CareerText}> Maximum Salary</p>
                 </Col>
 
@@ -897,12 +962,12 @@ class ProgramSchool extends React.Component {
 
               <Row style={{ marginBottom: 32 }}>
                 <div style={ProgramOutComeTitle}>List of Employers</div>
-                <div>{programData.careerOutcome[0].List_of_Employers}</div>
+                <div>{careerData.employers_list}</div>
               </Row>
 
               <Row>
                 <div style={ProgramOutComeTitle}>Full-Time Role</div>
-                <div>{programData.careerOutcome[0].Full_Time_Roles}</div>
+                <div>{careerData.full_time_roles}</div>
               </Row>
 
               {/* Divider just for looks */}
@@ -915,7 +980,7 @@ class ProgramSchool extends React.Component {
                 </Typography>
               </Row>
 
-              <Table pagination={false} dataSource={programData.data} columns={programData.columns} />
+              <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} />
 
               {/* Divider just for looks */}
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -950,17 +1015,17 @@ class ProgramSchool extends React.Component {
                 <Col span={6}>
                   <Row>
                     <Text>
-                      : {programData.gpa}
+                      : {this.state.data.average_gpa}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {programData.gre}
+                      : {this.state.data.average_gre}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {programData.avw}
+                      : {this.state.data.avw}
                     </Text>
                   </Row>
                 </Col>
@@ -986,17 +1051,17 @@ class ProgramSchool extends React.Component {
                 <Col span={6}>
                   <Row>
                     <Text>
-                      : {programData.classSize}
+                      : {this.state.data.classSize}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {programData.countries}
+                      : {this.state.data.countries}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {programData.international}
+                      : {this.state.data.international}
                     </Text>
                   </Row>
                 </Col>
@@ -1016,14 +1081,14 @@ class ProgramSchool extends React.Component {
               <Row>
                 <Divider orientation="left"> Fall Curriculum </Divider>
                 <Text>
-                  {programData.fallCurriculum}
+                  {this.state.data.fallCurriculum}
                 </Text>
               </Row>
 
               <Row>
                 <Divider orientation="left"> Spring Curriculum </Divider>
                 <Text>
-                  {programData.springCurriculum}
+                  {this.state.data.springCurriculum}
                 </Text>
               </Row>
 
@@ -1046,9 +1111,9 @@ class ProgramSchool extends React.Component {
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
                         <Timeline mode="left">
-                          <Timeline.Item label={programData.timeline[0].AppDue}>Application due date and time.</Timeline.Item>
-                          <Timeline.Item label={programData.timeline[0].Dec_Notif}>Aniticipated decision notification.</Timeline.Item>
-                          <Timeline.Item label={programData.timeline[0].Offer_Reply}>Last day to reply to offer.</Timeline.Item>
+                          <Timeline.Item label={timelineData.AppDue}>Application due date and time.</Timeline.Item>
+                          <Timeline.Item label={timelineData.Dec_Notif}>Aniticipated decision notification.</Timeline.Item>
+                          <Timeline.Item label={timelineData.Offer_Reply}>Last day to reply to offer.</Timeline.Item>
                         </Timeline>
                     </Card.Body>
                   </Accordion.Collapse>
@@ -1059,7 +1124,7 @@ class ProgramSchool extends React.Component {
                     Resume
                       </Accordion.Toggle>
                   <Accordion.Collapse eventKey="1">
-                    <Card.Body>{programData.resume} </Card.Body>
+                    <Card.Body>{this.state.data.resume} </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1068,7 +1133,7 @@ class ProgramSchool extends React.Component {
                     Essay Questions
                   </Accordion.Toggle>
                         <Accordion.Collapse eventKey="2">
-                    <Card.Body>{programData.essay}</Card.Body>
+                    <Card.Body>{this.state.data.essay}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1077,7 +1142,7 @@ class ProgramSchool extends React.Component {
                     Letters of Recommendation
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="3">
-                    <Card.Body>{programData.recommendation}</Card.Body>
+                    <Card.Body>{this.state.data.recommendation}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1086,7 +1151,7 @@ class ProgramSchool extends React.Component {
                     Transcripts
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="4">
-                    <Card.Body>{programData.transcripts}</Card.Body>
+                    <Card.Body>{this.state.data.transcripts}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1095,7 +1160,7 @@ class ProgramSchool extends React.Component {
                     Video Questions
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="5">
-                    <Card.Body>{programData.video}</Card.Body>
+                    <Card.Body>{this.state.data.video}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1104,7 +1169,7 @@ class ProgramSchool extends React.Component {
                     GRE/GMAT
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="6">
-                    <Card.Body>{programData.standardizedtest}</Card.Body>
+                    <Card.Body>{this.state.data.standardizedtest}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1113,7 +1178,7 @@ class ProgramSchool extends React.Component {
                     TOEFL/IELTS
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="7">
-                    <Card.Body>{programData.englishtest}</Card.Body>
+                    <Card.Body>{this.state.data.englishtest}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1122,7 +1187,7 @@ class ProgramSchool extends React.Component {
                     Application Fee
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="8">
-                    <Card.Body>{programData.applicationfee}</Card.Body>
+                    <Card.Body>{this.state.data.applicationfee}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
               </Accordion>

@@ -1241,14 +1241,20 @@ class Program extends React.Component {
 
   render() {
     const number_occupations_displayed = 3;
+    let average_salary = this.state.data.summary_data.average_salary;
+    if (average_salary) {
+      average_salary = average_salary.toFixed(2);
+    }
+    let average_tuition = this.state.data.summary_data.average_tuition;
+    if (average_tuition) {
+      average_tuition = average_tuition.toFixed(2);
+    }
     const summaryData = [
       {
-        "average_salary": "$" + this.state.data.summary_data.average_salary,
-        "average_tuition": "$" + this.state.data.summary_data.average_tuition + " (year)",
+        "average_salary": "$" + average_salary,
+        "average_tuition": "$" + average_tuition + " (year)",
         "program_length": this.state.data.summary_data.min_program_length_low + "-" + this.state.data.summary_data.max_program_length_high + " months",
-        "post_grad_occupations": this.state.data.summary_data.post_grad_occupations.slice(0, number_occupations_displayed).map((role, idx) => {
-          return role.role_name;
-        }).join(", "),
+        "post_grad_occupations": this.state.data.summary_data.post_grad_occupations.slice(0, number_occupations_displayed).join(", "),
       }
     ];
     const summaryDataCols = [
@@ -1323,7 +1329,7 @@ class Program extends React.Component {
 
               <Row style={{marginTop:20}}>
                 <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-                <Link style={{color:"#808080", marginLeft:10}} >{this.state.data.program_category_name}</Link>
+                <Link style={{color:"#808080", marginLeft:10}} >{this.state.data.program_name}</Link>
               </Row>
 
               </Col>
@@ -1339,7 +1345,7 @@ class Program extends React.Component {
 
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>
               <Typography>
-                <Title class="programheader"><span>{this.state.data.program_category_name}</span> </Title>
+                <Title class="programheader"><span>{this.state.data.program_name}</span> </Title>
                 <Paragraph style={ProgramInfoP}>
                   {this.state.data.description}
                 </Paragraph>
@@ -1388,7 +1394,7 @@ class Program extends React.Component {
                   //border={colorpal[idx]}
                   style={{marginBottom: 25 , borderColor: colorpal[school.tier-1]}}
                 >
-                <Card.Header style={{backgroundColor: colorpal[school.tier-1], fontSize:18}}> <Link to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}> {"#" + (idx + 1) + " " + school.school_name}</Link> </Card.Header>
+                <Card.Header style={{backgroundColor: colorpal[school.tier-1], fontSize:18}}> <Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> {"#" + (idx + 1) + " " + school.school_name}</Link> </Card.Header>
                   <Card.Body>
                     <Card.Title style={{fontSize:16}}>{school.school_name}</Card.Title>
                     <Card.Text>
@@ -1396,7 +1402,7 @@ class Program extends React.Component {
                       Average Unweighted GPA: {school.average_gpa} <br />
                       Acceptance Rate: {school.arate || "unknown"}
                     </Card.Text>
-                    <Link style={{color:"#606060"}} to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}>Details...</Link>
+                    <Link style={{color:"#606060"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>Details...</Link>
                   </Card.Body>
                 </Card>
               )}
@@ -1463,7 +1469,7 @@ class Program extends React.Component {
                 {if (school.tier === 1) {
                   return(
                   <Typography style={{fontSize:14}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
                   </Typography>
                   )
                 }
@@ -1477,7 +1483,7 @@ class Program extends React.Component {
                 {if (school.tier === 2) {
                   return(
                   <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
                   </Typography>
                   )
                 }
@@ -1491,7 +1497,7 @@ class Program extends React.Component {
                 {if (school.tier === 3) {
                   return(
                   <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
                   </Typography>
                   )
                 }
@@ -1505,7 +1511,7 @@ class Program extends React.Component {
                 {if (school.tier === 4) {
                   return(
                   <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_category_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
                   </Typography>
                   )
                 }

@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import ContentLoader from 'react-content-loader'
 
 import Logo from './Logo.png';
 
@@ -32,7 +33,7 @@ const rankingdata = [
   }
 ];
 
-let arrow = "->";
+let arrow = ">";
 
 const colorpal = [
   '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
@@ -1213,25 +1214,29 @@ class Program extends React.Component {
   constructor(props) {
     super(props);
 
+    const { programId } = this.props.match.params;
+
     this.state = {
+      program_name: programId,
       data: {
         school_data: [],
         summary_data: {
           post_grad_occupations: [],
         },
+        data_loaded: false,
       },
     };
   }
 
   componentDidMount() {
-    const { programId } = this.props.match.params;
-    fetch(process.env.REACT_APP_API_URL + "/programs?program_name=" + programId)
+    fetch(process.env.REACT_APP_API_URL + "/programs/" + this.state.program_name)
       .then((response) => response.json())
       .then((responseJson) => {
+        responseJson.school_data.sort((a, b) => a.tier - b.tier);
         this.setState({ 
           data: responseJson,
+          data_loaded: true,
         });
-        console.log(this.state.data);
       })
       .catch((error) => {
         console.error(error);
@@ -1295,14 +1300,10 @@ class Program extends React.Component {
     console.log(sortedTierData);
 
     return (
-
         <div>
-
           <Row>
             {/* Column here is for blank space on the sides*/}
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>
-
-            </Col>
+            <Col xs={2} sm={2} md={2} lg={4} xl={4}></Col>
 
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
 
@@ -1322,14 +1323,15 @@ class Program extends React.Component {
                         This centralized website that provides the top 20 graduate programs in the U.S. and each program’s 
                         corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school 
                         education. We look to ease and refine the graduate program search process. 
+                        
                     </Row>
 
                 </Col>
               </Row>
 
               <Row style={{marginTop:20}}>
-                <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-                <Link style={{color:"#808080", marginLeft:10}} >{this.state.data.program_name}</Link>
+                <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+                <Link style={{color:"#808080", marginLeft:10}} >{this.state.program_name}</Link>
               </Row>
 
               </Col>
@@ -1338,16 +1340,21 @@ class Program extends React.Component {
         
             </Col>
           </Row>
-
+          
           <Row>
 
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
 
             <Col xs={20} sm={20} md={20} lg={16} xl={16}>
               <Typography>
-                <Title class="programheader"><span>{this.state.data.program_name}</span> </Title>
+                <Title class="programheader"><span>{this.state.program_name}</span> </Title>
                 <Paragraph style={ProgramInfoP}>
-                  {this.state.data.description}
+                  {this.state.data_loaded ? this.state.data.description :
+                  <ContentLoader viewBox="0 0 380 60">
+                  {/* Only SVG shapes */}    
+                  <rect x="0" y="20" rx="4" ry="4" width="500" height="10" />
+                  <rect x="0" y="40" rx="4" ry="4" width="500" height="10" />
+                </ContentLoader>}
                 </Paragraph>
               </Typography>
             </Col>
@@ -1366,7 +1373,12 @@ class Program extends React.Component {
               <Typography>
                 <Title style={{fontSize:28}}>Summary Data</Title>
               </Typography>
-              <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} style={ProgramInfoCard} />
+              {this.state.data_loaded ? <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} style={ProgramInfoCard} /> :
+                 <ContentLoader viewBox="0 0 380 40">
+                 {/* Only SVG shapes */}    
+                 <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
+                 <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
+             </ContentLoader>}
             </Col>
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
           </Row>
@@ -1388,7 +1400,7 @@ class Program extends React.Component {
           <Row>
             <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/*Spacer */}</Col>
             <Col xs={15} sm={15} md={15} lg={12} xl={12}>
-              {this.state.data.school_data.map((school, idx) =>
+              {this.state.data_loaded ? this.state.data.school_data.map((school, idx) =>
                 <Card
                   //border = {'#E72F08'}
                   //border={colorpal[idx]}
@@ -1396,16 +1408,21 @@ class Program extends React.Component {
                 >
                 <Card.Header style={{backgroundColor: colorpal[school.tier-1], fontSize:18}}> <Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> {"#" + (idx + 1) + " " + school.school_name}</Link> </Card.Header>
                   <Card.Body>
-                    <Card.Title style={{fontSize:16}}>{school.school_name}</Card.Title>
+                    <Card.Title style={{fontSize:16}}>{school.program_local_name}</Card.Title>
                     <Card.Text>
+                      Average GMAT Score: {school.average_gmat} <br />
                       Average GRE Score: {school.average_gre} <br />
-                      Average Unweighted GPA: {school.average_gpa} <br />
-                      Acceptance Rate: {school.arate || "unknown"}
+                      Average GPA: {school.average_gpa} <br />
                     </Card.Text>
                     <Link style={{color:"#606060"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>Details...</Link>
                   </Card.Body>
                 </Card>
-              )}
+              ) :
+              <ContentLoader viewBox="0 0 380 40">
+                 {/* Only SVG shapes */}    
+                 <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
+                 <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
+             </ContentLoader>}
             </Col>
             {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
             <Col xs={4} sm={4} md={4} lg={6} xl={6} offset={1}>
@@ -1415,7 +1432,7 @@ class Program extends React.Component {
               </Typography>
               
          
-                {sortedTierData.map((tier, idx) =>
+                {this.state.data_loaded ? sortedTierData.map((tier, idx) =>
                   <Row>
 
                     <Col xs={2} sm={2} md={2} lg={4} xl={4}>
@@ -1423,7 +1440,7 @@ class Program extends React.Component {
                     </Col>
 
                     <Col xs={20} sm={20} md={20} lg={20} xl={20}>
-                      <p style={{marginBottom:1}}>{tier.tierData.join(", ")}</p>
+                      <p style={{marginBottom:1}}>{tier.tierData.map(tierData => <div><p>{tierData}</p></div>)}</p>
                     </Col>
 
                     <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -1432,7 +1449,12 @@ class Program extends React.Component {
                   </Row>
                    
                   
-                )}
+                ) :
+                <ContentLoader viewBox="0 0 380 40">
+                 {/* Only SVG shapes */}    
+                 <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
+                 <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>}
             
             {/* Old Code for Tier List - Avatar Method
               <Typography>
@@ -1460,63 +1482,70 @@ class Program extends React.Component {
               <Typography>
                 <Title style={ProgramInfoTitle}>Short List</Title>
               </Typography>
+              {this.state.data_loaded ? 
+              <div>
+                <Text style={{fontSize:16, color:colorpal[0], marginBottom:10}}>Tier 1</Text> <p></p>
 
-        
-              <Text style={{fontSize:16, color:colorpal[0], marginBottom:10}}>Tier 1</Text> <p></p>
+                  {this.state.data.school_data.map((school, idx) =>
+                  
+                    {if (school.tier === 1) {
+                      return(
+                      <Typography style={{fontSize:14}}> 
+                        <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                      </Typography>
+                      )
+                    }
+                    }
+                  )}
 
-              {this.state.data.school_data.map((school, idx) =>
-               
-                {if (school.tier === 1) {
-                  return(
-                  <Typography style={{fontSize:14}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
-                  </Typography>
-                  )
-                }
-                }
-              )}
+                  <Text style={{fontSize:16, color:colorpal[1]}}>Tier 2</Text> <p></p>
 
-              <Text style={{fontSize:16, color:colorpal[1]}}>Tier 2</Text> <p></p>
+                  {this.state.data.school_data.map((school, idx) =>
 
-              {this.state.data.school_data.map((school, idx) =>
-              
-                {if (school.tier === 2) {
-                  return(
-                  <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
-                  </Typography>
-                  )
-                }
-                }
-              )}
+                    {if (school.tier === 2) {
+                      return(
+                      <Typography style={{fontSize:14, color:"696969"}}> 
+                        <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                      </Typography>
+                      )
+                    }
+                    }
+                  )}
 
-              <Text style={{fontSize:16, color:colorpal[2], marginBottom:10}}>Tier 3</Text> <p></p>
+                  <Text style={{fontSize:16, color:colorpal[2], marginBottom:10}}>Tier 3</Text> <p></p>
 
-              {this.state.data.school_data.map((school, idx) =>
+                  {this.state.data.school_data.map((school, idx) =>
 
-                {if (school.tier === 3) {
-                  return(
-                  <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
-                  </Typography>
-                  )
-                }
-                }
-              )}
+                    {if (school.tier === 3) {
+                      return(
+                      <Typography style={{fontSize:14, color:"696969"}}> 
+                        <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                      </Typography>
+                      )
+                    }
+                    }
+                  )}
 
-              <Text style={{fontSize:16, color:colorpal[3], marginBottom:10}}>Tier 4</Text> <p></p>
+                  <Text style={{fontSize:16, color:colorpal[3], marginBottom:10}}>Tier 4</Text> <p></p>
 
-              {this.state.data.school_data.map((school, idx) =>
+                  {this.state.data.school_data.map((school, idx) =>
 
-                {if (school.tier === 4) {
-                  return(
-                  <Typography style={{fontSize:14, color:"696969"}}> 
-                    <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
-                  </Typography>
-                  )
-                }
-                }
-              )}
+                    {if (school.tier === 4) {
+                      return(
+                      <Typography style={{fontSize:14, color:"696969"}}> 
+                        <Link style={{marginLeft:10, color:"#696969"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> #{idx+1}. {school.school_name}</Link>  <p></p>
+                      </Typography>
+                      )
+                    }
+                    }
+                  )} 
+              </div> :
+              <ContentLoader viewBox="0 0 380 40">
+              {/* Only SVG shapes */}    
+              <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
+              <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
+              </ContentLoader>
+              }
 
             </Col>
 

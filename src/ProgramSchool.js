@@ -13,11 +13,12 @@ import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
+import ContentLoader from 'react-content-loader'
 
 import Logo from './Logo.png';
 import { light } from '@material-ui/core/styles/createPalette';
 
-let arrow = "->";
+let arrow = ">";
 
 const colorpal = [
   '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
@@ -754,18 +755,23 @@ class ProgramSchool extends React.Component {
   constructor(props) {
     super(props);
 
+    const { programId, schoolId } = this.props.match.params;
+
     this.state = {
       data: {},
+      data_loaded: false,
+      program_name: programId,
+      school_name: schoolId,
     };
   }
 
   componentDidMount() {
-    const { programId, schoolId } = this.props.match.params;
-    fetch(process.env.REACT_APP_API_URL + "/programs?program_name=" + programId + "&school_name=" + schoolId)
+    fetch(process.env.REACT_APP_API_URL + "/programs/" + this.state.program_name + "/school/" + this.state.school_name)
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ 
           data: responseJson,
+          data_loaded: true,
         });
         console.log(this.state.data);
       })
@@ -783,7 +789,7 @@ class ProgramSchool extends React.Component {
   render() {
     let placement = this.state.data.job_placement_rate;
     if (placement) {
-      placement = Math.round(placement * 100) + "%";
+      placement = placement + "%";
     }
     let employers = this.state.data.employers;
     if (employers) {
@@ -805,21 +811,17 @@ class ProgramSchool extends React.Component {
       program_length = this.state.data.program_length_low + "-" + this.state.data.program_length_high + " months";
     }
     const summaryData = [{
-      average_salary: this.formatMoneyString(this.state.data.average_salary),
-      tuition: this.formatMoneyString(this.state.data.tuition),
+      tuition: this.formatMoneyString(this.state.data.tuition_out_state),
       program_length: program_length,
       post_grad_occupations: full_time_roles,
-      placement: this.state.data.job_placement_rate,
-      maximum_salary: this.formatMoneyString(this.state.data.maximum_salary),
     }];
-    const timelineData = {}
+    let timelineData = [];
+    if (this.state.data.timeline) {
+      timelineData = this.state.data.timeline.split("\n");
+    }
     const summaryDataCols = [
       {
-        title: "Average Salary",
-        dataIndex: "average_salary",
-      },
-      {
-        title: "Tuition",
+        title: "Tuition (out of state)",
         dataIndex: "tuition",
       },
       {
@@ -829,14 +831,6 @@ class ProgramSchool extends React.Component {
       {
         title: "Post-grad Occupations",
         dataIndex: "post_grad_occupations",
-      },
-      {
-        title: "Placement",
-        dataIndex: "placement",
-      },
-      {
-        title: "Maximum Salary",
-        dataIndex: "maximum_salary",
       },
     ];
     return (
@@ -870,9 +864,9 @@ class ProgramSchool extends React.Component {
             </Row>
 
             <Row style={{marginTop:20}}>
-              <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + this.state.data.program_name}>{this.state.data.program_name}</Link> <Text style={{marginLeft:10, color:"#808080"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} >{this.state.data.school_name}</Link>
+              <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + this.state.program_name}>{this.state.program_name}</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+              <Link style={{color:"#808080", marginLeft:10}} >{this.state.school_name}</Link>
             </Row>
 
             </Col>
@@ -892,13 +886,20 @@ class ProgramSchool extends React.Component {
 
               <Row>
                 <Typography class="schoolheader">
-                    <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{this.state.data.school_name} </span></p>
+                    <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{this.state.school_name} </span></p>
 
-                    <Title class="programnameheader" style={ProgramInfoProgramName}><span> {this.state.data.program_local_name} </span></Title>
+                    {this.state.data_loaded ? <div>
+                      <Title class="programnameheader" style={ProgramInfoProgramName}><span> {this.state.data.program_local_name} </span></Title>
 
-                    <p style={ProgramInfoDescription}>
-                      {this.state.data.program_description} 
-                    </p>
+                      <p style={ProgramInfoDescription}>
+                        {this.state.data.program_description} 
+                      </p>
+                    </div> : 
+                    <ContentLoader viewBox="0 0 1000 70">
+                    {/* Only SVG shapes */}    
+                    <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                    <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                    </ContentLoader>}
            
                 </Typography>
               </Row>
@@ -913,35 +914,7 @@ class ProgramSchool extends React.Component {
                 </Typography>
               </Row>
 
-              {/*}
-              <Row>
-                <div class="container">
-                  <div class="row justify-content-around align-items-end">
-                    <div class="col-4" align="center">
-                      <div class="circletxt">{programData.careerOutcome[0].Placement}</div>
-                    </div>
-                    <div class="col-4" align="center">
-                      <div class="circletxt">{programData.careerOutcome[0].Medium_Salary}</div>
-                    </div>
-                    <div class="col-4" align="center">
-                      <div class="circletxt">{programData.careerOutcome[0].Maximum_Salary}</div>
-                    </div>
-                  </div>
-                  <div class="row justify-content-around align-items-center">
-                    <div class="col-4">
-                      <div class="circlelab">Placement Rate</div>
-                    </div>
-                    <div class="col-4">
-                      <div class="circlelab">Medium Salary</div>
-                    </div>
-                    <div class="col-4">
-                      <div class="circlelab">Maximum Salary</div>
-                    </div>
-                  </div>
-                </div>
-              </Row>
-              */}
-
+              {this.state.data_loaded ? 
               <Row>
                 <Col xs={8} sm={8} md={8} lg={8} xl={8}>
                   <p class="careerborder">{careerData.placement}</p>
@@ -958,16 +931,31 @@ class ProgramSchool extends React.Component {
                   <p style={CareerText}> Maximum Salary</p>
                 </Col>
 
-              </Row>
+              </Row> :
+                <ContentLoader viewBox="0 0 380 60">
+                {/* Only SVG shapes */}    
+                <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>}
 
               <Row style={{ marginBottom: 32 }}>
                 <div style={ProgramOutComeTitle}>List of Employers</div>
-                <div>{careerData.employers_list}</div>
+                {this.state.data_loaded ? <div>{careerData.employers_list}</div> :
+                <ContentLoader viewBox="0 0 380 70">
+                {/* Only SVG shapes */}    
+                <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>}
               </Row>
 
               <Row>
                 <div style={ProgramOutComeTitle}>Full-Time Role</div>
-                <div>{careerData.full_time_roles}</div>
+                {this.state.data_loaded ? <div>{careerData.full_time_roles}</div> :
+                <ContentLoader viewBox="0 0 380 70">
+                {/* Only SVG shapes */}    
+                <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>}
               </Row>
 
               {/* Divider just for looks */}
@@ -980,7 +968,12 @@ class ProgramSchool extends React.Component {
                 </Typography>
               </Row>
 
-              <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} />
+              {this.state.data_loaded ? <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} /> :
+              <ContentLoader viewBox="0 0 380 70">
+              {/* Only SVG shapes */}    
+              <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+              <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+              </ContentLoader>}
 
               {/* Divider just for looks */}
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -992,6 +985,7 @@ class ProgramSchool extends React.Component {
                 </Typography>
               </Row>
 
+              {this.state.data_loaded ?
               <Row style={ProgramInfoP}>
 
                 <Col span={6}>
@@ -1025,7 +1019,7 @@ class ProgramSchool extends React.Component {
                   </Row>
                   <Row>
                     <Text>
-                      : {this.state.data.avw}
+                      : {this.state.data.average_work_experience_years} months
                     </Text>
                   </Row>
                 </Col>
@@ -1051,23 +1045,27 @@ class ProgramSchool extends React.Component {
                 <Col span={6}>
                   <Row>
                     <Text>
-                      : {this.state.data.classSize}
+                      : {this.state.data.class_size}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {this.state.data.countries}
+                      : {this.state.data.countries_represented}
                     </Text>
                   </Row>
                   <Row>
                     <Text>
-                      : {this.state.data.international}
+                      : {this.state.data.international_i_percent}
                     </Text>
                   </Row>
                 </Col>
 
-              </Row>
-
+              </Row> :
+              <ContentLoader viewBox="0 0 380 70">
+              {/* Only SVG shapes */}    
+              <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+              <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+              </ContentLoader>}
               {/* Divider just for looks */}
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
               </Divider>
@@ -1078,7 +1076,9 @@ class ProgramSchool extends React.Component {
                 </Typography>
               </Row>
 
-              <Row>
+              {this.state.data_loaded ? 
+              <div>
+                <Row>
                 <Divider orientation="left"> Fall Curriculum </Divider>
                 <Text>
                   {this.state.data.fallCurriculum}
@@ -1091,6 +1091,12 @@ class ProgramSchool extends React.Component {
                   {this.state.data.springCurriculum}
                 </Text>
               </Row>
+              </div> : 
+              <ContentLoader viewBox="0 0 380 70">
+              {/* Only SVG shapes */}    
+              <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+              <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+              </ContentLoader>}
 
               {/* Divider just for looks */}
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -1111,9 +1117,11 @@ class ProgramSchool extends React.Component {
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
                         <Timeline mode="left">
-                          <Timeline.Item label={timelineData.AppDue}>Application due date and time.</Timeline.Item>
-                          <Timeline.Item label={timelineData.Dec_Notif}>Aniticipated decision notification.</Timeline.Item>
-                          <Timeline.Item label={timelineData.Offer_Reply}>Last day to reply to offer.</Timeline.Item>
+                          {timelineData.map((td, n) => {
+                            let data = td.split(": ");
+                            return <Timeline.Item label={data[0]}>{data[1]}</Timeline.Item>
+                          })
+                          }
                         </Timeline>
                     </Card.Body>
                   </Accordion.Collapse>
@@ -1133,7 +1141,7 @@ class ProgramSchool extends React.Component {
                     Essay Questions
                   </Accordion.Toggle>
                         <Accordion.Collapse eventKey="2">
-                    <Card.Body>{this.state.data.essay}</Card.Body>
+                    <Card.Body>{this.state.data.essay_questions}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1142,7 +1150,7 @@ class ProgramSchool extends React.Component {
                     Letters of Recommendation
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="3">
-                    <Card.Body>{this.state.data.recommendation}</Card.Body>
+                    <Card.Body>{this.state.data.letters_of_recommendation}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1160,7 +1168,7 @@ class ProgramSchool extends React.Component {
                     Video Questions
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="5">
-                    <Card.Body>{this.state.data.video}</Card.Body>
+                    <Card.Body>{this.state.data.video_question}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1169,7 +1177,7 @@ class ProgramSchool extends React.Component {
                     GRE/GMAT
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="6">
-                    <Card.Body>{this.state.data.standardizedtest}</Card.Body>
+                    <Card.Body>{this.state.data.gre_gmat}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1178,7 +1186,7 @@ class ProgramSchool extends React.Component {
                     TOEFL/IELTS
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="7">
-                    <Card.Body>{this.state.data.englishtest}</Card.Body>
+                    <Card.Body>{this.state.data.toefl_ielts}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
@@ -1187,7 +1195,7 @@ class ProgramSchool extends React.Component {
                     Application Fee
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="8">
-                    <Card.Body>{this.state.data.applicationfee}</Card.Body>
+                    <Card.Body>{this.state.data.application_fee}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
               </Accordion>

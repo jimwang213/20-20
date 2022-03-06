@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
+import './index.css'
 
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
@@ -20,7 +23,6 @@ import ContentLoader from 'react-content-loader'
 import FormGroup from 'react-bootstrap/FormGroup'
 import FormLabel from 'react-bootstrap/FormLabel'
 
-import './App.css';
 
 import Logo from './Logo.png';
 
@@ -32,7 +34,7 @@ const colorpal = [
 const HeroTitle = {
     fontSize: 52,
     color:"#000000",
-    marginBottom:40,
+    marginBottom:20,
     marginTop:30,
     textAlign: 'center',
 };
@@ -40,7 +42,9 @@ const HeroTitle = {
 const HeroText = {
     fontSize: 14,
     color:"#000000",
-    textAlign: 'left',
+    textAlign: 'center',
+    marginBottom:20
+
 };
 
 const CategoryProgramBorder = {
@@ -63,7 +67,7 @@ const CategoryProgramTextOpen = {
 }
 
 const CategoryProgramTextClosed = {
-    fontSize:12,
+    fontSize:11,
     color:"#B0B0B0",
     padding:0,
     textIndent:0,
@@ -74,6 +78,7 @@ const CategoryProgram = {
     fontSize:16,
     padding:12,
     margin:0,
+    marginBottom:0
 }
 
 class HomeN extends React.Component {
@@ -124,16 +129,17 @@ class HomeN extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="justify-content-end" style={{ width: "100%" }}>
-                    <Nav.Link href="#about-us">About Us</Nav.Link>
-                    <Nav.Link href="#methodology">Methodology</Nav.Link>
+                    <Nav.Link href="/AboutUs/">About Us</Nav.Link>
+                    <Nav.Link href="/Methodology/">Methodology</Nav.Link>
                     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 </Navbar>
+
                 <Container>
                     <Row style={{marginBottom:20}}> 
-                        <Col xs={{span: 8, offset: 4}} md={{span: 2, offset: 0}} style={{borderRight:"1px solid #D3D3D3"}}>
-                            <img src={Logo} height={100} width ={100} alt="logo"/>                              
+                        <Col sm={{span: 8, offset:4}} md={{span: 2, offset: 0}} style={{borderRight:"1px solid #D3D3D3"}}>
+                        <Link to={"/"}> <img src={Logo} height={100} width ={100} alt="logo"/> </Link>                          
                         </Col>
 
                         <Col style={{marginLeft:30, marginRight:30}}>
@@ -181,30 +187,32 @@ class HomeN extends React.Component {
                 <div style={{marginTop:20, borderTop: "1px solid #D3D3D3"}}> </div>
                 
                 <div justify="center">
-                    <p style={HeroTitle}>  {reactStringReplace(reactStringReplace("20 TOP PROGRAMS - 20 TOP SCHOOLS", /(TOP)/g, (match, i) => (
-                    <span key={i} style={{ color: 'black' }}>{match}</span>
-                    )), /(20)/g, (match, i) => (
-                    <span key={i} style={{ color: 'black' }}>{match}</span>
-                    ))} 
-                    
-                    </p>
+                    <p  style={HeroTitle}>  20 TOP PROGRAMS - 20 TOP SCHOOLS</p>
              
                 </div>
 
                 <Container>
-                    <p style={HeroText}>Congratulations on your first step to invest in yourself! Below are Year 2020’s top Master programs, 
-                        selected based on our methodology - popularity, job prospects, graduate salary, 
-                        tuition, growth, and other factors. The ranking this year took a lesser emphasis on job placement based on the current 
-                        economy that is yet to recover from COVID-19. Please select your programs of interest based on the 
-                        categories below. Happy Searching!</p>
+                    
+                    <Row>
+                    <Col xs={1} sm={1} md={2}></Col>
+                    <Col xs={10} sm={10} md={8}>
+                        <p  style={HeroText}>
+                            An easier way to search for <b> rankings, application material, and program statistics </b> for graduate school programs.
+                            The below <b> 20 most popular programs  </b> are selected based on our methodology - popularity, job prospects, graduate salary, 
+                            tuition, growth, and other factors. In each program, there are the <b> top ranked 20 schools </b>. Happy Searching!
+                        </p>
+                    </Col>
+                    <Col xs={1} sm={1} md={2}></Col>
+
+                    </Row>
                 </Container>
                 <br/>
 
                 <Container>
                     {this.state.category_data_loaded ? this.state.category_data.map(cd => {
                         return <Row style={{borderTop: "1px solid #D3D3D3"}}>
-                            <Col  xs={12} md style={{...CategoryProgram, color: cd.display_rgb}}>
-                                <p>{cd.category_name}</p>
+                            <Col  sm={12} md style={{...CategoryProgram, color: cd.display_rgb}}>
+                                <p style = {{marginBottom:0}}>{cd.category_name}</p>
                             </Col>
                             {cd.program_data.map(pd => {
                                 return <Col xs={4} md style={CategoryProgramBorder}>
@@ -232,6 +240,61 @@ class HomeN extends React.Component {
                     </Row>}
 
                 </Container>
+                    
+                {/*
+                <div style={{marginTop:50, borderTop: "1px solid #D3D3D3"}}> </div>
+
+                <Container style={{marginTop:50}}>
+            
+                    <Row>
+                    <Col xs={2} sm={2} md={2}>
+                        <Card style={{backgroundColor: colorpal[0], width: '18rem'}}>
+                        <Card.Header>Featured</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                        </ListGroup>
+                        </Card>
+                    </Col>
+                    <Col xs={1} sm={1} md={1}></Col>
+                    <Col xs={2} sm={2} md={2}>
+                        <Card style={{ width: '18rem' }}>
+                        <Card.Header>Featured</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                        </ListGroup>
+                        </Card>
+                    </Col>
+                    <Col xs={1} sm={1} md={1}></Col>
+                    <Col xs={2} sm={2} md={2}>
+                        <Card style={{ width: '18rem' }}>
+                        <Card.Header>Featured</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                        </ListGroup>
+                        </Card>
+                    </Col>
+                    <Col xs={1} sm={1} md={1}></Col>
+                    <Col xs={2} sm={2} md={2}>
+                        <Card style={{ width: '18rem' }}>
+                        <Card.Header>Featured</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                        </ListGroup>
+                        </Card>
+                    </Col>
+
+                    </Row>
+                </Container>
+                */}
+
             </div>)
     }
 }

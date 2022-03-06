@@ -57,6 +57,7 @@ code {
   z-index: 2;
 }
 
+
 .react-autosuggest__suggestions-list {
   margin: 0;
   padding: 0;
@@ -72,3 +73,41 @@ code {
   background-color: #ddd;
 }
 
+.checkmarkList {
+  list-style: none
+}
+
+.checkmarkList li:before {
+  margin-left: -2em;
+  content: '✓ ';
+  color:"#78D657"
+}
+
+.dotList {
+  list-style:none
+}
+
+.dotList li:before {
+  content: "•  ";
+  color:"#78D657"
+}
+
+ul {
+  list-style:none
+}
+
+ul li:before {
+  content: "•  ";
+
+}
+
+.timeline-horz-card-wrapper {
+  min-width:600px !important;
+}
+
+.card-sub-title {
+  padding-bottom:0px !important;
+  padding-top:25px !important;
+  text-align:center !important;
+  color: "#000" !important;
+}

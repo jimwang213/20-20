@@ -4,676 +4,41 @@ import Typography from '@material-ui/core/Typography';
 import { Timeline } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
-import { Row, Col } from 'antd';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { Typography as AntTypography, Divider } from 'antd';
 import './App.css';
 import { useState } from 'react';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+
+import { Box, ChakraProvider } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon
+} from "@chakra-ui/react";
 
 import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
-import Accordion from 'react-bootstrap/Accordion'
+//*import Accordion from 'react-bootstrap/Accordion'
 import ContentLoader from 'react-content-loader'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
-import Logo from './Logo.png';
+import Logo7 from './Logo7.png';
 import { light } from '@material-ui/core/styles/createPalette';
+import ReactMarkdown from 'react-markdown';
 
-let arrow = ">";
+let arrow = "|";
 
 const colorpal = [
   '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
   'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
 ];
-
-const programsSchools =
-{
-
-  /* business-analytics  and its schools */
-  'business-analytics': {
-
-    'mit': {
-      //Title
-      title: "Massachusettes Institute of Technology",
-      tier:1,
-      ptitle: "Business Analytics",
-      pname: "Masters in Business Analytics (Sloan)",
-      description: '"The best program in business analytics. Established in conjuction with the Operations Research Center, the MIT MSBA is a 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems. The program is tailored for students with engineering backgrounds." -2020',
-
-      //Class Profile
-      gpa: '3.9',
-      gre: '169',
-      avw: '15.36 months',
-      classSize: '60',
-      countries: '23',
-      international: '70%',
-      undergrad: 'Computer Science, Statistics, Mathematics, Economics, Engineering, Finance',
-      //Program Statistics/Information
-
-      data: [
-        {
-          Medium_Salary: '$110,000',
-          Tuition: '$65,000 (year)',
-          Program_Length: '12-18 months',
-          Occupations_PostGrad: 'Data Scientists, Business Analysts, Management Consultants',
-          Placement: '100%',
-          Maximum_Salary: '$160,000'
-        }
-      ],
-      careerOutcome: [
-        {
-          Placement: '100%',
-          Maximum_Salary: '$160,000',
-          Medium_Salary: '$110,000',
-          List_of_Employers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
-          Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
-        }
-      ],
-      columns: [
-        {
-          title: 'Medium Salary',
-          dataIndex: 'Medium_Salary',
-        },
-        {
-          title: 'Tuition',
-          dataIndex: 'Tuition',
-        },
-        {
-          title: 'Program Length',
-          dataIndex: 'Program_Length',
-        },
-        {
-          title: 'Occupations PostGrad',
-          dataIndex: 'Occupations_PostGrad',
-        }
-      ],
-      //Curriculum
-      fallCurriculum: [
-
-        <li>15.071: Analytics Edge (12)</li>,
-        <li>15.093: Optimization Methods (12) </li>,
-        <li>15.095: Machine Learning Under a Modern Optimization Lens (12)</li>,
-        <li>15.572: Analytics Lab (9)</li>,
-        <li>15.681: From Analytics to Action (6)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)</li>
-      ],
-
-      springCurriculum: [
-
-        <li>15.089: Analytics Capstone Project (24 units spanning IAP, Spring and Summer)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)" </li>,
-        <li>15.286: Communicating with Data (3) </li>
-      ],
-      //Application/Timeline
-
-      timeline: [
-        {
-        AppDue: 'Wednesday, January 8, 2020, 3:00 p.m. EST',
-        Dec_Notif: 'Thursday, March 5, 2020',
-        Offer_Reply: 'Wednesday, April 15, 2020'
-        }
-      ],
-
-      resume: [
-        <text>
-          Please submit a one-page resume (Times New Roman 10 point font preferred) that includes your employment history and academic record. Other information appropriate to a business resume is welcomed and encouraged, including extracurricular activities, awards, and achievements.
-          <br /><br />
-          For formatting purposes, please list the information in the following order: <br /><br /> </text>,
-
-        <li>Education - please list institutions where degree is in progress or was awarded in reverse chronological order. Please feel free to include information about study abroad activities, relevant awards, scholarships, professional societies</li>,
-        <li>Work Experience - please list in reverse chronological order and include: company name, title, results-oriented bullets that demonstrate your skill set, and dates.</li>,
-        <li>Additional information - languages, extracurricular activities/community service, technical skills/certifications, special skills/interests (if appropriate)</li>
-      ],
-
-      essay: [
-        <text> Please describe your reason for pursuing the Master of Business Analytics (MBAn) degree.  What do you hope to gain from the program? And what are your career aspirations? (500 words or less) </text>
-      ],
-
-      recommendation: [
-        <text>Please include three letters of recommendation. Two of the letters should come from an academic source that can speak to your quantitative abilities, academic achievement and potential. The third recommendation should be from an individual, e.g., a work supervisor or manager, who is able to speak with certainty about your professional achievement and potential.
-            <br /><br />Recommenders must submit recommendations online. We do not accept recommendations via mail. Recommendations may be in either letter or short answer format and should not exceed two pages. Please choose recommenders who are able to provide specific answers to the following questions:
-            <br /><br />
-        </text>,
-
-        <li>How long and in what capacity have you known the applicant?</li>,
-        <li>How does the applicant stand out from others in a similar capacity?</li>,
-        <li>Please give an example of the applicant’s impact on a person, group, or organization.</li>,
-        <li>Please give a representative example of how the applicant interacts with other people.</li>,
-        <li>If you are an academic/technical recommender, please tell us how well the applicant mastered the subject you taught or supervised and in what ways did the applicant demonstrate this mastery.</li>,
-        <li>Which of the applicant’s personal or professional characteristics would you change?</li>,
-        <li>Please tell us anything else you think we should know about this applicant.</li>
-      ],
-
-      transcripts: [
-        <text>
-          The Admissions Committee would like to see all of your transcripts, please include electronic copies of all of your academic records whose courses counted toward a degree. Do not mail in your official academic records or transcripts.
-            <br /><br />If your transcripts are not in English, you are required to translate them. There are several companies, such as WES, that offer translation services. We ask that you scan both the original and translated copies and submit them with your application.
-            <br /><br />Relevant Coursework: We are interested in relevant classes that you are currently taking or have previously completed.  Using short answer fields in the application you’ll be asked to include details of courses you have completed from the following areas: Math, Statistics, Machine Learning, and Computer Programming.
-            <br /><br />Admitted applicants will be required to provide an official signed and sealed transcript from all schools attended. Any discrepancies between the scanned transcripts and official transcripts may result in a candidate's rejection or a withdrawal of our offer of admission.
-          </text>
-      ],
-
-      video: [
-        <text>
-          1. Please upload a one-minute (60 second) video introducing yourself to your future classmates and letting us know why you are interested in the field of analytics and data science. The video should be a single take (no editing) and lasting no more than one minute, consisting of you speaking directly to the camera. We recommend using an application such as QuickTime or iMovie to record yourself.
-            <br /><br />2. All MBAn applicants must submit a brief video statement in response to a simple, open-ended general interest question. The question is designed to help us get to know you better; to see how you express yourself and to assess fit with the MIT Sloan culture. It does not require prior preparation and will not be a technical question. The Video Question 2 is a part of your required application materials and will appear as a page within the application, once the other parts of your application are completed.
-            <br /><br />Applicant receives a randomly generated question and has one minute to prepare a 60 second response.
-          </text>
-      ],
-
-      standardizedtest: [
-        <text>
-          The GRE or GMAT is required of all applicants. We accept both the GMAT and GRE test results and have no preference for one over the other. Test scores are only valid for five years. Please include percentiles when submitting your score.
-            <br /><br /> A valid test score (GRE or GMAT) must be taken on or after January 8, 2015. Additional scores will not be accepted after you have submitted your application. Master of Business Analytics GRE School Code: 3514 Master of Business Analytics GMAT School Code: X5X-QS-64.
-          </text>
-      ],
-
-      englishtest: [
-        <text>
-          All applicants whose native language is not English and who have not received their entire undergraduate education in an English-speaking country must submit scores from one of two internationally recognized assessments of English language proficiency, the International English Language Testing System (IELTS) or the Test of English as a Foreign Language (TOEFL). Test scores are valid for two years. For applicants planning to enter the program in 2020, we will consider scores for tests taken on or after January 8, 2018.
-            <br /><br /> Receiving your undergraduate degree in a country that lists English as an official language such as India, Pakistan, Hong Kong SAR, or Singapore does not exempt you from the English language proficiency requirement.
-            <br /><br /> Master of Business Analytics TOEFL School Code: 3935 IELTS electronic scores sent to: MIT Graduate Admissions
-          </text>
-      ],
-
-      applicationfee: [
-        <text>
-          Master of Business Analytics application fee: $150The non-refundable application fee is payable by credit card when you apply online. You will be prompted for payment information after pressing the “Submit Application” button. We offer fee waivers to the following applicants:
-            <br /><br />
-        </text>,
-        <li>College seniors with U.S. citizenship, graduating from a U.S. institution in 2020</li>,
-        <li>Active U.S. military personnel</li>,
-        <li>Teach for America members/alumni</li>,
-        <li>Peace Corps members</li>,
-        <text>
-          <br /><br />
-            Applicants who qualify must submit the fee waiver form at least ONE week before the application deadline. Your request will be reviewed and you will receive an email with the results. If your fee is waived, you will be able to proceed to submit your application.
-          </text>
-      ]
-
-
-    },
-
-    'usc': {
-      //Title
-      title: "University of Southern California",
-      ptitle: "Business Analytics",
-      pname: "Masters in Business Analytics (Marshall)",
-      description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
-
-      //Class Profile
-      gpa: '3.7',
-      gre: 'GRE: 169. GMAT:730',
-      avw: '15.36 months',
-      classSize: '60',
-      countries: '23',
-      international: '70%',
-      undergrad: 'Computer Science, Statistics, Mathematics, Economics, Engineering, Finance',
-      //Program Statistics/Information
-
-      data: [
-        {
-          Medium_Salary: '$110,000',
-          Tuition: '$65,000 (year)',
-          Program_Length: '12-18 months',
-          Occupations_PostGrad: 'Data Scientists, Business Analysts, Management Consultants',
-          Placement: '100%',
-          Maximum_Salary: '$160,000'
-        }
-      ],
-      careerOutcome: [
-        {
-          Placement: '100%',
-          Maximum_Salary: '$160,000',
-          Medium_Salary: '$110,000',
-          List_of_Emplyers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
-          Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
-        }
-      ],
-      columns: [
-        {
-          title: 'Medium Salary',
-          dataIndex: 'Medium_Salary',
-        },
-        {
-          title: 'Tuition',
-          dataIndex: 'Tuition',
-        },
-        {
-          title: 'Program Length',
-          dataIndex: 'Program_Length',
-        },
-        {
-          title: 'Occupations PostGrad',
-          dataIndex: 'Occupations_PostGrad',
-        }
-      ],
-      //Curriculum
-      fallCurriculum: [
-
-        <li>15.071: Analytics Edge (12)</li>,
-        <li>15.093: Optimization Methods (12) </li>,
-        <li>15.095: Machine Learning Under a Modern Optimization Lens (12)</li>,
-        <li>15.572: Analytics Lab (9)</li>,
-        <li>15.681: From Analytics to Action (6)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)</li>
-      ],
-
-      springCurriculum: [
-
-        <li>15.089: Analytics Capstone Project (24 units spanning IAP, Spring and Summer)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)" </li>,
-        <li>15.286: Communicating with Data (3) </li>
-      ],
-      //Application/Timeline
-
-      timeline: [
-        {
-        AppDue: 'Wednesday, January 8, 2020, 3:00 p.m. EST',
-        Dec_Notif: 'Thursday, March 5, 2020',
-        Offer_Reply: 'Wednesday, April 15, 2020'
-        }
-      ],
-
-      resume: [
-        <text>
-          Please submit a one-page resume (Times New Roman 10 point font preferred) that includes your employment history and academic record. Other information appropriate to a business resume is welcomed and encouraged, including extracurricular activities, awards, and achievements.
-          <br /><br />
-          For formatting purposes, please list the information in the following order: <br /><br /> </text>,
-
-        <li>Education - please list institutions where degree is in progress or was awarded in reverse chronological order. Please feel free to include information about study abroad activities, relevant awards, scholarships, professional societies</li>,
-        <li>Work Experience - please list in reverse chronological order and include: company name, title, results-oriented bullets that demonstrate your skill set, and dates.</li>,
-        <li>Additional information - languages, extracurricular activities/community service, technical skills/certifications, special skills/interests (if appropriate)</li>
-      ],
-
-      essay: [
-        <text> Please describe your reason for pursuing the Master of Business Analytics (MBAn) degree.  What do you hope to gain from the program? And what are your career aspirations? (500 words or less) </text>
-      ],
-
-      recommendation: [
-        <text>Please include three letters of recommendation. Two of the letters should come from an academic source that can speak to your quantitative abilities, academic achievement and potential. The third recommendation should be from an individual, e.g., a work supervisor or manager, who is able to speak with certainty about your professional achievement and potential.
-            <br /><br />Recommenders must submit recommendations online. We do not accept recommendations via mail. Recommendations may be in either letter or short answer format and should not exceed two pages. Please choose recommenders who are able to provide specific answers to the following questions:
-            <br /><br />
-        </text>,
-
-        <li>How long and in what capacity have you known the applicant?</li>,
-        <li>How does the applicant stand out from others in a similar capacity?</li>,
-        <li>Please give an example of the applicant’s impact on a person, group, or organization.</li>,
-        <li>Please give a representative example of how the applicant interacts with other people.</li>,
-        <li>If you are an academic/technical recommender, please tell us how well the applicant mastered the subject you taught or supervised and in what ways did the applicant demonstrate this mastery.</li>,
-        <li>Which of the applicant’s personal or professional characteristics would you change?</li>,
-        <li>Please tell us anything else you think we should know about this applicant.</li>
-      ],
-
-      transcripts: [
-        <text>
-          The Admissions Committee would like to see all of your transcripts, please include electronic copies of all of your academic records whose courses counted toward a degree. Do not mail in your official academic records or transcripts.
-            <br /><br />If your transcripts are not in English, you are required to translate them. There are several companies, such as WES, that offer translation services. We ask that you scan both the original and translated copies and submit them with your application.
-            <br /><br />Relevant Coursework: We are interested in relevant classes that you are currently taking or have previously completed.  Using short answer fields in the application you’ll be asked to include details of courses you have completed from the following areas: Math, Statistics, Machine Learning, and Computer Programming.
-            <br /><br />Admitted applicants will be required to provide an official signed and sealed transcript from all schools attended. Any discrepancies between the scanned transcripts and official transcripts may result in a candidate's rejection or a withdrawal of our offer of admission.
-          </text>
-      ],
-
-      video: [
-        <text>
-          1. Please upload a one-minute (60 second) video introducing yourself to your future classmates and letting us know why you are interested in the field of analytics and data science. The video should be a single take (no editing) and lasting no more than one minute, consisting of you speaking directly to the camera. We recommend using an application such as QuickTime or iMovie to record yourself.
-            <br /><br />2. All MBAn applicants must submit a brief video statement in response to a simple, open-ended general interest question. The question is designed to help us get to know you better; to see how you express yourself and to assess fit with the MIT Sloan culture. It does not require prior preparation and will not be a technical question. The Video Question 2 is a part of your required application materials and will appear as a page within the application, once the other parts of your application are completed.
-            <br /><br />Applicant receives a randomly generated question and has one minute to prepare a 60 second response.
-          </text>
-      ],
-
-      standardizedtest: [
-        <text>
-          The GRE or GMAT is required of all applicants. We accept both the GMAT and GRE test results and have no preference for one over the other. Test scores are only valid for five years. Please include percentiles when submitting your score.
-            <br /><br /> A valid test score (GRE or GMAT) must be taken on or after January 8, 2015. Additional scores will not be accepted after you have submitted your application. Master of Business Analytics GRE School Code: 3514 Master of Business Analytics GMAT School Code: X5X-QS-64.
-          </text>
-      ],
-
-      englishtest: [
-        <text>
-          All applicants whose native language is not English and who have not received their entire undergraduate education in an English-speaking country must submit scores from one of two internationally recognized assessments of English language proficiency, the International English Language Testing System (IELTS) or the Test of English as a Foreign Language (TOEFL). Test scores are valid for two years. For applicants planning to enter the program in 2020, we will consider scores for tests taken on or after January 8, 2018.
-            <br /><br /> Receiving your undergraduate degree in a country that lists English as an official language such as India, Pakistan, Hong Kong SAR, or Singapore does not exempt you from the English language proficiency requirement.
-            <br /><br /> Master of Business Analytics TOEFL School Code: 3935 IELTS electronic scores sent to: MIT Graduate Admissions
-          </text>
-      ],
-
-      applicationfee: [
-        <text>
-          Master of Business Analytics application fee: $150The non-refundable application fee is payable by credit card when you apply online. You will be prompted for payment information after pressing the “Submit Application” button. We offer fee waivers to the following applicants:
-            <br /><br />
-        </text>,
-        <li>College seniors with U.S. citizenship, graduating from a U.S. institution in 2020</li>,
-        <li>Active U.S. military personnel</li>,
-        <li>Teach for America members/alumni</li>,
-        <li>Peace Corps members</li>,
-        <text>
-          <br /><br />
-            Applicants who qualify must submit the fee waiver form at least ONE week before the application deadline. Your request will be reviewed and you will receive an email with the results. If your fee is waived, you will be able to proceed to submit your application.
-          </text>
-      ]
-    },
-
-    'ucla': {
-      //Title
-      title: "University of California - Los Angeles",
-      ptitle: "Business Analytics",
-      pname: "Masters in Business Analytics (Anderson)",
-      description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
-
-      //Class Profile
-      gpa: '3.7',
-      gre: 'GMAT:730',
-      avw: '15.36 months',
-      classSize: '60',
-      countries: '23',
-      international: '70%',
-      undergrad: 'Computer Science, Statistics, Mathematics, Economics, Engineering, Finance',
-      //Program Statistics/Information
-
-      data: [
-        {
-          Medium_Salary: '$110,000',
-          Tuition: '$65,000 (year)',
-          Program_Length: '12-18 months',
-          Occupations_PostGrad: 'Data Scientists, Business Analysts, Management Consultants',
-          Placement: '100%',
-          Maximum_Salary: '$160,000'
-        }
-      ],
-      careerOutcome: [
-        {
-          Placement: '100%',
-          Maximum_Salary: '$160,000',
-          Medium_Salary: '$110,000',
-          List_of_Emplyers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
-          Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
-        }
-      ],
-      columns: [
-        {
-          title: 'Medium Salary',
-          dataIndex: 'Medium_Salary',
-        },
-        {
-          title: 'Tuition',
-          dataIndex: 'Tuition',
-        },
-        {
-          title: 'Program Length',
-          dataIndex: 'Program_Length',
-        },
-        {
-          title: 'Occupations PostGrad',
-          dataIndex: 'Occupations_PostGrad',
-        }
-      ],
-      //Curriculum
-      fallCurriculum: [
-
-        <li>15.071: Analytics Edge (12)</li>,
-        <li>15.093: Optimization Methods (12) </li>,
-        <li>15.095: Machine Learning Under a Modern Optimization Lens (12)</li>,
-        <li>15.572: Analytics Lab (9)</li>,
-        <li>15.681: From Analytics to Action (6)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)</li>
-      ],
-
-      springCurriculum: [
-
-        <li>15.089: Analytics Capstone Project (24 units spanning IAP, Spring and Summer)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)" </li>,
-        <li>15.286: Communicating with Data (3) </li>
-      ],
-      //Application/Timeline
-
-      timeline: [
-        {
-        AppDue: 'Wednesday, January 8, 2020, 3:00 p.m. EST',
-        Dec_Notif: 'Thursday, March 5, 2020',
-        Offer_Reply: 'Wednesday, April 15, 2020'
-        }
-      ],
-
-      resume: [
-        <text>
-          Please submit a one-page resume (Times New Roman 10 point font preferred) that includes your employment history and academic record. Other information appropriate to a business resume is welcomed and encouraged, including extracurricular activities, awards, and achievements.
-          <br /><br />
-          For formatting purposes, please list the information in the following order: <br /><br /> </text>,
-
-        <li>Education - please list institutions where degree is in progress or was awarded in reverse chronological order. Please feel free to include information about study abroad activities, relevant awards, scholarships, professional societies</li>,
-        <li>Work Experience - please list in reverse chronological order and include: company name, title, results-oriented bullets that demonstrate your skill set, and dates.</li>,
-        <li>Additional information - languages, extracurricular activities/community service, technical skills/certifications, special skills/interests (if appropriate)</li>
-      ],
-
-      essay: [
-        <text> Please describe your reason for pursuing the Master of Business Analytics (MBAn) degree.  What do you hope to gain from the program? And what are your career aspirations? (500 words or less) </text>
-      ],
-
-      recommendation: [
-        <text>Please include three letters of recommendation. Two of the letters should come from an academic source that can speak to your quantitative abilities, academic achievement and potential. The third recommendation should be from an individual, e.g., a work supervisor or manager, who is able to speak with certainty about your professional achievement and potential.
-            <br /><br />Recommenders must submit recommendations online. We do not accept recommendations via mail. Recommendations may be in either letter or short answer format and should not exceed two pages. Please choose recommenders who are able to provide specific answers to the following questions:
-            <br /><br />
-        </text>,
-
-        <li>How long and in what capacity have you known the applicant?</li>,
-        <li>How does the applicant stand out from others in a similar capacity?</li>,
-        <li>Please give an example of the applicant’s impact on a person, group, or organization.</li>,
-        <li>Please give a representative example of how the applicant interacts with other people.</li>,
-        <li>If you are an academic/technical recommender, please tell us how well the applicant mastered the subject you taught or supervised and in what ways did the applicant demonstrate this mastery.</li>,
-        <li>Which of the applicant’s personal or professional characteristics would you change?</li>,
-        <li>Please tell us anything else you think we should know about this applicant.</li>
-      ],
-
-      transcripts: [
-        <text>
-          The Admissions Committee would like to see all of your transcripts, please include electronic copies of all of your academic records whose courses counted toward a degree. Do not mail in your official academic records or transcripts.
-            <br /><br />If your transcripts are not in English, you are required to translate them. There are several companies, such as WES, that offer translation services. We ask that you scan both the original and translated copies and submit them with your application.
-            <br /><br />Relevant Coursework: We are interested in relevant classes that you are currently taking or have previously completed.  Using short answer fields in the application you’ll be asked to include details of courses you have completed from the following areas: Math, Statistics, Machine Learning, and Computer Programming.
-            <br /><br />Admitted applicants will be required to provide an official signed and sealed transcript from all schools attended. Any discrepancies between the scanned transcripts and official transcripts may result in a candidate's rejection or a withdrawal of our offer of admission.
-          </text>
-      ],
-
-      video: [
-        <text>
-          1. Please upload a one-minute (60 second) video introducing yourself to your future classmates and letting us know why you are interested in the field of analytics and data science. The video should be a single take (no editing) and lasting no more than one minute, consisting of you speaking directly to the camera. We recommend using an application such as QuickTime or iMovie to record yourself.
-            <br /><br />2. All MBAn applicants must submit a brief video statement in response to a simple, open-ended general interest question. The question is designed to help us get to know you better; to see how you express yourself and to assess fit with the MIT Sloan culture. It does not require prior preparation and will not be a technical question. The Video Question 2 is a part of your required application materials and will appear as a page within the application, once the other parts of your application are completed.
-            <br /><br />Applicant receives a randomly generated question and has one minute to prepare a 60 second response.
-          </text>
-      ],
-
-      standardizedtest: [
-        <text>
-          The GRE or GMAT is required of all applicants. We accept both the GMAT and GRE test results and have no preference for one over the other. Test scores are only valid for five years. Please include percentiles when submitting your score.
-            <br /><br /> A valid test score (GRE or GMAT) must be taken on or after January 8, 2015. Additional scores will not be accepted after you have submitted your application. Master of Business Analytics GRE School Code: 3514 Master of Business Analytics GMAT School Code: X5X-QS-64.
-          </text>
-      ],
-
-      englishtest: [
-        <text>
-          All applicants whose native language is not English and who have not received their entire undergraduate education in an English-speaking country must submit scores from one of two internationally recognized assessments of English language proficiency, the International English Language Testing System (IELTS) or the Test of English as a Foreign Language (TOEFL). Test scores are valid for two years. For applicants planning to enter the program in 2020, we will consider scores for tests taken on or after January 8, 2018.
-            <br /><br /> Receiving your undergraduate degree in a country that lists English as an official language such as India, Pakistan, Hong Kong SAR, or Singapore does not exempt you from the English language proficiency requirement.
-            <br /><br /> Master of Business Analytics TOEFL School Code: 3935 IELTS electronic scores sent to: MIT Graduate Admissions
-          </text>
-      ],
-
-      applicationfee: [
-        <text>
-          Master of Business Analytics application fee: $150The non-refundable application fee is payable by credit card when you apply online. You will be prompted for payment information after pressing the “Submit Application” button. We offer fee waivers to the following applicants:
-            <br /><br />
-        </text>,
-        <li>College seniors with U.S. citizenship, graduating from a U.S. institution in 2020</li>,
-        <li>Active U.S. military personnel</li>,
-        <li>Teach for America members/alumni</li>,
-        <li>Peace Corps members</li>,
-        <text>
-          <br /><br />
-            Applicants who qualify must submit the fee waiver form at least ONE week before the application deadline. Your request will be reviewed and you will receive an email with the results. If your fee is waived, you will be able to proceed to submit your application.
-          </text>
-      ]
-    },
-
-    'utaustin': {
-      //Title
-      title: "University of Texas - Austin",
-      ptitle: "Business Analytics",
-      pname: "Masters in Business Analytics (McCombs)",
-      description: 'A 12-month program focused on applying the tools of modern data science, optimization, and machine learning to solve real-world business problems.',
-
-      //Class Profile
-      gpa: '3.7',
-      gre: 'GMAT:730',
-      avw: '15.36 months',
-      classSize: '60',
-      countries: '23',
-      international: '70%',
-      undergrad: 'Computer Science, Statistics, Mathematics, Economics, Engineering, Finance',
-      //Program Statistics/Information
-
-      data: [
-        {
-          Medium_Salary: '$110,000',
-          Tuition: '$65,000 (year)',
-          Program_Length: '12-18 months',
-          Occupations_PostGrad: 'Data Scientists, Business Analysts, Management Consultants',
-          Placement: '100%',
-          Maximum_Salary: '$160,000'
-        }
-      ],
-      careerOutcome: [
-        {
-          Placement: '100%',
-          Maximum_Salary: '$160,000',
-          Medium_Salary: '$110,000',
-          List_of_Emplyers: 'Apple, Disney, Microsoft, Nike, Amazon, BCG Gamma, Facebook, Microsoft, Ebay, Yelp, Sony, ZS, Worday, Discover, Lending Club, TicketMaster, Abbott, Snapchat, PwC, LinkedIn, EY, Autodesk, Paramount, Capital One, Uber, Visa...',
-          Full_Time_Roles: 'Data Analyst, Consultant, Data Scientist, Business Analyst, Pricing Strategist, Customer Anlyst, Business Intelligence Engineer, Supply Chain Analyst, Risk Strategy Analyst'
-        }
-      ],
-      columns: [
-        {
-          title: 'Medium Salary',
-          dataIndex: 'Medium_Salary',
-        },
-        {
-          title: 'Tuition',
-          dataIndex: 'Tuition',
-        },
-        {
-          title: 'Program Length',
-          dataIndex: 'Program_Length',
-        },
-        {
-          title: 'Occupations PostGrad',
-          dataIndex: 'Occupations_PostGrad',
-        }
-      ],
-      //Curriculum
-      fallCurriculum: [
-
-        <li>15.071: Analytics Edge (12)</li>,
-        <li>15.093: Optimization Methods (12) </li>,
-        <li>15.095: Machine Learning Under a Modern Optimization Lens (12)</li>,
-        <li>15.572: Analytics Lab (9)</li>,
-        <li>15.681: From Analytics to Action (6)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)</li>
-      ],
-
-      springCurriculum: [
-
-        <li>15.089: Analytics Capstone Project (24 units spanning IAP, Spring and Summer)</li>,
-        <li>15.003: Analytics Software Tools in R, Python, SQL and Julia (3)" </li>,
-        <li>15.286: Communicating with Data (3) </li>
-      ],
-      //Application/Timeline
-
-      timeline: [
-        {
-        AppDue: 'Wednesday, January 8, 2020, 3:00 p.m. EST',
-        Dec_Notif: 'Thursday, March 5, 2020',
-        Offer_Reply: 'Wednesday, April 15, 2020'
-        }
-      ],
-
-      resume: [
-        <text>
-          Please submit a one-page resume (Times New Roman 10 point font preferred) that includes your employment history and academic record. Other information appropriate to a business resume is welcomed and encouraged, including extracurricular activities, awards, and achievements.
-          <br /><br />
-          For formatting purposes, please list the information in the following order: <br /><br /> </text>,
-
-        <li>Education - please list institutions where degree is in progress or was awarded in reverse chronological order. Please feel free to include information about study abroad activities, relevant awards, scholarships, professional societies</li>,
-        <li>Work Experience - please list in reverse chronological order and include: company name, title, results-oriented bullets that demonstrate your skill set, and dates.</li>,
-        <li>Additional information - languages, extracurricular activities/community service, technical skills/certifications, special skills/interests (if appropriate)</li>
-      ],
-
-      essay: [
-        <text> Please describe your reason for pursuing the Master of Business Analytics (MBAn) degree.  What do you hope to gain from the program? And what are your career aspirations? (500 words or less) </text>
-      ],
-
-      recommendation: [
-        <text>Please include three letters of recommendation. Two of the letters should come from an academic source that can speak to your quantitative abilities, academic achievement and potential. The third recommendation should be from an individual, e.g., a work supervisor or manager, who is able to speak with certainty about your professional achievement and potential.
-            <br /><br />Recommenders must submit recommendations online. We do not accept recommendations via mail. Recommendations may be in either letter or short answer format and should not exceed two pages. Please choose recommenders who are able to provide specific answers to the following questions:
-            <br /><br />
-        </text>,
-
-        <li>How long and in what capacity have you known the applicant?</li>,
-        <li>How does the applicant stand out from others in a similar capacity?</li>,
-        <li>Please give an example of the applicant’s impact on a person, group, or organization.</li>,
-        <li>Please give a representative example of how the applicant interacts with other people.</li>,
-        <li>If you are an academic/technical recommender, please tell us how well the applicant mastered the subject you taught or supervised and in what ways did the applicant demonstrate this mastery.</li>,
-        <li>Which of the applicant’s personal or professional characteristics would you change?</li>,
-        <li>Please tell us anything else you think we should know about this applicant.</li>
-      ],
-
-      transcripts: [
-        <text>
-          The Admissions Committee would like to see all of your transcripts, please include electronic copies of all of your academic records whose courses counted toward a degree. Do not mail in your official academic records or transcripts.
-            <br /><br />If your transcripts are not in English, you are required to translate them. There are several companies, such as WES, that offer translation services. We ask that you scan both the original and translated copies and submit them with your application.
-            <br /><br />Relevant Coursework: We are interested in relevant classes that you are currently taking or have previously completed.  Using short answer fields in the application you’ll be asked to include details of courses you have completed from the following areas: Math, Statistics, Machine Learning, and Computer Programming.
-            <br /><br />Admitted applicants will be required to provide an official signed and sealed transcript from all schools attended. Any discrepancies between the scanned transcripts and official transcripts may result in a candidate's rejection or a withdrawal of our offer of admission.
-          </text>
-      ],
-
-      video: [
-        <text>
-          1. Please upload a one-minute (60 second) video introducing yourself to your future classmates and letting us know why you are interested in the field of analytics and data science. The video should be a single take (no editing) and lasting no more than one minute, consisting of you speaking directly to the camera. We recommend using an application such as QuickTime or iMovie to record yourself.
-            <br /><br />2. All MBAn applicants must submit a brief video statement in response to a simple, open-ended general interest question. The question is designed to help us get to know you better; to see how you express yourself and to assess fit with the MIT Sloan culture. It does not require prior preparation and will not be a technical question. The Video Question 2 is a part of your required application materials and will appear as a page within the application, once the other parts of your application are completed.
-            <br /><br />Applicant receives a randomly generated question and has one minute to prepare a 60 second response.
-          </text>
-      ],
-
-      standardizedtest: [
-        <text>
-          The GRE or GMAT is required of all applicants. We accept both the GMAT and GRE test results and have no preference for one over the other. Test scores are only valid for five years. Please include percentiles when submitting your score.
-            <br /><br /> A valid test score (GRE or GMAT) must be taken on or after January 8, 2015. Additional scores will not be accepted after you have submitted your application. Master of Business Analytics GRE School Code: 3514 Master of Business Analytics GMAT School Code: X5X-QS-64.
-          </text>
-      ],
-
-      englishtest: [
-        <text>
-          All applicants whose native language is not English and who have not received their entire undergraduate education in an English-speaking country must submit scores from one of two internationally recognized assessments of English language proficiency, the International English Language Testing System (IELTS) or the Test of English as a Foreign Language (TOEFL). Test scores are valid for two years. For applicants planning to enter the program in 2020, we will consider scores for tests taken on or after January 8, 2018.
-            <br /><br /> Receiving your undergraduate degree in a country that lists English as an official language such as India, Pakistan, Hong Kong SAR, or Singapore does not exempt you from the English language proficiency requirement.
-            <br /><br /> Master of Business Analytics TOEFL School Code: 3935 IELTS electronic scores sent to: MIT Graduate Admissions
-          </text>
-      ],
-
-      applicationfee: [
-        <text>
-          Master of Business Analytics application fee: $150The non-refundable application fee is payable by credit card when you apply online. You will be prompted for payment information after pressing the “Submit Application” button. We offer fee waivers to the following applicants:
-            <br /><br />
-        </text>,
-        <li>College seniors with U.S. citizenship, graduating from a U.S. institution in 2020</li>,
-        <li>Active U.S. military personnel</li>,
-        <li>Teach for America members/alumni</li>,
-        <li>Peace Corps members</li>,
-        <text>
-          <br /><br />
-            Applicants who qualify must submit the fee waiver form at least ONE week before the application deadline. Your request will be reviewed and you will receive an email with the results. If your fee is waived, you will be able to proceed to submit your application.
-          </text>
-      ]
-    },
-
-
-  }
-}
-
 
 const ProgramInfoProgramName = {
   fontSize: 20,
@@ -714,7 +79,7 @@ const CareerTextVar = {
 
 const ClassProfile = {
   fontSize: 28,
-  marginTop: 20
+  marginTop: 20,
 }
 
 const CareerOutcome= {
@@ -791,6 +156,7 @@ class ProgramSchool extends React.Component {
     if (placement) {
       placement = placement + "%";
     }
+    let program_ID = this.state.data.program_id;
     let employers = this.state.data.employers;
     if (employers) {
       employers = employers.join(", ");
@@ -799,9 +165,17 @@ class ProgramSchool extends React.Component {
     if (full_time_roles) {
       full_time_roles = full_time_roles.join(", ");
     }
+    let maximum_salary = this.state.data.maximum_salary;
+    if(program_ID=='6') {
+      maximum_salary = maximum_salary + "%";
+    } else {
+      maximum_salary = this.formatMoneyString(maximum_salary);
+    }
+
     const careerData = {
       placement: placement,
-      maximum_salary: this.formatMoneyString(this.state.data.maximum_salary),
+      // maximum_salary: this.formatMoneyString(this.state.data.maximum_salary),
+      maximum_salary: maximum_salary,
       average_salary: this.formatMoneyString(this.state.data.average_salary),
       employers_list: employers,
       full_time_roles: full_time_roles,
@@ -835,61 +209,62 @@ class ProgramSchool extends React.Component {
     ];
     return (
       <div>
+
         <Row>
+          <Col xs={1} sm={1} md={1}></Col>
+          <Col>
+              <Link to={"/"}> <img style={{marginLeft:0}} src={Logo7} width ={140} alt="logo"/> </Link>     
+          </Col>
+
+          <Col>
+              <Navbar expand="lg">
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="justify-content-end" style={{ width: "100%" }}>
+                  <Nav.Link style={{color:"#000000", borderBottom: "2px solid #C94A4A", fontWeight:'normal'}} href="/AboutUs/">About Us</Nav.Link>
+                  <Nav.Link style={{marginLeft:10, color:"#000000", borderBottom: "2px solid #5799D6", fontWeight:'normal'}} href="/Methodology/">Methodology</Nav.Link>
+                  <Nav.Link style={{marginLeft:10, marginRight:30, color:"#000000", borderBottom: "2px solid #78D657", fontWeight:'normal'}} href="/SignUp/">Sign Up</Nav.Link>
+                  </Nav>
+              </Navbar.Collapse>
+              </Navbar>
+          </Col>
+        </Row>
+  
+        <Row style = {{backgroundColor:"#F8F8F8"}}>
           {/* Column here is for blank space on the sides*/}
-          <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+          <Col xs={1} sm={1} md={2}>
 
           </Col>
 
-          <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
+          <Col xs={10} sm={10} md={8}> 
 
-            <Row> 
-              {/*top logo portion*/}
-              <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
-                  <img src={Logo} height={100} width ={100} alt="logo"/>                              
-              </Col>
-
-              <Col xs={20} sm={20} md={20} lg={18} xl={18} style={{marginLeft:20}}>
-
-                  <Row justify="left" style={{fontSize:18}}>
-                      Quick, Simple, Information - A new way to search for graduate programs. 
-                  </Row>
-
-                  <Row justify="left" style={{ marginTop:8, fontSize:12}}>
-                      This centralized website that provides the top 20 graduate programs in the U.S. and each program’s 
-                      corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school 
-                      education. We look to ease and refine the graduate program search process. 
-                  </Row>
-              </Col>
-            </Row>
-
-            <Row style={{marginTop:20}}>
-              <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} to={"/Program/" + this.state.program_name}>{this.state.program_name}</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
-              <Link style={{color:"#808080", marginLeft:10}} >{this.state.school_name}</Link>
+            <Row style={{marginTop:20, textAlign:"center"}}>
+              <Link style={{color:"#505050"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+              <Link style={{color:"#505050", marginLeft:10}} to={"/Program/" + this.state.program_name}>{this.state.program_name}</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+              <Text style={{color:"#808080", marginLeft:10, marginBottom:20}}>{this.state.school_name}</Text>
             </Row>
 
             </Col>
               {/* Column here is for blank space on the sides*/}
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+            <Col xs={1} sm={1} md={2}>
       
           </Col>
         </Row>
 
         <Row style={{ marginTop: 32 }}>
 
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+            <Col xs={1} sm={1} md={2} >
               {/* Column here is for blank space on the sides*/}
             </Col>
 
-            <Col xs={20} sm={20} md={20} lg={16} xl={16}>
+            <Col xs={10} sm={10} md={8}>
 
               <Row>
-                <Typography class="schoolheader">
+                <Typography className="schoolheader">
                     <p style={{color:colorpal[0]}} style={ProgramInfoTitle}> <span>{this.state.school_name} </span></p>
 
                     {this.state.data_loaded ? <div>
-                      <Title class="programnameheader" style={ProgramInfoProgramName}><span> {this.state.data.program_local_name} </span></Title>
+                      <Title className="programnameheader" style={ProgramInfoProgramName}><span> {this.state.data.program_local_name} </span></Title>
 
                       <p style={ProgramInfoDescription}>
                         {this.state.data.program_description} 
@@ -916,19 +291,21 @@ class ProgramSchool extends React.Component {
 
               {this.state.data_loaded ? 
               <Row>
-                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder">{careerData.placement}</p>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder">{careerData.placement || "N/A"}</p>
                   <p style={CareerText}> Job Placement</p>
                 </Col>
 
-                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder2">{careerData.average_salary}</p>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder2">{careerData.average_salary || "N/A"}</p>
                   <p style={CareerText}> Average Salary</p>
                 </Col>
 
-                <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                  <p class="careerborder3">{careerData.maximum_salary}</p>
-                  <p style={CareerText}> Maximum Salary</p>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder3">{careerData.maximum_salary || "N/A"}</p>
+                  {/* // <p style={CareerText}> Maximum Salary</p> */}
+                  {program_ID=='6'? <p style={CareerText}> Big 4 Placement</p>: <p style={CareerText}> Maximum Salary</p> }
+                
                 </Col>
 
               </Row> :
@@ -937,9 +314,18 @@ class ProgramSchool extends React.Component {
                 <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
                 <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
                 </ContentLoader>}
-
-              <Row style={{ marginBottom: 32 }}>
+              
+              {/* List of Employers Text */}
+              <Row style={{marginTop:20, marginBottom: 10 }}>
                 <div style={ProgramOutComeTitle}>List of Employers</div>
+                <ContentLoader viewBox="0 0 380 70">
+                {/* Only SVG shapes */}    
+                <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>
+              </Row>
+
+              <Row style={{marginTop:10, marginBottom: 32 }}>
                 {this.state.data_loaded ? <div>{careerData.employers_list}</div> :
                 <ContentLoader viewBox="0 0 380 70">
                 {/* Only SVG shapes */}    
@@ -948,8 +334,16 @@ class ProgramSchool extends React.Component {
                 </ContentLoader>}
               </Row>
 
-              <Row>
+              <Row style={{marginTop:20, marginBottom: 10 }}>
                 <div style={ProgramOutComeTitle}>Full-Time Role</div>
+                <ContentLoader viewBox="0 0 380 70">
+                {/* Only SVG shapes */}    
+                <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                </ContentLoader>
+              </Row>
+
+              <Row style={{marginTop:10, marginBottom: 32 }}>
                 {this.state.data_loaded ? <div>{careerData.full_time_roles}</div> :
                 <ContentLoader viewBox="0 0 380 70">
                 {/* Only SVG shapes */}    
@@ -979,117 +373,70 @@ class ProgramSchool extends React.Component {
               <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
               </Divider>
 
-              <Row>
+              <Row style={{ marginTop: 32 }, { marginBottom: 20 }}>
                 <Typography>
-                  <Title style={ClassProfile}>Class Profile</Title>
+                  <Title style={CareerOutcome}>Class Profile</Title>
                 </Typography>
               </Row>
 
-              {this.state.data_loaded ?
-              <Row style={ProgramInfoP}>
-
-                <Col span={6}>
-                  <Row>
-                    <Text>
-                      Median GPA
-              </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      Median GMAT
-              </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      Average Work Experience
-              </Text>
-                  </Row>
+              {this.state.data_loaded ? 
+              <Row>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder2">{this.state.data.average_gpa || "N/A"}</p>
+                  <p style={CareerText}> Median GPA</p>
                 </Col>
 
-                <Col span={6}>
-                  <Row>
-                    <Text>
-                      : {this.state.data.average_gpa}
-                    </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      : {this.state.data.average_gre}
-                    </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      : {this.state.data.average_work_experience_years} months
-                    </Text>
-                  </Row>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder">{this.state.data.average_gre || "N/A"}</p>
+                  <p style={CareerText}> Median GRE</p>
                 </Col>
 
-                <Col span={6}>
-                  <Row>
-                    <Text>
-                      Class Size
-              </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      Countries Represented
-              </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      International %
-              </Text>
-                  </Row>
+                <Col xs={12} sm={12} md={4}>
+                  <p class="careerborder3">{this.state.data.average_gmat || "N/A"}</p>
+                  <p style={CareerText}> Median GMAT </p>
                 </Col>
 
-                <Col span={6}>
-                  <Row>
-                    <Text>
-                      : {this.state.data.class_size}
-                    </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      : {this.state.data.countries_represented}
-                    </Text>
-                  </Row>
-                  <Row>
-                    <Text>
-                      : {this.state.data.international_i_percent}
-                    </Text>
-                  </Row>
+                <Col xs={12} sm={12} md={4} style={{marginTop: 35}}>
+                  <p class="careerborder3">{this.state.data.class_size || "N/A"}</p>
+                  <p style={CareerText}> Class Size</p>
+                </Col>
+
+                <Col xs={12} sm={12} md={4} style={{marginTop: 35}}>
+                  <p class="careerborder4">{this.state.data.average_work_experience_years || "N/A"}</p>
+                  <p style={CareerText}> Work Experience (months)</p>
+                </Col>
+
+                <Col xs={12} sm={12} md={4} style={{marginTop: 35}}>
+                  <p class="careerborder">{this.state.data.international_i_percent || "N/A"}</p>
+                  <p style={CareerText}> International %</p>
                 </Col>
 
               </Row> :
-              <ContentLoader viewBox="0 0 380 70">
-              {/* Only SVG shapes */}    
-              <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
-              <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
-              </ContentLoader>}
-              {/* Divider just for looks */}
-              <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
-              </Divider>
+                 <ContentLoader viewBox="0 0 380 70">
+                 {/* Only SVG shapes */}    
+                 <rect x="0" y="20" rx="4" ry="4" width="500" height="13" />
+                 <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+                 </ContentLoader>}
+                 {/* Divider just for looks */}
+                 <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
+                 </Divider>
 
               <Row>
                 <Typography>
-                  <Title style={ClassProfile}>Sample Curriculum</Title>
+                  <Title style={ClassProfile}>Curriculum</Title>
                 </Typography>
               </Row>
 
               {this.state.data_loaded ? 
               <div>
-                <Row>
-                <Divider orientation="left"> Fall Curriculum </Divider>
-                <Text>
-                  {this.state.data.fallCurriculum}
-                </Text>
+              <Divider orientation="left">Core Classes</Divider>
+              <Row >
+                <ReactMarkdown>{this.state.data.core_classes || "* N/A"}</ReactMarkdown> 
               </Row>
 
+              <Divider orientation="left"> Electives </Divider>
               <Row>
-                <Divider orientation="left"> Spring Curriculum </Divider>
-                <Text>
-                  {this.state.data.springCurriculum}
-                </Text>
+                <ReactMarkdown>{this.state.data.electives || "* N/A"}</ReactMarkdown> 
               </Row>
               </div> : 
               <ContentLoader viewBox="0 0 380 70">
@@ -1107,102 +454,253 @@ class ProgramSchool extends React.Component {
                   <Title style={ClassProfile}>Application Materials</Title>
                 </Typography>
               </Row>
+              
+              <ChakraProvider>
 
+                <Accordion allowMultiple style={{marginBottom:50}}> 
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Timeline
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.timeline}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Pre-Requisite
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.pre_requisite}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Resume
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.resume}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Essay Questions
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.essay_questions}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Letters of Recommendation
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.letters_of_recommendation}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Transcripts
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.transcripts}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Video Questions
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.video_question}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        GRE/GMAT
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.gre_gmat}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        TOEFL/IELTS
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.toefl_ielts}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton _expanded={{ bg: "#F8F8F8", fontWeight:'bold', color: colorpal[0]}}>
+                      <Box flex="1" textAlign="left">
+                        Application Fee
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4}>
+                      <ReactMarkdown>{this.state.data.application_fee}</ReactMarkdown>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                </Accordion>
+              </ChakraProvider>
+
+            
+              
+              {/*
               <Accordion>
-
+           
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="0">
                     Timeline
                       </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                        <Timeline mode="left">
-                          {timelineData.map((td, n) => {
-                            let data = td.split(": ");
-                            return <Timeline.Item label={data[0]}>{data[1]}</Timeline.Item>
-                          })
-                          }
-                        </Timeline>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.timeline}</ReactMarkdown>
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="1">
-                    Resume
+                    Pre-Requisite
                       </Accordion.Toggle>
                   <Accordion.Collapse eventKey="1">
-                    <Card.Body>{this.state.data.resume} </Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.pre_requisite}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="2">
-                    Essay Questions
-                  </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="2">
-                    <Card.Body>{this.state.data.essay_questions}</Card.Body>
+                    Resume
+                      </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="2">
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.resume}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="3">
-                    Letters of Recommendation
+                    Essay Questions
                   </Accordion.Toggle>
-                  <Accordion.Collapse eventKey="3">
-                    <Card.Body>{this.state.data.letters_of_recommendation}</Card.Body>
+                        <Accordion.Collapse eventKey="3">
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.essay_questions}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="4">
-                    Transcripts
+                    Letters of Recommendation
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="4">
-                    <Card.Body>{this.state.data.transcripts}</Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.letters_of_recommendation}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="5">
-                    Video Questions
+                    Transcripts
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="5">
-                    <Card.Body>{this.state.data.video_question}</Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.transcripts}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="6">
-                    GRE/GMAT
+                    Video Questions
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="6">
-                    <Card.Body>{this.state.data.gre_gmat}</Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.video_question}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="7">
-                    TOEFL/IELTS
+                    GRE/GMAT
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="7">
-                    <Card.Body>{this.state.data.toefl_ielts}</Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.gre_gmat}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
 
                 <Card style={ProgramInfoCard}>
                   <Accordion.Toggle as={Card.Header} eventKey="8">
-                    Application Fee
+                    TOEFL/IELTS
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="8">
-                    <Card.Body>{this.state.data.application_fee}</Card.Body>
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.toefl_ielts}</ReactMarkdown>
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
-              </Accordion>
+
+                <Card style={ProgramInfoCard}>
+                  <Accordion.Toggle as={Card.Header} eventKey="9">
+                    Application Fee
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="9">
+                    <Card.Body>
+                      <ReactMarkdown>{this.state.data.application_fee}</ReactMarkdown>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion> */}
 
             </Col>
 
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+            <Col xs={1} sm={1} md={2}>
               {/* Column here is for blank space on the sides*/}
             </Col>
 

@@ -4,27 +4,36 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Container from 'react-bootstrap/Container'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import Carousel from 'react-bootstrap/Carousel'
+import {ChakraProvider } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 
-import { Table } from 'antd';
-import { Row, Col } from 'antd';
-import { Carousel } from 'antd';
+import { Chrono } from "react-chrono";
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { Typography as AntTypography, Divider } from 'antd';
-import { List, Avatar } from 'antd';
 import './App.css';
 
 import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import ContentLoader from 'react-content-loader'
 
-import Logo from './Logo.png';
+import Logo7 from './Logo7.png';
+import BA_Timeline from './BA_Timeline.png';
+
 
 //Importing avatars for 20/20 rankings
 import t1 from './RankingIcon/TL1.png';
 import t2 from './RankingIcon/TL2.png';
 import t3 from './RankingIcon/TL3.png';
 import t4 from './RankingIcon/TL4.png';
+
 const tierpic = [t1, t2, t3, t4];
 
 // Empty set just to initialize the list. Actual data comes from elsewhere.
@@ -33,1154 +42,13 @@ const rankingdata = [
   }
 ];
 
-let arrow = ">";
+let arrow = "|";
 
 const colorpal = [
   '#C94A4A', '#E89637', '#5799D6', '#78D657', '#F3B700', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
   'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary', 'secondary',
 ];
 
-const programs =
-{
-
-  /* Business Related Programs */
-
-  'business-analytics': {
-    title: "Business Analytics",
-    description: 'The Masters in Business Analytics prepares you for a career in big data. The programs will teach you basic skills in data preparation, data mining, and data decision making in a business context. Develop the necessary skills to be a data scientist or analyst in one of the fastest growing fields in business.',
-    data: [
-      {
-        Medium_Salary: '$90,000',
-        Average_Tuition: '$55,435 (year)',
-        Program_Length: '12-18 Months',
-        Occupations_PostGrad: 'Data Scientist, Business Analyst, Consulting',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: 'mit',
-        linkID: 'business-analytics',
-        tier:'1',
-        title: "Master of Business Analytics (Sloan)",
-        location: "",
-        gre: "GRE: 169",
-        gpa: "GPA: 3.9",
-        arate: "Acceptance Rate: 4% (800 applicants)"
-      },
-      {
-        header: "University of Texas - Austin",
-        link: 'utaustin',
-        linkID: 'business-analytics',
-        tier:'2',
-        title: "Master of Science in Business Analytics (McCombs)",
-        location: "",
-        gre: "GRE: 165, GMAT: 730",
-        gpa: "GPA: 3.69",
-        arate: "unknown"
-      },
-      {
-        header: "University of California - Los Angeles",
-        link: 'ucla',
-        linkID: 'business-analytics',
-        tier:'2',
-        title: "Master of Science in Business Analytics (Anderson)",
-        location: "",
-        gre: "GRE: 165, GMAT: 710",
-        gpa: "GPA: 3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: 'cmu',
-        linkID: 'business-analytics',
-        tier:'2',
-        title: "Master of Science in Management Information Systems - Business Intelligence & Data Analytics (Heinz)",
-        location: "",
-        gre: "GRE: 165, GMAT: 710",
-        gpa: "GPA: 3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Northwestern University",
-        link: 'northwestern',
-        linkID: 'business-analytics',
-        tier:'2',
-        title: "Master of Science in Analytics (McCormick)",
-        location: "",
-        gre: "GRE: 165, GMAT: 730",
-        gpa: "GPA: 3.69",
-        arate: "unknown"
-      },
-      {
-        header: "University of Minnesota",
-        link: 'northwestern',
-        linkID: 'business-analytics',
-        tier:'2',
-        title: "Master of Science in Business Analytics (Carlson)",
-        location: "",
-        gre: "GRE: 165, GMAT: 730",
-        gpa: "GPA: 3.69",
-        arate: "unknown"
-      },
-      {
-        header: "University of Southern California",
-        link: 'usc',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Business Analytics (Marshall)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Emory University",
-        link: 'emory',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Business Analytics (Goizueta)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Duke University",
-        link: 'duke',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Quantitative Management (Fuqua)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Georgia Institute of Technology",
-        link: 'git',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Analytics",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "University of Chicago",
-        link: 'uchicago',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Analytics (Graham)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Columbia University",
-        link: 'columbia',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Business Analytics (FU & CBS)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "Washginton University St. Louis",
-        link: 'wustl',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Business Analytics (Olin)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "North Carolina State University",
-        link: 'ncsu',
-        linkID: 'business-analytics',
-        tier:'3',
-        title: "Master of Science in Analytics (IAA)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "University of California - San Diego",
-        link: 'ucsd',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics (Rady)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "University of California - Davis",
-        link: 'ucd',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics (GSM)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "University of Notre Dame",
-        link: 'notredame',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics (Mendoza)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "John Hopkins University",
-        link: 'jhu',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics and Risk Management (Carey)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "New York University",
-        link: 'nyu',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics (Stern)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      },
-      {
-        header: "University of California - Irvine",
-        link: 'uci',
-        linkID: 'business-analytics',
-        tier:'4',
-        title: "Master of Science in Business Analytics (Paul Merage)",
-        location: "",
-        gre: "GRE: 166, GMAT: 724",
-        gpa: "3.7",
-        arate: "unknown"
-      }
-
-    ],
-    tiers: [
-      { tierlist: "MIT" },
-      { tierlist: "UTAustin, CMU, UCLA, NorthWestern, UMN" },
-      { tierlist: "USC, Emory, Duke, GeorgiaTech, UChicago, Columbia, WUSTL, NCSU" },
-      { tierlist: "UCSD, UCD, NotreDame, John Hopkins, NYU, UCI"}
-    ]
-  },
-
-  'mba': {
-    title: "M.B.A.",
-    description: "The Masters in Business Administration program prepares prospective students with 2-4 years of work experience to become our future executives that lead core business decisions.",
-    data: [
-      {
-        Medium_Salary: '$120,000',
-        Average_Tuition: '$65,435 (year)',
-        Program_Length: '2 years',
-        Occupations_PostGrad: 'Finance, Consulting, Tech, F500 Rotation Programs',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Harvard University",
-        link: "Harvard",
-        linkID: 'MBA',
-        title: "Harvard Business School",
-        gre: "169",
-        gpa: "3.7",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "Stanford University",
-        link: "Stanford",
-        linkID: 'MBA',
-        title: "Stanford Graduate School of Business",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "University of Pennslyvania",
-        link: "UPenn",
-        linkID: 'MBA',
-        title: "Wharton",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'finance': {
-    title: "Masters of Science in Finance",
-    description: "The Masters Science in Finance prepares prospective students with 2-4 years of work experience to become our future executives that lead core business decisions.",
-    data: [
-      {
-        Medium_Salary: '$120,000',
-        Average_Tuition: '$65,435 (year)',
-        Program_Length: '2 years',
-        Occupations_PostGrad: 'Finance, Consulting, Tech, F500 Rotation Programs',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Harvard University",
-        link: "Harvard",
-        title: "Harvard Business School",
-        gre: "169",
-        gpa: "3.7",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "Stanford University",
-        link: "Stanford",
-        title: "Stanford Graduate School of Business",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "University of Pennslyvania",
-        link: "UPenn",
-        title: "Wharton",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'management': {
-    title: "Masters of Science in Management",
-    description: "The Masters Science in Management prepares prospective students with 2-4 years of work experience to become our future executives that lead core business decisions.",
-    data: [
-      {
-        Medium_Salary: '$120,000',
-        Average_Tuition: '$65,435 (year)',
-        Program_Length: '2 years',
-        Occupations_PostGrad: 'Finance, Consulting, Tech, F500 Rotation Programs',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Harvard University",
-        link: "Harvard",
-        title: "Harvard Business School",
-        gre: "169",
-        gpa: "3.7",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "Stanford University",
-        link: "Stanford",
-        title: "Stanford Graduate School of Business",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "University of Pennslyvania",
-        link: "UPenn",
-        title: "Wharton",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'economics': {
-    title: "Masters of Science in Economics",
-    description: "The Masters Science in Economics prepares prospective students with 2-4 years of work experience to become our future executives that lead core business decisions.",
-    data: [
-      {
-        Medium_Salary: '$120,000',
-        Average_Tuition: '$65,435 (year)',
-        Program_Length: '2 years',
-        Occupations_PostGrad: 'Finance, Consulting, Tech, F500 Rotation Programs',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Harvard University",
-        link: "Harvard",
-        title: "Harvard Business School",
-        gre: "169",
-        gpa: "3.7",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "Stanford University",
-        link: "Stanford",
-        title: "Stanford Graduate School of Business",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "University of Pennslyvania",
-        link: "UPenn",
-        title: "Wharton",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  /* Engineering  Related Programs */
-
-  'computer-science': {
-    title: "Masters of Science in Computer Science",
-    description: "The Masters of Science in Computer Science prepares students with the cutting edge training in Machine Learning, AI, Cybersecurity, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-  'mechanical-engineering': {
-    title: "Masters of Science in Mechanical Engineering",
-    description: "The Masters of Science in Mechanical Engineering prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'electrical-engineering': {
-    title: "Masters of Science in Electrical Engineering",
-    description: "The Masters of Science in Electrical Engineering prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist',
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)",
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)",
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)",
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'material-engineering': {
-    title: "Masters of Science in Material Engineering",
-    description: "The Masters of Science in Material Engineering prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'information-systems': {
-    title: "Masters of Science in Information Systems",
-    description: "The Masters of Science in Information Systems prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  /* Science Programs */
-
-  'mathematics': {
-    title: "Masters of Science in Mathematics",
-    description: "The Masters of Science in Mathematics prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'statistics': {
-    title: "Masters of Science in Statistics",
-    description: "The Masters of Science in Statistics prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'physics': {
-    title: "Masters of Science in Physics",
-    description: "The Masters of Science in Physics prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'chemistry': {
-    title: "Masters of Science in Chemistry",
-    description: "The Masters of Science in Chemistry prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-  'biology': {
-    title: "Masters of Science in Biology",
-    description: "The Masters of Science in Biology prepares students with the cutting edge training in Robotics, AI, Mechanics, and Software Engineering. The programs  on a wide array",
-    data: [
-      {
-        Medium_Salary: '$116,679',
-        Average_Tuition: '$47,324 (year)',
-        Program_Length: '1-2 years',
-        Occupations_PostGrad: 'Software Developer, Data Scientist, Computer Scientist'
-      }
-    ],
-    columns: [
-      {
-        title: 'Medium Salary',
-        dataIndex: 'Medium_Salary',
-      },
-      {
-        title: 'Average Tuition',
-        dataIndex: 'Average_Tuition',
-      },
-      {
-        title: 'Program Length',
-        dataIndex: 'Program_Length',
-      },
-      {
-        title: 'Occupations_PostGrad',
-        dataIndex: 'Occupations_PostGrad',
-      }
-    ],
-    schools: [
-      {
-        header: "Massachusettes Institute of Technology",
-        link: "MIT",
-        title: "Masters in Computer Engineering",
-        gre: "169",
-        gpa: "3.8",
-        arate: "4% (800 applicants)"
-      },
-      {
-        header: "California Institute of Technology",
-        link: "CIT",
-        title: "Masters in Computer Science",
-        gre: "170",
-        gpa: "3.8",
-        arate: "5% (800 applicants)"
-      },
-      {
-        header: "Carnegie Mellon University",
-        link: "CMU",
-        title: "Master of Science in Computer Science",
-        gre: "169",
-        gpa: "3.7",
-        arate: "6% (800 applicants)"
-      }
-    ],
-    tiers: [
-      { tierlist: "Massachusettes Institute of Technology, California Institute of Technology" },
-      { tierlist: "Carnegie Mellon University" },
-      { tierlist: "Pepe University" }
-    ]
-  },
-
-
-}
 
 const ProgramInfoCard = {
   marginBottom: 25
@@ -1192,10 +60,10 @@ const ProgramInfoTitle = {
 }
 
 const ProgramInfoP = {
-  fontSize: 20
+  fontSize: 20,
+  textAlign: 'center',
+  marginTop:10
 }
-
-
 
 const { Title, Paragraph, Text } = AntTypography;
 
@@ -1208,6 +76,16 @@ const TitleColor = {
 const Banner = {
   fontSize: 20
 }
+
+const ProgramInfoProgramName = {
+  fontSize: 20,
+  color: 'grey',
+  // fontStyle: 'italic',
+  marginTop: 10,
+  marginBottom:10,
+}
+
+
 
 class Program extends React.Component {
   
@@ -1254,10 +132,86 @@ class Program extends React.Component {
     if (average_tuition) {
       average_tuition = average_tuition.toFixed(2);
     }
+
+    //* code below is for creating the domestic deadline  
+    const domesticDeadline = this.state.data.school_data.map((ps) => {
+      
+      return {"schoolName" : ps["school_name"], "domDeadline" : ps["domestic_deadline"], "tier": ps["tier"]}
+      
+    });
+    domesticDeadline.sort((a, b) => Date.parse(a.domDeadline) - Date.parse(b.domDeadline));
+    
+    const domesticDeadlineMonths = []
+    let lastMonth = null;
+    const deadlineDictionaryDom = {}
+    
+    for (const deadline of domesticDeadline) {
+     
+      const month = new Date(Date.parse(deadline.domDeadline)).toLocaleString('default', { month: 'long' }) + " " + new Date(Date.parse(deadline.domDeadline)).getFullYear();;
+      // const year = new Date(Date.parse(deadline.domDeadline)).getFullYear();
+      if(lastMonth != month ) {
+        domesticDeadlineMonths.push(month);
+      } 
+      if (!deadlineDictionaryDom[month]) {
+        deadlineDictionaryDom[month] = [];
+      }
+      deadlineDictionaryDom[month].push(deadline);
+      lastMonth = month;
+    }  
+
+    const domesticDates = domesticDeadlineMonths.map(m => {
+      return {"title": `${m} (${deadlineDictionaryDom[m].length})` , "cardSubtitle": <div>
+        <p class="programnameheader" style={ProgramInfoProgramName}> <span>{m}</span></p>
+        {deadlineDictionaryDom[m].map(d => {return <div style={{fontSize: 14}}><Link style={{color:colorpal[0]}} to={"/Program/" + this.state.data.program_name + "/" + d["schoolName"]}> <b> {d["schoolName"]} </b></Link>{": " + d["domDeadline"]}</div>})}
+      </div>}
+    })
+
+    console.log(domesticDeadline)
+    console.log(deadlineDictionaryDom)
+    console.log(domesticDates)
+
+
+    //* code below is for creating the international deadline  
+
+    const internationalDeadline = this.state.data.school_data.map((ps) => {
+      
+      return {"schoolName" : ps["school_name"], "intDeadline" : ps["international_deadline"]}
+      
+    });
+    internationalDeadline.sort((a, b) => Date.parse(a.intDeadline) - Date.parse(b.intDeadline));
+
+    console.log(internationalDeadline)
+
+    const internationalDeadlineMonths = []
+    lastMonth = null;
+    const deadlineDictionaryInt = {}
+    
+    for (const deadline of internationalDeadline) {
+      
+      const month = new Date(Date.parse(deadline.intDeadline)).toLocaleString('default', { month: 'long' }) + " " + new Date(Date.parse(deadline.intDeadline)).getFullYear();;
+      if(lastMonth != month) {
+        internationalDeadlineMonths.push(month);
+      } 
+      if (!deadlineDictionaryInt[month]) {
+        deadlineDictionaryInt[month] = [];
+      }
+      deadlineDictionaryInt[month].push(deadline);
+      lastMonth = month;
+    }  
+
+    const internationalDates = internationalDeadlineMonths.map(m => {
+      return {"title": `${m} (${deadlineDictionaryInt[m].length})`, "cardSubtitle": <div>
+        <p class="programnameheader" style={ProgramInfoProgramName}> <span>{m}</span></p>
+        {deadlineDictionaryInt[m].map(d => {return <div style={{fontSize: 14}}><Link style={{color:colorpal[0]}} to={"/Program/" + this.state.data.program_name + "/" + d["schoolName"]}> <b>{d["schoolName"]}</b></Link>{": " + d["intDeadline"]}</div>})}
+      </div>}
+    })
+
+    console.log(deadlineDictionaryInt)
+
     const summaryData = [
       {
-        "average_salary": "$" + average_salary,
-        "average_tuition": "$" + average_tuition + " (year)",
+        "average_salary": "$" + Math.round(average_salary),
+        "average_tuition": "$" + Math.round(average_tuition) + " (year)",
         "program_length": this.state.data.summary_data.min_program_length_low + "-" + this.state.data.summary_data.max_program_length_high + " months",
         "post_grad_occupations": this.state.data.summary_data.post_grad_occupations.slice(0, number_occupations_displayed).join(", "),
       }
@@ -1301,86 +255,228 @@ class Program extends React.Component {
 
     return (
         <div>
+            
           <Row>
+            <Col xs={1} sm={1} md={1}></Col>
+            <Col>
+                <Link to={"/"}> <img style={{marginLeft:0}} src={Logo7} width ={140} alt="logo"/> </Link>     
+            </Col>
+
+            <Col>
+                <Navbar expand="lg">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="justify-content-end" style={{ width: "100%" }}>
+                    <Nav.Link style={{color:"#000000", borderBottom: "2px solid #C94A4A", fontWeight:'normal'}} href="/AboutUs/">About Us</Nav.Link>
+                    <Nav.Link style={{marginLeft:10, color:"#000000", borderBottom: "2px solid #5799D6", fontWeight:'normal'}} href="/Methodology/">Methodology</Nav.Link>
+                    <Nav.Link style={{marginLeft:10, marginRight:30, color:"#000000", borderBottom: "2px solid #78D657", fontWeight:'normal'}} href="/SignUp/">Sign Up</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+                </Navbar>
+            </Col>
+          </Row>
+
+
+          <Row style = {{backgroundColor:"#F8F8F8"}}>
             {/* Column here is for blank space on the sides*/}
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}></Col>
+            <Col xs={1} sm={1} md={2}>
 
-            <Col xs={20} sm={20} md={20} lg={16} xl={16}>  
+            </Col>
 
-              <Row style={{marginBottom:0}}> 
-                {/*top logo portion*/}
-                <Col xs={3} sm={3} md={3} lg={4} xl={4} style={{borderRight:"1px solid #D3D3D3"}}>
-                    <img src={Logo} height={100} width ={100} alt="logo"/>                              
-                </Col>
+            <Col xs={10} sm={10} md={8}> 
 
-                <Col xs={20} sm={20} md={20} lg={18} xl={18} style={{marginLeft:20}}>
-
-                    <Row justify="left" style={{fontSize:18}}>
-                        Quick, Simple, Information - A new way to search for graduate programs. 
-                    </Row>
-
-                    <Row justify="left" style={{ marginTop:8, fontSize:12}}>
-                        This centralized website that provides the top 20 graduate programs in the U.S. and each program’s 
-                        corresponding top 20 schools. Our goal is to empower and encourage those seeking a graduate school 
-                        education. We look to ease and refine the graduate program search process. 
-                        
-                    </Row>
-
-                </Col>
-              </Row>
-
-              <Row style={{marginTop:20}}>
-                <Link style={{color:"#808080"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
-                <Link style={{color:"#808080", marginLeft:10}} >{this.state.program_name}</Link>
+              <Row style={{marginTop:20, textAlign:"center"}}>
+                <Link style={{color:"#505050"}} to={"/"}>Home</Link> <Text style={{marginLeft:10, color:"#808080", fontWeight: "bold"}}>{arrow}</Text>
+                <Text style={{color:"#808080", marginLeft:10, marginBottom:20}}>{this.state.program_name}</Text>
               </Row>
 
               </Col>
                 {/* Column here is for blank space on the sides*/}
-              <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+              <Col xs={1} sm={1} md={2}>
         
             </Col>
           </Row>
-          
-          <Row>
 
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
+      
 
-            <Col xs={20} sm={20} md={20} lg={16} xl={16}>
-              <Typography>
-                <Title class="programheader"><span>{this.state.program_name}</span> </Title>
-                <Paragraph style={ProgramInfoP}>
-                  {this.state.data_loaded ? this.state.data.description :
-                  <ContentLoader viewBox="0 0 380 60">
-                  {/* Only SVG shapes */}    
-                  <rect x="0" y="20" rx="4" ry="4" width="500" height="10" />
-                  <rect x="0" y="40" rx="4" ry="4" width="500" height="10" />
-                </ContentLoader>}
-                </Paragraph>
-              </Typography>
+          <Row style = {{marginBottom:30}}>
+            {/* Column here is for blank space on the sides*/}
+            <Col xs={1} sm={1} md={2}></Col>
+
+            <Col xs ={10}  sm={10} md={8}>  
+    
+              <Row style={{marginTop:20}}>
+                <Typography>
+                  <Title class="programheader"><span>{this.state.program_name}</span> </Title>
+                  <Paragraph style={ProgramInfoP}>
+                    {this.state.data_loaded ? this.state.data.description :
+                    <ContentLoader viewBox="0 0 380 60">
+                    {/* Only SVG shapes */}    
+                    <rect x="0" y="20" rx="4" ry="4" width="500" height="10" />
+                    <rect x="0" y="40" rx="4" ry="4" width="500" height="10" />
+                  </ContentLoader>}
+                  </Paragraph>
+                </Typography>
+              </Row>
+
+              </Col>
+                {/* Column here is for blank space on the sides*/}
+              <Col xs = {1} sm={1} md={2}>
+        
             </Col>
-
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
-
           </Row>
 
-          {/* Divider to separate the buttons and the mission statement */}
-          <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
-          </Divider>
-
+          {/* original table for information
           <Row>
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
-            <Col xs={20} sm={20} md={20} lg={16} xl={16}>
+            <Col xs ={1} sm={1} md={2}>{/* Spacer </Col>
+            <Col xs ={10} sm={10} md={8}>
               <Typography>
                 <Title style={{fontSize:28}}>Summary Data</Title>
               </Typography>
               {this.state.data_loaded ? <Table pagination={false} dataSource={summaryData} columns={summaryDataCols} style={ProgramInfoCard} /> :
                  <ContentLoader viewBox="0 0 380 40">
-                 {/* Only SVG shapes */}    
+                 {/* Only SVG shapes     
                  <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
                  <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
              </ContentLoader>}
             </Col>
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
+            <Col xs ={1} sm={1} md={2}>{/* Spacer </Col>
+          </Row>
+          */}
+
+          <Row style={{marginTop:30}}>
+              <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col> 
+                
+                <Col xs ={10} sm={10} md={8}>
+                <Typography>
+                  <Title style={{fontSize:28}}>Application Timeline</Title>
+                </Typography>
+                
+                <Tabs onSelect={() => {}} defaultActiveKey="home" id="uncontrolled-tab-example">
+                  
+                  <Tab eventKey="home" title="International">
+                    <div>
+                      {internationalDates.length > 0 && <Chrono
+                        // hideControls={true}
+                        items={internationalDates}
+                        theme={{primary: colorpal[0], secondary: "#fff", cardBgColor:"#fff", cardForeColor: "#fff" }}
+                      />}
+                    </div>
+                    <p style={{textAlign:"center", color:"#808080"}}>* Please note that these are the final deadlines. There may be other rounds before this deadline.</p>
+                  </Tab>
+
+                  <Tab eventKey="second" title="Domestic">
+                    <div>
+                      {domesticDates.length > 0 && <Chrono style={{fontSize:12}}
+                        // hideControls={true}
+                        items={domesticDates}
+                        theme={{primary:colorpal[0], secondary: "#fff", cardBgColor:"#fff", cardForeColor:"#fff" }}
+                      />}
+                    </div>
+                    <p style={{textAlign:"center", color:"#808080"}}>* Please note that these are the final deadlines. There may be other rounds before this deadline.</p>
+                  </Tab>
+  
+                </Tabs>
+
+                </Col>
+                
+              <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col> 
+          </Row>
+
+
+          <Row style={{marginTop:30}}>
+              <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col> 
+                
+                <Col xs ={10} sm={10} md={8}>
+                <Typography>
+                  <Title style={{fontSize:28}}>Application Matrix</Title>
+                </Typography>
+
+                <Tabs onSelect={() => {}} defaultActiveKey="home" id="uncontrolled-tab-example">
+                
+                  <Tab eventKey="home" title="Class Profile">
+                    <ChakraProvider>
+                      <Table style={{marginTop:20}} size="sm">
+                        <Thead>
+                          <Tr>
+                            <Th>School Name</Th>
+                            <Th>GPA</Th>
+                            <Th>GMAT</Th>
+                            <Th>GRE</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {this.state.data.school_data.map((school, idx) =>
+                          <Tr>
+                            <Td style={{color:colorpal[school.tier-1]}}><Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>{idx+1}. {school.school_name}</Link></Td>
+                            <Td>{school.average_gpa}</Td>
+                            <Td>{school.average_gmat}</Td>
+                            <Td>{school.average_gre}</Td>
+                          </Tr>
+                          )}
+                        </Tbody>
+                      </Table>
+                    </ChakraProvider>
+                  </Tab>
+
+                  <Tab eventKey="second" title="Job Placement">
+                    <ChakraProvider>
+                      <Table style={{marginTop:20}} size="sm">
+                        <Thead>
+                          <Tr>
+                            <Th>School Name</Th>
+                            <Th>Placement Rate</Th>
+                            <Th>Average Salary</Th>
+                            <Th>Maximum Salary</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {this.state.data.school_data.map((school, idx) =>
+                          <Tr>
+                            <Td style={{color:colorpal[school.tier-1]}}><Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>{idx+1}. {school.school_name}</Link></Td>
+                            <Td>{school.job_placement_rate}</Td>
+                            <Td>{school.average_salary}</Td>
+                            <Td>{school.maximum_salary}</Td>
+                          </Tr>
+                          )}
+                        </Tbody>
+                      </Table>
+                    </ChakraProvider>
+                  </Tab>
+
+                  <Tab eventKey="third" title="Application Materials">
+                    <ChakraProvider>
+                      <Table style={{marginTop:20}} size="sm">
+                        <Thead>
+                          <Tr>
+                            <Th>School Name</Th>
+                            <Th>Essays</Th>
+                            <Th>Recommendations</Th>
+                            <Th>Video Question?</Th>
+                            <Th>GRE/GMAT Required?</Th>
+                            <Th>Interview?</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {this.state.data.school_data.map((school, idx) =>
+                          <Tr>
+                            <Td style={{color:colorpal[school.tier-1]}}><Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>{idx+1}. {school.school_name}</Link></Td>
+                            <Td>{school.essays_count}</Td>
+                            <Td>{school.lor_count}</Td>
+                            <Td>{school.video_question_b}</Td>
+                            <Td>{school.gre_gmat_b}</Td>
+                            <Td>{school.interview_b}</Td>
+                          </Tr>
+                          )}
+                        </Tbody>
+                      </Table>
+                    </ChakraProvider>
+                  </Tab>
+
+                </Tabs>
+              </Col>
+                
+              <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col> 
           </Row>
 
           {/* Divider just for looks */}
@@ -1388,31 +484,31 @@ class Program extends React.Component {
           </Divider>
 
           <Row justify="space-around">
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
-            <Col xs={20} sm={20} md={20} lg={16} xl={16}>
+            <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col>
+            <Col xs ={10} sm={10} md={8}>
               <Typography>
                 <Title style={ProgramInfoTitle}>Schools</Title>
               </Typography>
             </Col>
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/* Spacer */}</Col>
+            <Col xs ={1} sm={1} md={2}>{/* Spacer */}</Col>
           </Row>
 
           <Row>
-            <Col xs={2} sm={2} md={2} lg={4} xl={4}>{/*Spacer */}</Col>
-            <Col xs={15} sm={15} md={15} lg={12} xl={12}>
+            <Col xs ={1} sm={1} md={2}>{/*Spacer */}</Col>
+            <Col xs ={10} sm={10} md={6}>
               {this.state.data_loaded ? this.state.data.school_data.map((school, idx) =>
                 <Card
                   //border = {'#E72F08'}
                   //border={colorpal[idx]}
                   style={{marginBottom: 25 , borderColor: colorpal[school.tier-1]}}
                 >
-                <Card.Header style={{backgroundColor: colorpal[school.tier-1], fontSize:18}}> <Link to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> {"#" + (idx + 1) + " " + school.school_name}</Link> </Card.Header>
+                <Card.Header style={{backgroundColor: colorpal[school.tier-1], fontSize:16}}> <Link className="white" to={"/Program/" + this.state.data.program_name + "/" + school.school_name}> {"#" + (idx + 1) + " " + school.school_name}</Link> </Card.Header>
                   <Card.Body>
                     <Card.Title style={{fontSize:16}}>{school.program_local_name}</Card.Title>
                     <Card.Text>
-                      Average GMAT Score: {school.average_gmat} <br />
-                      Average GRE Score: {school.average_gre} <br />
-                      Average GPA: {school.average_gpa} <br />
+                      Average GMAT Score: {school.average_gmat || "N/A"} <br />
+                      Average GRE Score: {school.average_gre || "N/A"} <br />
+                      Average GPA: {school.average_gpa || "N/A"} <br />
                     </Card.Text>
                     <Link style={{color:"#606060"}} to={"/Program/" + this.state.data.program_name + "/" + school.school_name}>Details...</Link>
                   </Card.Body>
@@ -1424,8 +520,9 @@ class Program extends React.Component {
                  <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
              </ContentLoader>}
             </Col>
+
             {/* Side list for 20/20 rating. Possibily turn into a scrolling list if it gets too long. */}
-            <Col xs={4} sm={4} md={4} lg={6} xl={6} offset={1}>
+            <Col sm={0} md={4} offset={1} className="d-none d-md-block">
 
               <Typography>
                 <Title style={ProgramInfoTitle}>20/20 Tier List</Title>
@@ -1435,12 +532,12 @@ class Program extends React.Component {
                 {this.state.data_loaded ? sortedTierData.map((tier, idx) =>
                   <Row>
 
-                    <Col xs={2} sm={2} md={2} lg={4} xl={4}>
+                    <Col sm={2} md={2}>
                       <img src={tierpic[tier.tier-1]} height={40} width ={40} alt="logo"/>   
                     </Col>
 
-                    <Col xs={20} sm={20} md={20} lg={20} xl={20}>
-                      <p style={{marginBottom:1}}>{tier.tierData.map(tierData => <div><p>{tierData}</p></div>)}</p>
+                    <Col sm={8} md={8}>
+                      {tier.tierData.map(tierData => <p>{tierData}</p>)}
                     </Col>
 
                     <Divider orientation="middle" style={{ color: '#333', fontWeight: 'normal' }}>
@@ -1477,8 +574,10 @@ class Program extends React.Component {
                   )}
                 />
               )}
-              */}
+              
+
             
+
               <Typography>
                 <Title style={ProgramInfoTitle}>Short List</Title>
               </Typography>
@@ -1541,15 +640,18 @@ class Program extends React.Component {
                   )} 
               </div> :
               <ContentLoader viewBox="0 0 380 40">
-              {/* Only SVG shapes */}    
+              {/* Only SVG shapes    
               <rect x="0" y="0" rx="4" ry="4" width="500" height="10" />
               <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
               </ContentLoader>
               }
+              */}
+
+              
 
             </Col>
 
-            <Col xs={2} sm={2} md={2} lg={2} xl={2}>{/*Spacer */}</Col>
+            <Col xs ={1} sm={1} md={0}> </Col>
 
           </Row>
         </div>
